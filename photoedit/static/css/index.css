@@ -1,0 +1,28 @@
+html {
+  min-height: 100%;
+}
+
+body {
+  height: 100%;
+  background: #FFFFFF;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.navbar {
+  margin-bottom:10px;
+}
+
+#flash {
+  display: inline-block;
+  text-shadow: #bbb 0 0 1px, #fff 0 -1px 2px, #fff 0 -3px 2px, rgba(0,0,0,0.8) 0 30px 25px;
+  transition: margin-left 0.3s cubic-bezier(0, 1, 0, 1);
+}
+
+#logo:hover #flash {
+  text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
+  transform: rotateY(360deg);
+  transition:         transform 0.3s cubic-bezier(0, 0.75, 0, 1), text-shadow 0.1s ease-out;
+}

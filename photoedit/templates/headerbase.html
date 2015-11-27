@@ -1,0 +1,91 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}GentleEdit{% endblock %}</title>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{% static 'css/animate.min.css' %}" rel="stylesheet" type="text/css" media="screen" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel='stylesheet' type='text/css'>
+
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "js/main.js" %}"></script>
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse" role="navigation" style="background-color:rgba(115, 115, 111, 0.45);">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                <div class="#" href="#">
+                </div>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav pull-right" style="color:black">
+                  
+                    <img src="{{ facebook.contrib_picture }}" style="margin-right:10px">Logged in as {{ request.user.username }} <a href="{% url 'signout' %}">Logout</a>
+                    <li role="presentation"><a href="#"></a></li>
+                </ul>
+            </div>
+        </div> <!-- /.navbar-collapse -->
+    </nav>
+
+    <div class="container">
+    {% block main %} 
+
+    
+    {% endblock main %} 
+    </div>  
+
+        <div class="col-lg-12">
+          <footer class="footer">
+            <div class="container">  
+ 
+              <div class="navbar navbar-default navbar-fixed-bottom">
+                <div class="container">
+                  <p class="navbar-text pull-left">© 2015 - Site Built by Samuel James #TIA
+                  </p>
+                  
+                  <a href="http://www.andela.com/" class="navbar-btn btn-primary btn pull-right andel">
+                  <span class="glyphicon glyphicon-star"></span> ANDELA</a>
+                </div>
+                
+              </div>
+          </footer>
+        </div>
+    </div>
+    
+    <!-- jQuery -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block main %} 
+
+
+<div class="row">
+    <center><div id="logo" style="width: 50%; padding-top:100px;">
+        <h1>LOGO PIX </h1>
+            <h4 id="flash">Take the world in your hand</h4>
+        <hr>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis elementum, elit ut condimentum malesuada, turpis libero bibendum felis, nec venenatis ante leo vitae nisl. In hac habitasse platea dictumst. Integer rhoncus turpis elit, non egestas lacus pretium in. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+
+        <div style="padding-top:100px">
+        {% csrf_token %}
+            <button type="submit" data-action="{% url 'login' %}" id="facebookLogin" class="btn btn-primary btn-lg btn-block">Login with Facebook</button>
+        </div> 
+    </div></center>  
+</div>
+
+{% endblock main %}  

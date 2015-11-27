@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 import sys
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'photoapp',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -56,7 +57,6 @@ WSGI_APPLICATION = 'photoedit.wsgi.application'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'TEMPLATE_DEBUG': DEBUG,
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -108,6 +108,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+#SITE_URL = 'http://127.0.0.1:8000/facebook_connect'
+
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -121,3 +123,15 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     )
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    )
+
+LOGIN_REDIRECT_URL = "/"       
+LOGIN_ERROR_URL    = "/" #error handler
+
+FACEBOOK_APP_ID = "1098970130135656"               # required
+
+FACEBOOK_APP_SECRET = "8a98d7e7cdaf3f24f1485b8990b52e88"  # required
+
+FACEBOOK_SCOPE = "email"      
