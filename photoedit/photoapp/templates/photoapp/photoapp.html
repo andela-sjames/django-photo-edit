@@ -1,8 +1,39 @@
 {% extends "headerbase.html" %}
+{% load cloudinary %}
 
 {% load static %}
 {% block main %} 
     
     <h1>YOU HAVE SUCCESSFULLY LOGGED IN! </h1>
+
+    {% if photos %}
+
+        
+        <div class="col-md-10">        
+            {% for photo in photos %}
+            <div style="display: inline-flex;">
+                    <div class="ui small image" style="margin:5px;">
+                        <img alt="{{ photo.title }}" src="{{ photo.image.url }}"/>
+                    <p>{{ photo.title }}</p>
+                    </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        
+        <div class="col-md-2">
+            <div class="class="ui visible sidebar">
+                <div style="height:0px;overflow:hidden">
+                    <input type="file" id="fileInput" name="files[]" multiple />
+                </div>
+                <button type="button" class="btn btn-primary btn-block">Edit</button>
+                <button type="button" class="btn btn-primary btn-block" onclick="chooseFile();">Upload Image</button>
+                    <output id="list"></output>
+            </div>
+        
+        </div>
+
+    {% endif %}
+    
   
 {% endblock main %}

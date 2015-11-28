@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib import admin
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class FacebookUser(models.Model):
@@ -12,4 +14,20 @@ class FacebookUser(models.Model):
     def __unicode__(self):
         return "%s %s" % (self.contrib_user.first_name, self.contrib_user.last_name)
 
+class Photo(models.Model):
 
+    ''' Model holds a reference to cloudinary-stored
+        image and contains some metadata about the image.'''
+
+    title = models.CharField("Title (optional)", max_length=60, blank=True, null=True)
+    image = CloudinaryField(
+        resource_type='image',
+        type='upload',
+        blank=True,
+        default="img/photo_default.png"
+    )
+    created = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, null=True, blank=True)
+
+    def __unicode__(self):
+        return self.title

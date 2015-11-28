@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import sys
+import cloudinary
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -39,6 +41,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'photoapp',
+    'cloudinary',
+    'imagekit',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -127,11 +131,14 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     )
 
-LOGIN_REDIRECT_URL = "/"       
-LOGIN_ERROR_URL    = "/" #error handler
+# Cloudinary configuration handshake
 
-FACEBOOK_APP_ID = "1098970130135656"               # required
+# Cloudinary configuration handshake
+cloudinary.config(cloud_name='dzmrjpmji',
+                  api_key='892324742324399',
+                  api_secret='30IvNv6pruzCSsnNrJr_wb_mM1A')
 
-FACEBOOK_APP_SECRET = "8a98d7e7cdaf3f24f1485b8990b52e88"  # required
+# cloudinary.config(cloud_name=os.getenv('cloudinary_cloud_name'),
+#                   api_key=os.getenv('cloudinary_api_key'),
+#                   api_secret=os.getenv('cloudinary_api_secret'))
 
-FACEBOOK_SCOPE = "email"      

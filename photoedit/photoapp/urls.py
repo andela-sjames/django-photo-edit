@@ -6,6 +6,3 @@ urlpatterns = [
     url(r'^photos/$', views.PhotoAppView.as_view(), name='photoview'),
     url(r'^signout/$', views.SignOutView.as_view(), name='signout'),
 ]
-
-
-#PhotoAppView

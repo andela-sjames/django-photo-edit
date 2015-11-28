@@ -13,7 +13,7 @@ from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from photoapp.models import FacebookUser
+from photoapp.models import FacebookUser, Photo
 from django.http import Http404
 
 
@@ -95,6 +95,7 @@ class PhotoAppView(TemplateView):
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
         context['facebook']=FacebookUser.objects.get(contrib_user_id=request.user.id)
+        context['photos']=Photo.objects.all()
         return self.render_to_response(context)
 
 

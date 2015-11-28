@@ -26,3 +26,20 @@ body {
   transform: rotateY(360deg);
   transition:         transform 0.3s cubic-bezier(0, 0.75, 0, 1), text-shadow 0.1s ease-out;
 }
+
+label[for="file"]{
+
+    width: 90px;
+    background-color: #900;
+    border-radius: 5px;
+    padding: 5px
+    font-size: 11px;
+    text-align: center;
+    color: white;
+    cursor:pointer;
+}
+
+/*input[type="file"]{
+    
+    display: none;
+}*/
