@@ -13,7 +13,10 @@
 
         <div style="padding-top:100px">
         {% csrf_token %}
-            <button type="submit" data-action="{% url 'login' %}" id="facebookLogin" class="btn btn-primary btn-lg btn-block">Login with Facebook</button>
+            <button type="submit" data-action="{% url 'login' %}" id="facebookLogin" class="ui facebook button btn-primary  btn-lg btn-block">
+                <i class="facebook icon"></i>
+                Login with Facebook
+            </button>
         </div> 
     </div></center>  
 </div>

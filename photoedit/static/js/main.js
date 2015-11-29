@@ -67,31 +67,26 @@ var facebookLogin = {
     },
 };
 
-function chooseFile() {
-        $("#fileInput").click();
-    }
+// function chooseFile() {
+//         $("#fileInput").click();
+//     }
 
-function handleFileSelect(evt) {
-    var files = evt.target.files; // FileList object
+// function handleFileSelect(evt) {
+//     var files = evt.target.files; // FileList object
 
-    // files is a FileList of File objects. List some properties.
-    var output = [];
-    for (var i = 0, f; f = files[i]; i++) {
-      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-                  f.size, ' bytes, last modified: ',
-                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-                  '</li>');
-    }
-    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-  }
+//     // files is a FileList of File objects. List some properties.
+//     var output = [];
+//     for (var i = 0, f; f = files[i]; i++) {
+//       output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+//                   f.size, ' bytes, last modified: ',
+//                   f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+//                   '</li>');
+//     }
+//     document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+//   }
 
 
-function imageHandler(e2) 
-{ 
-  var store = document.getElementById('imgstore');
-  store.innerHTML='<img src="' + e2.target.result +'">';
-}
-
+// $("#fileInput").change(handleFileSelect);
 
 
 $(document).ready(function(){    
@@ -100,6 +95,7 @@ $(document).ready(function(){
         fb_id: "1098970130135656"
     })
 
-    $("#fileInput").change(handleFileSelect);
+    
 
 })
+

@@ -24,7 +24,7 @@ class Photo(models.Model):
         resource_type='image',
         type='upload',
         blank=True,
-        default="img/photo_default.png"
+        default="img/photo_default.png",
     )
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, null=True, blank=True)

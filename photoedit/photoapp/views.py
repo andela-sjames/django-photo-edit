@@ -16,6 +16,12 @@ from django.utils.decorators import method_decorator
 from photoapp.models import FacebookUser, Photo
 from django.http import Http404
 
+import json
+
+from django.views.decorators.csrf import csrf_exempt
+from cloudinary.forms import cl_init_js_callbacks
+from cloudinary import api # Only required for creating upload presets on the fly
+from .forms import PhotoForm, PhotoDirectForm
 
 
 
@@ -99,4 +105,18 @@ class PhotoAppView(TemplateView):
         return self.render_to_response(context)
 
 
+    def post(self, request, *args, **kwargs):
 
+        # Only backend upload should be posting here
+        context={}
+        #form = PhotoForm(request.POST, request.FILES)
+        title = request.POST.get('title','')
+        image = request.FILES.get('image')
+
+        photo = Photo(title=title, user_id=request.user.id, image=image)
+        photo.save()
+
+        context['facebook']=FacebookUser.objects.get(contrib_user_id=request.user.id)
+        context['photos']=Photo.objects.all()
+
+        return self.render_to_response(context)

@@ -27,7 +27,11 @@ body {
   transition:         transform 0.3s cubic-bezier(0, 0.75, 0, 1), text-shadow 0.1s ease-out;
 }
 
-label[for="file"]{
+.images {
+  display: flex; /* or inline-flex */
+  flex-direction: column ;
+}
+/*label[for="file"]{
 
     width: 90px;
     background-color: #900;
@@ -37,7 +41,7 @@ label[for="file"]{
     text-align: center;
     color: white;
     cursor:pointer;
-}
+}*/
 
 /*input[type="file"]{
     

@@ -1,0 +1,35 @@
+{% load staticfiles %}
+{% load cloudinary %}
+{% load staticfiles %}
+{% load url from future %}
+
+<div class="modal fade" id="fileupload-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Upload a file?</h4>
+            </div>
+            <div class="modal-body">
+
+                <!-- A form for direct uploading using a jQuery plug-in. 
+                The cloudinary_direct_upload_field method generates the required HTML and JavaScript to    
+                allow uploading directly from the browser to your Cloudinary account -->
+                <form action="{% url "photoview" %}" method="post" enctype="multipart/form-data">
+                <div id="backend_upload">
+                    {% csrf_token %}
+                    <label for="id_title">Title (optional):</label><input id="id_title" maxlength="60" name="title" type="text">
+
+                    <label for="id_image">Image:</label><input id="id_image" name="image" type="file">
+                {# altenatively, could use: {% cloudinary_direct_upload_field request=request %} #}
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="ui blue basic button" data-dismiss="modal">Close</button>
+                <button type="submit" class="ui blue basic button">Upload</button>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
