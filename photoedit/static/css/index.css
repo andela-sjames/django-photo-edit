@@ -70,6 +70,24 @@ body {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
+
+.frame {
+  padding: 50px;
+  background-color: lightgray;
+}
+
+.xframe {
+  height: 400px;
+  overflow: scroll;
+}
+
+.space {
+  margin-bottom: 8px;
+}
+
+#sp {
+  margin-bottom: 10px;
+}
 /*label[for="file"]{
 
     width: 90px;

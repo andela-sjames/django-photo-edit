@@ -4,22 +4,67 @@
 {% load static %}
 {% load url from future %}
 {% block main %} 
+
+        <div class="col-md-1">
+
+            <div class="ui small image xframe space">
+                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
+             </div>
+
+             <div class="ui small image xframe space">
+                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
+             </div>
+
+             <div class="ui small image xframe space">
+                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
+             </div>
+
+             <div class="ui small image xframe space">
+                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
+             </div>
+             <div class="ui small image xframe space">
+                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
+             </div>
+
+             <div class="ui small image xframe space">
+                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
+             </div>
+
+             <div class="ui small image xframe space">
+                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
+             </div>
+
+             <div class="ui small image xframe space">
+                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
+             </div>
+
+        </div>
     
-        <div class="col-md-6">
-            <center>
-                <div class="ui fluid image" id="msize">
+        <div class="col-md-8">
+            <div class="frame">
+                <div class="ui fluid image xframe">
                     {% cloudinary photo.image %}
                     <p>{{ photo.title }}</p>
                 </div>
-            </center>
+            </div>
         </div>
 
         <div class="col-md-2">
             <div class="class="ui visible sidebar">
                 <a href="{% url "photoview" %}">
-                <button type="button" class="ui blue basic button btn-block">Back</button>
+                <button type="button" class="ui blue basic button btn-block space" id="sp" >Back</button>
                 </a>
+                <button type="button" class="ui blue basic button btn-block space" id="sp">Save</button>
+                <button type="button" class="ui blue basic button btn-block space" id="sp">Delete</button>
+
             </div>
+            
+            <div>
+                <center>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </center>
+            </div>
+
         </div>
 
 

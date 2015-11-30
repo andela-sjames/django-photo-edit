@@ -15,11 +15,14 @@ Image_Effecfs = dict(
             "class": "thumbnail inline", "format": "jpg", "crop": "fill", "height": 720, "width": 540,
         },
 
+        EFFECTS = dict(
+          format = "png",
+          transformation = [
+              dict(height=130, width=130, crop="thumb", radius=10),
+          ]
+        )
 
     )
-
-
-
 
 
 
