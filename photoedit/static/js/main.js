@@ -95,6 +95,30 @@ $(document).ready(function(){
         fb_id: "1098970130135656"
     })
 
+    $('#editpicture-modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var imageId = button.data('imageId')
+        var imagePublicId = button.data('title')
+        var imgdiv = $(this).find('img')
+        var href = $(this).find('a')
+        var getroute = "/photoapp/edit/" + imagePublicId + "/"
+
+        imgdiv.attr( "src", imageId );
+        href.attr( "href", getroute );
+        
+
+        // $('#effect1').click(function(){
+
+        //     var effect1=imgsrc
+        //     imgdiv.attr( "src", effect1 );
+
+            // $( ".replace" ).replaceWith( "<div class='ui small image' style='margin:5px;'>{% cloudinary photo.image %}</div>" );
+
+        // });
+
+    })
+
+
     
 
 })

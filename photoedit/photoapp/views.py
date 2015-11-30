@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.views.generic import View
 from django.views.generic.base import TemplateView
 from django.core.context_processors import csrf
@@ -22,6 +22,7 @@ from django.views.decorators.csrf import csrf_exempt
 from cloudinary.forms import cl_init_js_callbacks
 from cloudinary import api # Only required for creating upload presets on the fly
 from .forms import PhotoForm, PhotoDirectForm
+from context_processors import Image_Effecfs
 
 
 
@@ -94,7 +95,7 @@ class SignOutView(View, LoginRequiredMixin):
         return HttpResponseRedirect(
             reverse_lazy('homepage'))    
 
-class PhotoAppView(TemplateView):
+class PhotoAppView(TemplateView, LoginRequiredMixin):
 
     template_name = 'photoapp/photoapp.html'
 
@@ -102,6 +103,7 @@ class PhotoAppView(TemplateView):
         context = self.get_context_data(**kwargs)
         context['facebook']=FacebookUser.objects.get(contrib_user_id=request.user.id)
         context['photos']=Photo.objects.all()
+        context['Image_Effecfs']=Image_Effecfs
         return self.render_to_response(context)
 
 
@@ -118,5 +120,25 @@ class PhotoAppView(TemplateView):
 
         context['facebook']=FacebookUser.objects.get(contrib_user_id=request.user.id)
         context['photos']=Photo.objects.all()
+        context['Image_Effecfs']=Image_Effecfs
 
         return self.render_to_response(context)
+
+
+class EditPhotoView(TemplateView):
+
+    template_name = 'photoapp/editphoto.html'
+
+    def get(self, request, *args, **kwargs):
+        context={}
+        photoId=self.kwargs.get('id')
+        context['facebook']=FacebookUser.objects.get(contrib_user_id=request.user.id)
+        context['Image_Effecfs']=Image_Effecfs
+        context['photo']=Photo.objects.get(id=photoId)
+        return self.render_to_response(context)
+
+
+
+
+
+

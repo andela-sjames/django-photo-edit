@@ -1,6 +1,5 @@
 {% load staticfiles %}
 {% load cloudinary %}
-{% load staticfiles %}
 {% load url from future %}
 
 <div class="modal fade" id="fileupload-modal" tabindex="-1" role="dialog">
@@ -20,7 +19,7 @@
                     {% csrf_token %}
                     <label for="id_title">Title (optional):</label><input id="id_title" maxlength="60" name="title" type="text">
 
-                    <label for="id_image">Image:</label><input id="id_image" name="image" type="file">
+                    <label for="id_image">Image:</label><input id="id_image" name="image" type="file" required>
                 {# altenatively, could use: {% cloudinary_direct_upload_field request=request %} #}
                 </div>
 

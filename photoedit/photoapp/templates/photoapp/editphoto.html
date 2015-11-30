@@ -1,0 +1,26 @@
+{% extends "headerbase.html" %}
+
+{% load cloudinary %}
+{% load static %}
+{% load url from future %}
+{% block main %} 
+    
+        <div class="col-md-6">
+            <center>
+                <div class="ui fluid image" id="msize">
+                    {% cloudinary photo.image %}
+                    <p>{{ photo.title }}</p>
+                </div>
+            </center>
+        </div>
+
+        <div class="col-md-2">
+            <div class="class="ui visible sidebar">
+                <a href="{% url "photoview" %}">
+                <button type="button" class="ui blue basic button btn-block">Back</button>
+                </a>
+            </div>
+        </div>
+
+
+{% endblock main %}

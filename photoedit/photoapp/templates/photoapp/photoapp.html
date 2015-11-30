@@ -1,7 +1,8 @@
 {% extends "headerbase.html" %}
 
-
+{% load cloudinary %}
 {% load static %}
+{% load url from future %}
 {% block main %} 
 
     {% if photos %}
@@ -9,12 +10,15 @@
         <div class="col-md-10">        
             {% for photo in photos %}
             <div style="display: inline-flex;">
+                    <a href="#editpicture-modal" data-toggle="modal" class="modal-toggle hvr-grow-shadow" data-image-id="{{ photo.image.url }}" data-title="{{ photo.id }}" data-target="#editpicture-modal">
                     <div class="ui small image" style="margin:5px;">
-                        <img alt="{{ photo.title }}" src="{{ photo.image.url }}"/>
+                        {% cloudinary photo.image Image_Effecfs.THUMBNAIL %}
                     <p>{{ photo.title }}</p>
                     </div>
+                    </a>
             </div>
             {% endfor %}
+
         </div>
 
         <div class="col-md-2">
@@ -45,6 +49,7 @@
 
     {% endif %}
         {% include "photoapp/upload_modal.html" %}
+        {% include "photoapp/edit_modal.html" %}
     
 {% endblock main %}
 

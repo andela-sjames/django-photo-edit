@@ -62,7 +62,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav pull-right" style="color:black">
                   
-                    <img src="{{ facebook.contrib_picture }}" style="margin-right:10px">Logged in as {{ request.user.username }} <a href="{% url 'signout' %}">Logout</a>
+                    <img src="{{ facebook.contrib_picture }}" class="img-circle" style="margin-right:10px">Logged in as {{ request.user.username }} <a href="{% url 'signout' %}">Logout</a>
                     <li role="presentation"><a href="#"></a></li>
                 </ul>
             </div>

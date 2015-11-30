@@ -133,8 +133,12 @@ AUTHENTICATION_BACKENDS = (
     )
 
 # Cloudinary configuration handshake
-
-# Cloudinary configuration handshake
+# CLOUDINARY = {
+#   'cloud_name': 'dzmrjpmji',  
+#   'api_key': '892324742324399',  
+#   'api_secret': '30IvNv6pruzCSsnNrJr_wb_mM1A',  
+# }
+#Cloudinary configuration handshake
 cloudinary.config(cloud_name='dzmrjpmji',
                   api_key='892324742324399',
                   api_secret='30IvNv6pruzCSsnNrJr_wb_mM1A')

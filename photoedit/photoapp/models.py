@@ -30,4 +30,8 @@ class Photo(models.Model):
     user = models.ForeignKey(User, null=True, blank=True)
 
     def __unicode__(self):
-        return self.title
+        try:
+            public_id = self.image.public_id
+        except AttributeError:
+            public_id = ''
+        return "Photo <%s:%s>" % (self.title, public_id)
