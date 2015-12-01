@@ -5,59 +5,84 @@
 {% load url from future %}
 {% block main %} 
 
-        <div class="col-md-1">
-            
+        <div class="col-md-1" id="eff">
+
             <div class="ui small image xframe space">
                 <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='default' %}">
                 {% cloudinary photo.image Image_Effects.NORMAL %}
                 </div>
+                <P>Normal</P>
              </div>
 
             <div class="ui small image xframe space">
                 <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='BIG_SERPIA' %}">
                 {% cloudinary photo.image Image_Effects.SMALL_SERPIA %}
                 </div>
+                <p>serpia</p>
              </div>
 
              <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='SMALL_SERPIA' %}">
-                {% cloudinary photo.image Image_Effects.EFFECTS %}
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_GRAYSCALE' %}">
+                {% cloudinary photo.image Image_Effects.S_GRAYSCALE %}
                 </div>
+                <p>grayscale</p>
              </div>
 
              <div class="ui small image xframe space">
-                <div class="object" data-effect="BIG_SERPIA">
-                {% cloudinary photo.image Image_Effects.EFFECTS %}
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_VIGNETTE' %}">
+                {% cloudinary photo.image Image_Effects.S_VIGNETTE %}
                 </div>
+                <p>vignette</p>
+             </div>
+
+             
+             <div class="ui small image xframe space">
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_GRADIENTFADE' %}">
+                {% cloudinary photo.image Image_Effects.B_GRADIENTFADE %}
+                </div>
+                <p>gradient</p>
              </div>
 
              <div class="ui small image xframe space">
-                <div class="object" data-effect="BIG_SERPIA">
-                {% cloudinary photo.image Image_Effects.EFFECTS %}
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_CONTRAST_70' %}">
+                {% cloudinary photo.image Image_Effects.S_CONTRAST_70 %}
                 </div>
-             </div>
-             <div class="ui small image xframe space">
-                <div class="object" data-effect="BIG_SERPIA">
-                {% cloudinary photo.image Image_Effects.EFFECTS %}
-                </div>
+                <p>contrast</p>
              </div>
 
              <div class="ui small image xframe space">
-                <div class="object" data-effect="BIG_SERPIA">
-                {% cloudinary photo.image Image_Effects.EFFECTS %}
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_BRIGHTNESS60' %}">
+                {% cloudinary photo.image Image_Effects.S_BRIGHTNESS60 %}
                 </div>
+                <p>brightness</p>
              </div>
 
              <div class="ui small image xframe space">
-                <div class="object" data-effect="BIG_SERPIA">
-                {% cloudinary photo.image Image_Effects.EFFECTS %}
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_BLUR' %}">
+                {% cloudinary photo.image Image_Effects.S_BLUR %}
                 </div>
+                <P>blur</P>
              </div>
 
              <div class="ui small image xframe space">
-                <div class="object">
-                {% cloudinary photo.image Image_Effects.EFFECTS %}
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_RED' %}">
+                {% cloudinary photo.image Image_Effects.S_RED %}
                 </div>
+                <p>red</p>
+             </div>
+
+             <div class="ui small image xframe space">
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_GREEN' %}">
+                {% cloudinary photo.image Image_Effects.S_GREEN %}
+                </div>
+                <p>green</p>
+             </div>
+
+             <div class="ui small image xframe space">
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_BLUE' %}">
+                {% cloudinary photo.image Image_Effects.S_BLUE %}
+                </div>
+                <p>blue</p>
              </div>
 
         </div>

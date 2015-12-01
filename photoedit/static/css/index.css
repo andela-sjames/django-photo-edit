@@ -88,6 +88,11 @@ body {
 #sp {
   margin-bottom: 10px;
 }
+
+#eff {
+  height: 600px;
+  overflow: scroll;
+} 
 /*label[for="file"]{
 
     width: 90px;
