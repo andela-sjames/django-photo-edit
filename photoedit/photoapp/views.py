@@ -22,7 +22,7 @@ from django.views.decorators.csrf import csrf_exempt
 from cloudinary.forms import cl_init_js_callbacks
 from cloudinary import api # Only required for creating upload presets on the fly
 from .forms import PhotoForm, PhotoDirectForm
-from context_processors import Image_Effecfs
+from context_processors import Image_Effects
 
 
 
@@ -103,7 +103,7 @@ class PhotoAppView(TemplateView, LoginRequiredMixin):
         context = self.get_context_data(**kwargs)
         context['facebook']=FacebookUser.objects.get(contrib_user_id=request.user.id)
         context['photos']=Photo.objects.all()
-        context['Image_Effecfs']=Image_Effecfs
+        context['Image_Effects']=Image_Effects
         return self.render_to_response(context)
 
 
@@ -120,7 +120,7 @@ class PhotoAppView(TemplateView, LoginRequiredMixin):
 
         context['facebook']=FacebookUser.objects.get(contrib_user_id=request.user.id)
         context['photos']=Photo.objects.all()
-        context['Image_Effecfs']=Image_Effecfs
+        context['Image_Effects']=Image_Effects
 
         return self.render_to_response(context)
 
@@ -132,9 +132,12 @@ class EditPhotoView(TemplateView):
     def get(self, request, *args, **kwargs):
         context={}
         photoId=self.kwargs.get('id')
+        effects=self.kwargs.get('effects')
+        print Image_Effects[effects]
         context['facebook']=FacebookUser.objects.get(contrib_user_id=request.user.id)
-        context['Image_Effecfs']=Image_Effecfs
+        context['Image_Effects']=Image_Effects
         context['photo']=Photo.objects.get(id=photoId)
+        context['effects'] = Image_Effects[effects]
         return self.render_to_response(context)
 
 

@@ -1,4 +1,4 @@
-Image_Effecfs = dict(
+Image_Effects = dict(
 
         ICON_EFFECTS = dict(
           format = "png",
@@ -18,9 +18,26 @@ Image_Effecfs = dict(
         EFFECTS = dict(
           format = "png",
           transformation = [
-              dict(height=130, width=130, crop="thumb", radius=10),
+              dict(height=130, width=130, crop="thumb", radius=10,),
           ]
-        )
+        ),
+        MINIFRAME = {
+            "class": "thumbnail inline", "format": "jpg", "crop": "fill", "height": 130, "width": 130,
+        },
+
+        SMALL_SERPIA = dict(
+          format = "png",
+          transformation = [
+              dict(height=130, width=130, crop="thumb", radius=10, effect = "sepia"),
+          ]
+        ),
+
+        BIG_SERPIA = dict(
+          format = "png",
+          transformation = [
+              dict(crop="thumb",effect = "sepia"),
+          ]
+        ),
 
     )
 

@@ -8,34 +8,50 @@
         <div class="col-md-1">
 
             <div class="ui small image xframe space">
-                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='BIG_SERPIA' %}">
+                {% cloudinary photo.image Image_Effects.SMALL_SERPIA %}
+                </div>
              </div>
 
              <div class="ui small image xframe space">
-                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='SMALL_SERPIA' %}">
+                {% cloudinary photo.image Image_Effects.EFFECTS %}
+                </div>
              </div>
 
              <div class="ui small image xframe space">
-                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
+                <div class="object" data-effect="BIG_SERPIA">
+                {% cloudinary photo.image Image_Effects.EFFECTS %}
+                </div>
              </div>
 
              <div class="ui small image xframe space">
-                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
+                <div class="object" data-effect="BIG_SERPIA">
+                {% cloudinary photo.image Image_Effects.EFFECTS %}
+                </div>
              </div>
              <div class="ui small image xframe space">
-                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
-             </div>
-
-             <div class="ui small image xframe space">
-                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
-             </div>
-
-             <div class="ui small image xframe space">
-                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
+                <div class="object" data-effect="BIG_SERPIA">
+                {% cloudinary photo.image Image_Effects.EFFECTS %}
+                </div>
              </div>
 
              <div class="ui small image xframe space">
-                {% cloudinary photo.image Image_Effecfs.EFFECTS %}
+                <div class="object" data-effect="BIG_SERPIA">
+                {% cloudinary photo.image Image_Effects.EFFECTS %}
+                </div>
+             </div>
+
+             <div class="ui small image xframe space">
+                <div class="object" data-effect="BIG_SERPIA">
+                {% cloudinary photo.image Image_Effects.EFFECTS %}
+                </div>
+             </div>
+
+             <div class="ui small image xframe space">
+                <div class="object">
+                {% cloudinary photo.image Image_Effects.EFFECTS %}
+                </div>
              </div>
 
         </div>
@@ -43,8 +59,10 @@
         <div class="col-md-8">
             <div class="frame">
                 <div class="ui fluid image xframe">
-                    {% cloudinary photo.image %}
+                    <div id ="largeImage">
+                    {% cloudinary photo.image effects %}
                     <p>{{ photo.title }}</p>
+                    </div>
                 </div>
             </div>
         </div>

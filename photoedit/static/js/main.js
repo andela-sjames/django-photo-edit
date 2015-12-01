@@ -87,7 +87,12 @@ var facebookLogin = {
 
 
 // $("#fileInput").change(handleFileSelect);
-
+// $(function() {
+//     $('#object1').click(function () {
+//         console.log(this)
+    
+//     });
+// })
 
 $(document).ready(function(){    
     facebookLogin.init({
@@ -118,6 +123,50 @@ $(document).ready(function(){
 
     })
 
+     $('.object').click(function (e) {
+        e.preventDefault();
+        console.log("This is cliked")
+        var url = $(this).data("effectUrl");
+
+
+        // $('#largeImage').replaceWith('<div id="largeImage">{% cloudinary photo.image Image_Effecfs.BIG_SERPIA %}</div>');
+        $("#largeImage").load(url + " #largeImage")
+     });
+
+     // $('#object2').click(function () {
+     //     var content = $(this).html();
+     //     $('#largeImage').replaceWith('<div id="largeImage">'+content+'</div>');
+     // });
+
+     // $('#object3').click(function () {
+     //     var content = $(this).html();
+     //     $('#largeImage').replaceWith('<div id="largeImage">'+content+'</div>');
+     // });
+
+     // $('#object4').click(function () {
+     //     var content = $(this).html();
+     //     $('#largeImage').replaceWith('<div id="largeImage">'+content+'</div>');
+     // });
+
+     // $('#object5').click(function () {
+     //     var content = $(this).html();
+     //     $('#largeImage').replaceWith('<div id="largeImage">'+content+'</div>');
+     // });
+
+     // $('#object6').click(function () {
+     //     var content = $(this).html();
+     //     $('#largeImage').replaceWith('<div id="largeImage">'+content+'</div>');
+     // });
+
+     // $('#object7').click(function () {
+     //     var content = $(this).html();
+     //     $('#largeImage').replaceWith('<div id="largeImage">'+content+'</div>');
+     // });
+
+     // $('#object8').click(function () {
+     //     var content = $(this).html();
+     //     $('#largeImage').replaceWith('<div id="largeImage">'+content+'</div>');
+     // });
 
     
 
