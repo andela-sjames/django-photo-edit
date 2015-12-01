@@ -185,5 +185,82 @@ Image_Effects = dict(
           ]
         ),
 
+        #FILTER6
+        S_SHARPEN = dict(
+          format = "png",
+          transformation = [
+              dict(height=130, width=130, crop="thumb", radius=10, effect = "sharpen"),
+          ]
+        ),
+
+        B_SHARPEN = dict(
+          format = "png",
+          transformation = [
+              dict(crop="thumb",effect = "sharpen"),
+          ]
+        ),
+
+        #FILTER7
+        S_VIBRANCE = dict(
+          format = "png",
+          transformation = [
+              dict(height=130, width=130, crop="thumb", radius=10, effect = "vibrance"),
+          ]
+        ),
+
+        B_VIBRANCE = dict(
+          format = "png",
+          transformation = [
+              dict(crop="thumb",effect = "vibrance"),
+          ]
+        ),
+
+        #FILTER8
+        S_OILPAINT = dict(
+          format = "png",
+          transformation = [
+              dict(height=130, width=130, crop="thumb", radius=10, effect = "oil_paint"),
+          ]
+        ),
+
+        B_OILPAINT = dict(
+          format = "png",
+          transformation = [
+              dict(crop="thumb",effect = "oil_paint"),
+          ]
+        ),
+
+        #FILTER9
+        S_BLACKWHITE = dict(
+          format = "png",
+          transformation = [
+              dict(height=130, width=130, crop="thumb", radius=10, effect = "blackwhite"),
+          ]
+        ),
+
+        B_BLACKWHITE = dict(
+          format = "png",
+          transformation = [
+              dict(crop="thumb",effect = "blackwhite"),
+          ]
+        ),
+
+        #FILTER10
+        S_NEGATE = dict(
+          format = "png",
+          transformation = [
+              dict(height=130, width=130, crop="thumb", radius=10, effect = "negate"),
+          ]
+        ),
+
+        B_NEGATE = dict(
+          format = "png",
+          transformation = [
+              dict(crop="thumb",effect = "negate"),
+          ]
+        ),
+
+
+
 )
 

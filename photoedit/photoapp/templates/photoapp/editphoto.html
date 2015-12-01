@@ -85,6 +85,46 @@
                 <p>blue</p>
              </div>
 
+
+             <div class="ui small image xframe space">
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_SHARPEN' %}">
+                {% cloudinary photo.image Image_Effects.S_SHARPEN %}
+                </div>
+                <p>sharpen</p>
+             </div>
+
+
+             <div class="ui small image xframe space">
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_VIBRANCE' %}">
+                {% cloudinary photo.image Image_Effects.S_VIBRANCE %}
+                </div>
+                <p>vibrance</p>
+             </div>
+
+
+             <div class="ui small image xframe space">
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_OILPAINT' %}">
+                {% cloudinary photo.image Image_Effects.S_OILPAINT %}
+                </div>
+                <p>oil paint</p>
+             </div>
+
+
+             <div class="ui small image xframe space">
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_BLACKWHITE' %}">
+                {% cloudinary photo.image Image_Effects.S_BLACKWHITE %}
+                </div>
+                <p>blackwhite</p>
+             </div>
+
+
+             <div class="ui small image xframe space">
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_NEGATE' %}">
+                {% cloudinary photo.image Image_Effects.S_NEGATE %}
+                </div>
+                <p>negate</p>
+             </div>
+
         </div>
     
         <div class="col-md-8">
