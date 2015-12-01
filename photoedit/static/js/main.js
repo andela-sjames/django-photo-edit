@@ -67,32 +67,6 @@ var facebookLogin = {
     },
 };
 
-// function chooseFile() {
-//         $("#fileInput").click();
-//     }
-
-// function handleFileSelect(evt) {
-//     var files = evt.target.files; // FileList object
-
-//     // files is a FileList of File objects. List some properties.
-//     var output = [];
-//     for (var i = 0, f; f = files[i]; i++) {
-//       output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-//                   f.size, ' bytes, last modified: ',
-//                   f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-//                   '</li>');
-//     }
-//     document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-//   }
-
-
-// $("#fileInput").change(handleFileSelect);
-// $(function() {
-//     $('#object1').click(function () {
-//         console.log(this)
-    
-//     });
-// })
 
 $(document).ready(function(){    
     facebookLogin.init({
@@ -106,20 +80,11 @@ $(document).ready(function(){
         var imagePublicId = button.data('title')
         var imgdiv = $(this).find('img')
         var href = $(this).find('a')
-        var getroute = "/photoapp/edit/" + imagePublicId + "/"
+        var getroute = "/photoapp/edit/" + imagePublicId + "/default"
 
         imgdiv.attr( "src", imageId );
         href.attr( "href", getroute );
         
-
-        // $('#effect1').click(function(){
-
-        //     var effect1=imgsrc
-        //     imgdiv.attr( "src", effect1 );
-
-            // $( ".replace" ).replaceWith( "<div class='ui small image' style='margin:5px;'>{% cloudinary photo.image %}</div>" );
-
-        // });
 
     })
 
@@ -128,46 +93,8 @@ $(document).ready(function(){
         console.log("This is cliked")
         var url = $(this).data("effectUrl");
 
-
-        // $('#largeImage').replaceWith('<div id="largeImage">{% cloudinary photo.image Image_Effecfs.BIG_SERPIA %}</div>');
         $("#largeImage").load(url + " #largeImage")
      });
-
-     // $('#object2').click(function () {
-     //     var content = $(this).html();
-     //     $('#largeImage').replaceWith('<div id="largeImage">'+content+'</div>');
-     // });
-
-     // $('#object3').click(function () {
-     //     var content = $(this).html();
-     //     $('#largeImage').replaceWith('<div id="largeImage">'+content+'</div>');
-     // });
-
-     // $('#object4').click(function () {
-     //     var content = $(this).html();
-     //     $('#largeImage').replaceWith('<div id="largeImage">'+content+'</div>');
-     // });
-
-     // $('#object5').click(function () {
-     //     var content = $(this).html();
-     //     $('#largeImage').replaceWith('<div id="largeImage">'+content+'</div>');
-     // });
-
-     // $('#object6').click(function () {
-     //     var content = $(this).html();
-     //     $('#largeImage').replaceWith('<div id="largeImage">'+content+'</div>');
-     // });
-
-     // $('#object7').click(function () {
-     //     var content = $(this).html();
-     //     $('#largeImage').replaceWith('<div id="largeImage">'+content+'</div>');
-     // });
-
-     // $('#object8').click(function () {
-     //     var content = $(this).html();
-     //     $('#largeImage').replaceWith('<div id="largeImage">'+content+'</div>');
-     // });
-
     
 
 })

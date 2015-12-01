@@ -133,7 +133,6 @@ class EditPhotoView(TemplateView):
         context={}
         photoId=self.kwargs.get('id')
         effects=self.kwargs.get('effects')
-        print Image_Effects[effects]
         context['facebook']=FacebookUser.objects.get(contrib_user_id=request.user.id)
         context['Image_Effects']=Image_Effects
         context['photo']=Photo.objects.get(id=photoId)

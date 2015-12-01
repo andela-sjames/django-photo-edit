@@ -39,6 +39,17 @@ Image_Effects = dict(
           ]
         ),
 
+        default=dict(
+          format='png',
+          ),
+
+        NORMAL=dict(
+          format = "png",
+          transformation = [
+              dict(height=130, width=130, radius=10,),
+          ]
+          ),
+
     )
 
 

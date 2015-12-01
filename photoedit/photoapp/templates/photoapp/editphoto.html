@@ -6,6 +6,12 @@
 {% block main %} 
 
         <div class="col-md-1">
+            
+            <div class="ui small image xframe space">
+                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='default' %}">
+                {% cloudinary photo.image Image_Effects.NORMAL %}
+                </div>
+             </div>
 
             <div class="ui small image xframe space">
                 <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='BIG_SERPIA' %}">
