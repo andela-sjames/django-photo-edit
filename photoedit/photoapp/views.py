@@ -125,7 +125,7 @@ class PhotoAppView(TemplateView, LoginRequiredMixin):
         return self.render_to_response(context)
 
 
-class EditPhotoView(TemplateView):
+class EditPhotoView(TemplateView, LoginRequiredMixin):
 
     template_name = 'photoapp/editphoto.html'
 
@@ -139,7 +139,27 @@ class EditPhotoView(TemplateView):
         context['effects'] = Image_Effects[effects]
         return self.render_to_response(context)
 
+class DeletePhotoView(View, LoginRequiredMixin):
 
+    def get(self, request, *args, **kwargs):
+        
+        context={}
+        photoId=self.kwargs.get('id')
+        public_id=self.kwargs.get('public_id')
+        response, result = api.delete_resources([public_id])
+    
+        if response == 'deleted':
+            photo = Photo.objects.get(id=photoId)
+            photo.delete()
+            
+            msg = "Photo sucessfully deleted."
+            messages.add_message(request, messages.SUCCESS, msg)
+            return HttpResponseRedirect(reverse_lazy('photoview'))
+
+        else:
+            msg = "server error please, try deleting again."
+            messages.add_message(request, messages.ERROR, msg)
+            return HttpResponseRedirect(reverse_lazy('photoview'))
 
 
 

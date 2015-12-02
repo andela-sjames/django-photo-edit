@@ -144,7 +144,8 @@
                 <button type="button" class="ui blue basic button btn-block space" id="sp" >Back</button>
                 </a>
                 <button type="button" class="ui blue basic button btn-block space" id="sp">Save</button>
-                <button type="button" class="ui blue basic button btn-block space" id="sp">Delete</button>
+
+                <button type="button" class="ui blue basic button btn-block space del" data-toggle="modal" data-target="#delete-modal" href="#delete-modal"id="sp">Delete</button>
 
             </div>
             
@@ -156,5 +157,6 @@
 
         </div>
 
-
+{% include "photoapp/delete_modal.html" %}
+    
 {% endblock main %}

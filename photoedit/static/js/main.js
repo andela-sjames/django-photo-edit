@@ -10,6 +10,7 @@ $.ajaxSetup({
     }
 });
 
+
 function socialLogin(user) {
     console.log(user)
     var ajaxinfo = {
