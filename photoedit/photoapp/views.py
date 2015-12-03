@@ -17,6 +17,9 @@ from photoapp.models import FacebookUser, Photo
 from django.http import Http404
 
 import json
+import requests as req
+import shutil
+import  urllib
 
 from django.views.decorators.csrf import csrf_exempt
 from cloudinary.forms import cl_init_js_callbacks
@@ -160,7 +163,4 @@ class DeletePhotoView(View, LoginRequiredMixin):
             msg = "server error please, try deleting again."
             messages.add_message(request, messages.ERROR, msg)
             return HttpResponseRedirect(reverse_lazy('photoview'))
-
-
-
 

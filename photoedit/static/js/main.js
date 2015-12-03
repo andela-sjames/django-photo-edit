@@ -96,6 +96,15 @@ $(document).ready(function(){
 
         $("#largeImage").load(url + " #largeImage")
      });
+
+     $('.save').click(function (){
+        
+        var title = $('.pix').find('p').html()
+        var image_src = $('.pix').find('img').attr("src")
+        var save = $(this).find('a')
+        save.attr('href', image_src);
+
+     });
     
 
 })
