@@ -27,9 +27,9 @@ body {
   transition:         transform 0.3s cubic-bezier(0, 0.75, 0, 1), text-shadow 0.1s ease-out;
 }
 
-.images {
-  display: flex; /* or inline-flex */
-  flex-direction: column ;
+.img {
+  display: inline-flex ;
+  flex-direction: row ;
 }
 
 #msize {
@@ -93,19 +93,8 @@ body {
   height: 600px;
   overflow: scroll;
 } 
-/*label[for="file"]{
 
-    width: 90px;
-    background-color: #900;
-    border-radius: 5px;
-    padding: 5px
-    font-size: 11px;
-    text-align: center;
-    color: white;
-    cursor:pointer;
-}*/
-
-/*input[type="file"]{
-    
-    display: none;
-}*/
+.scrll {
+  height: 600px;
+  overflow: scroll;
+} 

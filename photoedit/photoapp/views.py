@@ -115,17 +115,14 @@ class PhotoAppView(TemplateView, LoginRequiredMixin):
         # Only backend upload should be posting here
         context={}
         #form = PhotoForm(request.POST, request.FILES)
-        title = request.POST.get('title','')
-        image = request.FILES.get('image')
+        title = request.POST["title"]
+        image = request.FILES["image"]
 
         photo = Photo(title=title, user_id=request.user.id, image=image)
         photo.save()
 
-        context['facebook']=FacebookUser.objects.get(contrib_user_id=request.user.id)
-        context['photos']=Photo.objects.all()
-        context['Image_Effects']=Image_Effects
+        return HttpResponse("success", content_type="text/plain")
 
-        return self.render_to_response(context)
 
 
 class EditPhotoView(TemplateView, LoginRequiredMixin):
