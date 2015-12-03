@@ -35,3 +35,6 @@ class Photo(models.Model):
         except AttributeError:
             public_id = ''
         return "Photo <%s:%s>" % (self.title, public_id)
+
+    class Meta:
+        ordering = ('-created',)
