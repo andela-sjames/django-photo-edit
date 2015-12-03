@@ -106,6 +106,46 @@ $(document).ready(function(){
 
      });
     
+    $('#uploadform').on('submit', function(event) {
+            var $form = $(this);
+            event.preventDefault();
+            $('#fileupload-modal').hide();
+            $('.modal').modal('hide');
+
+            var fd = new FormData();
+            
+            var file_data = $form.find('input[type="file"]')[0].files[0];
+            fd.append("image", file_data);
+            var other_data = $form.serializeArray();
+            $.each(other_data, function(key, input) {
+                fd.append(input.name, input.value);
+            });
+
+            $.ajax({
+                type: "POST",
+                url: $form.attr('action'),
+                data: fd,
+                contentType:false,
+                processData: false,
+
+                success: function(data) {
+                if (data == "success") {
+                    var url = "/photoapp/photos/"
+                    $("#reload").load(url + " #reload")
+                }
+            },
+                error: function(error) {
+                    console.log(error.responseText)
+                },
+
+                headers: {
+                    "X-CSRFToken": $("input[name='csrfmiddlewaretoken']").val()
+                    },
+
+            });
+
+        });
+
 
 })
 

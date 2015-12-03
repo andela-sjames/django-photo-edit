@@ -14,7 +14,7 @@
                 <!-- A form for direct uploading using a jQuery plug-in. 
                 The cloudinary_direct_upload_field method generates the required HTML and JavaScript to    
                 allow uploading directly from the browser to your Cloudinary account -->
-                <form action="{% url "photoview" %}" method="post" enctype="multipart/form-data">
+                <form action="{% url "photoview" %}" method="post" id="uploadform">
                 <div id="backend_upload">
                     {% csrf_token %}
                     <label for="id_title">Title (optional):</label><input id="id_title" maxlength="60" name="title" type="text">
