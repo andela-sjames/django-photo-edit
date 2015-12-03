@@ -114,7 +114,6 @@ class PhotoAppView(TemplateView, LoginRequiredMixin):
 
         # Only backend upload should be posting here
         context={}
-        #form = PhotoForm(request.POST, request.FILES)
         title = request.POST["title"]
         image = request.FILES["image"]
 

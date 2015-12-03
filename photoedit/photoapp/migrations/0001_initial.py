@@ -31,5 +31,8 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('user', models.ForeignKey(blank=True, to=settings.AUTH_USER_MODEL, null=True)),
             ],
+            options={
+                'ordering': ('-created',),
+            },
         ),
     ]
