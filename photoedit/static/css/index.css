@@ -98,3 +98,15 @@ body {
   height: 600px;
   overflow: scroll;
 } 
+
+.intro {
+  text-shadow:30px 10px 20px blue;
+  font-size:18px;
+  font-style:italic;
+}
+
+.welcome {
+  font-size:18px;
+  font-style:italic;
+}
+

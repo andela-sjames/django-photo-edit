@@ -1,5 +1,5 @@
 """
-Django settings for photoedit project.
+Django settings for GentleEdit project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -21,8 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@^-@@rcp!a@_f=@nzah$cxmz3!urxro0p5el3m*r-c0ls6#6t@'
-#SECRET_KEY = os.getenv('SECRET_KEY')
+
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -87,12 +87,7 @@ if 'test' in sys.argv:
     }
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -131,18 +126,10 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     )
 
-# Cloudinary configuration handshake
-# CLOUDINARY = {
-#   'cloud_name': 'dzmrjpmji',  
-#   'api_key': '892324742324399',  
-#   'api_secret': '30IvNv6pruzCSsnNrJr_wb_mM1A',  
-# }
-#Cloudinary configuration handshake
-cloudinary.config(cloud_name='dzmrjpmji',
-                  api_key='892324742324399',
-                  api_secret='30IvNv6pruzCSsnNrJr_wb_mM1A')
 
-# cloudinary.config(cloud_name=os.getenv('cloudinary_cloud_name'),
-#                   api_key=os.getenv('cloudinary_api_key'),
-#                   api_secret=os.getenv('cloudinary_api_secret'))
+
+#Cloudinary configuration handshake
+cloudinary.config(cloud_name=os.getenv('cloudinary_cloud_name'),
+                  api_key=os.getenv('cloudinary_api_key'),
+                  api_secret=os.getenv('cloudinary_api_secret'))
 
