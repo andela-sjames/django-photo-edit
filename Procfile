@@ -1,0 +1,1 @@
+web: gunicorn photoedit.wsgi --pythonpath=photoedit --log-file -
