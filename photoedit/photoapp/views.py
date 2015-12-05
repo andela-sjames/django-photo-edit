@@ -4,13 +4,10 @@ from django.views.generic.base import TemplateView
 from django.core.context_processors import csrf
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
-from django.core.validators import validate_email, ValidationError
 from django.contrib import messages
-from django.core.exceptions import ObjectDoesNotExist
-from django.core.paginator import Paginator, EmptyPage, InvalidPage
-from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from photoapp.models import FacebookUser, Photo
@@ -18,22 +15,18 @@ from django.http import Http404
 
 import json
 import requests as req
-import shutil
-import  urllib
 
-from django.views.decorators.csrf import csrf_exempt
-from cloudinary.forms import cl_init_js_callbacks
-from cloudinary import api # Only required for creating upload presets on the fly
+from cloudinary import api 
 from .forms import PhotoForm, PhotoDirectForm
 from context_processors import Image_Effects
 
 
 
 def custom_404(request):
-    return render(request, 'bucketlist/404.html')
+    return render(request, 'photoapp/404.html')
 
 def custom_500(request):
-    return render(request, 'bucketlist/500.html')
+    return render(request, 'photoapp/500.html')
 
 
 class LoginRequiredMixin(object):
@@ -69,6 +62,7 @@ class FacebookLogin(View):
             last_name = request.POST["last_name"]
             email = request.POST["email"]
             picture = request.POST["picture[data][url]"]
+            
             # Create the user
             user = User()
             user.save()

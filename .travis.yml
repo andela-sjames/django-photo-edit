@@ -1,0 +1,13 @@
+language: python
+python:
+- '2.7'
+env:
+  global:
+  - DJANGO_SETTINGS_MODULE='photoedit.settings.base'
+install:
+- pip install -r requirements.txt
+- pip install coveralls
+script:
+- coverage run --source photoapp photoedit/manage.py test photoedit
+after_success: 
+- coveralls
