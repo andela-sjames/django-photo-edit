@@ -68,6 +68,10 @@ var facebookLogin = {
     },
 };
 
+function showTable() {
+    $('#once').show();
+    localStorage.setItem('show', 'true'); //store state in localStorage
+}
 
 $(document).ready(function(){    
     facebookLogin.init({
@@ -105,6 +109,11 @@ $(document).ready(function(){
         save.attr('href', image_src);
 
      });
+
+    var show = localStorage.getItem('show');
+        if(show === 'true'){
+            $('#once').show();
+        }
     
     $('#uploadform').on('submit', function(event) {
             var $form = $(this);
