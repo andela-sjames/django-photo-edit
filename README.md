@@ -1,1 +1,1 @@
-Django-Photo-Editing Application [![Coverage Status](https://coveralls.io/repos/andela-sjames/django-photo-edit/badge.svg?branch=develop&service=github)](https://coveralls.io/github/andela-sjames/django-photo-edit?branch=develop)
+#Django-Photo-Editing Application [![Coverage Status](https://coveralls.io/repos/andela-sjames/django-photo-edit/badge.svg?branch=develop&service=github)](https://coveralls.io/github/andela-sjames/django-photo-edit?branch=develop)
