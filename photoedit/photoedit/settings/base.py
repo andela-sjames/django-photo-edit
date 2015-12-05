@@ -14,7 +14,7 @@ import sys
 import cloudinary
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
@@ -86,8 +86,10 @@ if 'test' in sys.argv:
         }
     }
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-
+# SETTINGS_PATH=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# TEMPLATE_DIRS = (
+#     os.path.join(SETTINGS_PATH, 'templates'),
+#     )
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
