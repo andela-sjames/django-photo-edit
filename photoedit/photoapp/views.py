@@ -21,14 +21,6 @@ from .forms import PhotoForm, PhotoDirectForm
 from context_processors import Image_Effects
 
 
-
-def custom_404(request):
-    return render(request, 'photoapp/404.html')
-
-def custom_500(request):
-    return render(request, 'photoapp/500.html')
-
-
 class LoginRequiredMixin(object):
 
     '''View mixin which requires that the user is authenticated.'''
@@ -62,7 +54,7 @@ class FacebookLogin(View):
             last_name = request.POST["last_name"]
             email = request.POST["email"]
             picture = request.POST["picture[data][url]"]
-            
+
             # Create the user
             user = User()
             user.save()
@@ -154,3 +146,9 @@ class DeletePhotoView(View, LoginRequiredMixin):
             messages.add_message(request, messages.ERROR, msg)
             return HttpResponseRedirect(reverse_lazy('photoview'))
 
+
+def custom_404(request):
+    return render(request, 'photoapp/404.html')
+
+def custom_500(request):
+    return render(request, 'photoapp/500.html')

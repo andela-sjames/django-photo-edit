@@ -2,11 +2,9 @@ from django.test import TestCase, Client, RequestFactory
 from photoapp.models import FacebookUser
 from photoapp.views import FacebookLogin
 
-#rom django.core.urlresolvers import resolve, reverse, reverse_lazy
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.utils.importlib import import_module
-# from django.contrib.messages.storage.fallback import FallbackStorage
 
 
 class UserCreateViewTestCase(TestCase):
@@ -24,7 +22,6 @@ class UserCreateViewTestCase(TestCase):
             'id':2,
             'picture[data][url]': 'https://fbkamaihd.net/hprofile'
         }
-
 
     def test_non_existing_user_login(self):
 
@@ -48,8 +45,3 @@ class UserCreateViewTestCase(TestCase):
         facebook_user2 = FacebookUser.objects.create(facebook_id=self.data['id'], contrib_user=user2)
         facebook_user2 = FacebookUser.objects.filter(id=2)
         self.assertEqual(len(facebook_user2), 1)
-
-
-
-
-        
