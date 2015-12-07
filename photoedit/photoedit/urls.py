@@ -5,9 +5,6 @@ from photoapp import views
 import photoapp.urls
 
 urlpatterns = patterns('',
-    # Examples:
-    
-    # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^photoapp/', include(photoapp.urls)),
@@ -15,5 +12,5 @@ urlpatterns = patterns('',
 )
 
 
-handler404='bucketlist.views.custom_404'
-handler500='bucketlist.views.custom_500'
+handler404='photoapp.views.custom_404'
+handler500='photoapp.views.custom_500'

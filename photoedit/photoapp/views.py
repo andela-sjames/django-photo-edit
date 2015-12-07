@@ -1,23 +1,19 @@
-from django.shortcuts import render, render_to_response
+from cloudinary import api
+
+from django.shortcuts import render
 from django.views.generic import View
 from django.views.generic.base import TemplateView
-from django.core.context_processors import csrf
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from photoapp.models import FacebookUser, Photo
 from django.http import Http404
 
-import json
-import requests as req
-
-from cloudinary import api 
-from .forms import PhotoForm, PhotoDirectForm
+from photoapp.models import FacebookUser, Photo
 from context_processors import Image_Effects
 
 
@@ -33,13 +29,12 @@ class LoginRequiredMixin(object):
 class HomeView(TemplateView):
 
     template_name = 'photoapp/index.html'
-    #template_name = 'base.html'
 
 class FacebookLogin(View):
 
-    def post(self, request,*args, **kwargs):
+    def post(self, request, *args, **kwargs):
 
-        user_id=request.POST["id"]
+        user_id = request.POST["id"]
         try:
             fb_user = FacebookUser.objects.get(facebook_id=user_id)
             user = User.objects.get(id=fb_user.contrib_user_id)
@@ -49,7 +44,7 @@ class FacebookLogin(View):
 
         except ObjectDoesNotExist:
 
-            #proceed to create the user
+            # proceed to create the user
             first_name = request.POST["first_name"]
             last_name = request.POST["last_name"]
             email = request.POST["email"]
@@ -82,7 +77,7 @@ class SignOutView(View, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
         logout(request)
         return HttpResponseRedirect(
-            reverse_lazy('homepage'))    
+            reverse_lazy('homepage'))
 
 class PhotoAppView(TemplateView, LoginRequiredMixin):
 
@@ -127,16 +122,16 @@ class EditPhotoView(TemplateView, LoginRequiredMixin):
 class DeletePhotoView(View, LoginRequiredMixin):
 
     def get(self, request, *args, **kwargs):
-        
+
         context={}
         photoId=self.kwargs.get('id')
         public_id=self.kwargs.get('public_id')
         response, result = api.delete_resources([public_id])
-    
+
         if response == 'deleted':
             photo = Photo.objects.get(id=photoId)
             photo.delete()
-            
+
             msg = "Photo sucessfully deleted."
             messages.add_message(request, messages.SUCCESS, msg)
             return HttpResponseRedirect(reverse_lazy('photoview'))

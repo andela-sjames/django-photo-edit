@@ -1,10 +1,11 @@
 from django.test import TestCase, Client, RequestFactory
-from photoapp.models import FacebookUser
-from photoapp.views import FacebookLogin
-
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.utils.importlib import import_module
+from django.core.urlresolvers import reverse_lazy
+
+from photoapp.models import FacebookUser
+from photoapp.views import FacebookLogin, PhotoAppView
 
 
 class UserCreateViewTestCase(TestCase):
@@ -29,7 +30,7 @@ class UserCreateViewTestCase(TestCase):
         engine = import_module(settings.SESSION_ENGINE)
         session_key = None
         request.session = engine.SessionStore(session_key)
-        
+
         #assert that user loggedIn successfully
         response = FacebookLogin.as_view()(request)
         self.assertEquals(response.status_code, 200)
@@ -45,3 +46,18 @@ class UserCreateViewTestCase(TestCase):
         facebook_user2 = FacebookUser.objects.create(facebook_id=self.data['id'], contrib_user=user2)
         facebook_user2 = FacebookUser.objects.filter(id=2)
         self.assertEqual(len(facebook_user2), 1)
+
+    def test_user_signout(self):
+        response = self.client.get(reverse_lazy('signout'))
+        self.assertEquals(response.status_code, 302)
+
+    def test_user_view_homepage(self):
+        response = self.client.get(reverse_lazy('homepage'))
+        self.assertEquals(response.status_code, 200)
+
+    def test_user_view_photopage(self):
+
+        request = self.factory.get(reverse_lazy('photoview'))
+        request.user = self.user1
+        response = PhotoAppView.as_view()(request)
+        self.assertEquals(response.status_code, 200)

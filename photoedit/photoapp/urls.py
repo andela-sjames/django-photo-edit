@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from photoapp import views 
+from photoapp import views
 
 urlpatterns = [
     url(r'^login/$', views.FacebookLogin.as_view(), name='login'),
