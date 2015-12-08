@@ -9,7 +9,6 @@ from django.core.files import File
 from django.contrib.messages.storage.fallback import FallbackStorage
 
 from photoapp.models import FacebookUser, Photo
-
 from photoapp.views import FacebookLogin, PhotoAppView,\
     EditPhotoView, DeletePhotoView
 
