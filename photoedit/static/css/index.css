@@ -92,12 +92,12 @@ body {
 #eff {
   height: 600px;
   overflow: scroll;
-} 
+}
 
 .scrll {
   height: 600px;
   overflow: scroll;
-} 
+}
 
 .intro {
   text-shadow:30px 10px 20px blue;
@@ -110,3 +110,7 @@ body {
   font-style:italic;
 }
 
+#err {
+  font-family: impact;
+  font-size: 180px;
+  color:#333333;

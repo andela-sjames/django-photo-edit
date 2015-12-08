@@ -145,7 +145,6 @@ class DeletePhotoView(View, LoginRequiredMixin):
             msg = "server error please, try deleting again."
             messages.add_message(request, messages.ERROR, msg)
             return HttpResponseRedirect(reverse_lazy('photoview'))
-        photo.delete()
 
     def apidelete(self, public_id):
             return api.delete_resources([public_id])

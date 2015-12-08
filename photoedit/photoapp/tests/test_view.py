@@ -169,4 +169,3 @@ class TestDeletePhoto(UserSetupTestCase):
             response = view(request, id=1, public_id='xxyyzz')
             self.assertTrue(DeletePhotoView.apidelete.called)
             self.assertEquals(response.status_code, 302)
-
