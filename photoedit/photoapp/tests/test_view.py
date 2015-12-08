@@ -131,6 +131,29 @@ class TestDeletePhoto(UserSetupTestCase):
                 as mock_delete:
 
             mock_delete.return_value = (
+                'deleted',
+                {"deleted": {
+                 "cb4eaaf650": "deleted", }
+                 })
+
+            request = self.factory.get('/photoshop/delete/')
+            engine = import_module(settings.SESSION_ENGINE)
+            session_key = None
+            request.session = engine.SessionStore(session_key)
+            messages = FallbackStorage(request)
+            setattr(request, '_messages', messages)
+
+            view = DeletePhotoView.as_view()
+            response = view(request, id=1, public_id='xxyyzz')
+            self.assertTrue(DeletePhotoView.apidelete.called)
+            self.assertEquals(response.status_code, 302)
+
+    def test_photo_not_deleted(self):
+
+        with mock.patch('photoapp.views.DeletePhotoView.apidelete')\
+                as mock_delete:
+
+            mock_delete.return_value = (
                 {"deleted": {
                  "cb4eaaf650": "deleted", }
                  }, 'deleted')
@@ -146,3 +169,4 @@ class TestDeletePhoto(UserSetupTestCase):
             response = view(request, id=1, public_id='xxyyzz')
             self.assertTrue(DeletePhotoView.apidelete.called)
             self.assertEquals(response.status_code, 302)
+
