@@ -1,8 +1,11 @@
+import mock
+
 from django.test import TestCase, Client, RequestFactory
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.utils.importlib import import_module
 from django.core.urlresolvers import reverse_lazy
+from django.core.files import File
 
 from photoapp.models import FacebookUser
 from photoapp.views import FacebookLogin, PhotoAppView
@@ -86,6 +89,21 @@ class UserActionTestCase(UserSetupTestCase):
     def test_user_view_photopage(self):
 
         request = self.factory.get(reverse_lazy('photoview'))
+        request.user = self.user1
+        response = PhotoAppView.as_view()(request)
+        self.assertEquals(response.status_code, 200)
+
+
+class TestPhotoUpload(UserSetupTestCase):
+
+    @mock.patch('photoapp.models.Photo.save', mock.MagicMock(name="save"))
+    def test_photo_model_save(self):
+
+        mock_file = mock.MagicMock(spec=File, name='FileMock')
+        mock_file.name = 'testimage.jpg'
+        request = self.factory.post(
+            '/photoapp/photos/',
+            data={'title': '', 'image': mock_file, })
         request.user = self.user1
         response = PhotoAppView.as_view()(request)
         self.assertEquals(response.status_code, 200)

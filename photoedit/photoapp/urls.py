@@ -1,4 +1,4 @@
-from django.conf.urls import url, include
+from django.conf.urls import url
 from photoapp import views
 
 urlpatterns = [
@@ -8,4 +8,3 @@ urlpatterns = [
     url(r'^edit/(?P<id>[0-9]+)/(?P<effects>\w+)?$', views.EditPhotoView.as_view(), name='editphoto'),
     url(r'^delete/(?P<public_id>[A-Za-z0-9]+)/(?P<id>[0-9]+)$', views.DeletePhotoView.as_view(), name='delete'),
 ]
-
