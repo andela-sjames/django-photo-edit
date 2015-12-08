@@ -130,7 +130,8 @@ class DeletePhotoView(View, LoginRequiredMixin):
 
         photoid = self.kwargs.get('id')
         public_id = self.kwargs.get('public_id')
-        response, result = api.delete_resources([public_id])
+        photo = Photo.objects.get(id=photoid)
+        response, result = self.apidelete(public_id)
 
         if response == 'deleted':
             photo = Photo.objects.get(id=photoid)
@@ -144,6 +145,10 @@ class DeletePhotoView(View, LoginRequiredMixin):
             msg = "server error please, try deleting again."
             messages.add_message(request, messages.ERROR, msg)
             return HttpResponseRedirect(reverse_lazy('photoview'))
+        photo.delete()
+
+    def apidelete(self, public_id):
+            return api.delete_resources([public_id])
 
 
 def custom_404(request):

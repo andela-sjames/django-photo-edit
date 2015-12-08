@@ -6,10 +6,12 @@ from django.conf import settings
 from django.utils.importlib import import_module
 from django.core.urlresolvers import reverse_lazy
 from django.core.files import File
+from django.contrib.messages.storage.fallback import FallbackStorage
 
 from photoapp.models import FacebookUser, Photo
 
-from photoapp.views import FacebookLogin, PhotoAppView, EditPhotoView
+from photoapp.views import FacebookLogin, PhotoAppView,\
+    EditPhotoView, DeletePhotoView
 
 
 class UserSetupTestCase(TestCase):
@@ -120,3 +122,28 @@ class TestPhotoEdit(UserSetupTestCase):
         view = EditPhotoView.as_view()
         response = view(request, id=1, effects='default')
         self.assertEquals(response.status_code, 200)
+
+
+class TestDeletePhoto(UserSetupTestCase):
+
+    def test_delete_photo(self):
+
+        with mock.patch('photoapp.views.DeletePhotoView.apidelete')\
+                as mock_delete:
+
+            mock_delete.return_value = (
+                {"deleted": {
+                 "cb4eaaf650": "deleted", }
+                 }, 'deleted')
+
+            request = self.factory.get('/photoshop/delete/')
+            engine = import_module(settings.SESSION_ENGINE)
+            session_key = None
+            request.session = engine.SessionStore(session_key)
+            messages = FallbackStorage(request)
+            setattr(request, '_messages', messages)
+
+            view = DeletePhotoView.as_view()
+            response = view(request, id=1, public_id='xxyyzz')
+            self.assertTrue(DeletePhotoView.apidelete.called)
+            self.assertEquals(response.status_code, 302)
