@@ -7,8 +7,9 @@ from django.utils.importlib import import_module
 from django.core.urlresolvers import reverse_lazy
 from django.core.files import File
 
-from photoapp.models import FacebookUser
-from photoapp.views import FacebookLogin, PhotoAppView
+from photoapp.models import FacebookUser, Photo
+
+from photoapp.views import FacebookLogin, PhotoAppView, EditPhotoView
 
 
 class UserSetupTestCase(TestCase):
@@ -32,6 +33,8 @@ class UserSetupTestCase(TestCase):
             'id': 2,
             'picture[data][url]': 'https://fbkamaihd.net/hprofile'
         }
+
+        self.photo = Photo.objects.create(title='title')
 
 
 class UserActionTestCase(UserSetupTestCase):
@@ -87,7 +90,6 @@ class UserActionTestCase(UserSetupTestCase):
         self.assertEquals(response.status_code, 200)
 
     def test_user_view_photopage(self):
-
         request = self.factory.get(reverse_lazy('photoview'))
         request.user = self.user1
         response = PhotoAppView.as_view()(request)
@@ -97,7 +99,7 @@ class UserActionTestCase(UserSetupTestCase):
 class TestPhotoUpload(UserSetupTestCase):
 
     @mock.patch('photoapp.models.Photo.save', mock.MagicMock(name="save"))
-    def test_photo_model_save(self):
+    def test_photo_upload_and_save(self):
 
         mock_file = mock.MagicMock(spec=File, name='FileMock')
         mock_file.name = 'testimage.jpg'
@@ -106,4 +108,15 @@ class TestPhotoUpload(UserSetupTestCase):
             data={'title': '', 'image': mock_file, })
         request.user = self.user1
         response = PhotoAppView.as_view()(request)
+        self.assertEquals(response.status_code, 200)
+
+
+class TestPhotoEdit(UserSetupTestCase):
+
+    def test_editpage_view(self):
+
+        request = self.factory.get('/photoshop/edit/')
+        request.user = self.user1
+        view = EditPhotoView.as_view()
+        response = view(request, id=1, effects='default')
         self.assertEquals(response.status_code, 200)
