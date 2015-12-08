@@ -26,9 +26,11 @@ class LoginRequiredMixin(object):
         return super(LoginRequiredMixin, self).dispatch(
             request, *args, **kwargs)
 
+
 class HomeView(TemplateView):
 
     template_name = 'photoapp/index.html'
+
 
 class FacebookLogin(View):
 
@@ -54,14 +56,17 @@ class FacebookLogin(View):
             user = User()
             user.save()
 
-            user.username = u"%s, %s" %(first_name,last_name)
+            user.username = u"%s, %s" % (first_name, last_name)
             user.first_name = first_name
             user.last_name = last_name
             user.email = email
             user.save()
 
             # Create the facebook user
-            fb_user = FacebookUser(facebook_id=user_id,contrib_user=user, contrib_picture=picture)
+            fb_user = FacebookUser(facebook_id=user_id,
+                                   contrib_user=user,
+                                   contrib_picture=picture)
+
             user.backend = 'django.contrib.auth.backends.ModelBackend'
 
             fb_user.save()
@@ -79,22 +84,21 @@ class SignOutView(View, LoginRequiredMixin):
         return HttpResponseRedirect(
             reverse_lazy('homepage'))
 
+
 class PhotoAppView(TemplateView, LoginRequiredMixin):
 
     template_name = 'photoapp/photoapp.html'
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
-        context['facebook']=FacebookUser.objects.get(contrib_user_id=request.user.id)
-        context['photos']=Photo.objects.all()
-        context['Image_Effects']=Image_Effects
+        context['facebook'] = FacebookUser.objects.get(
+            contrib_user_id=request.user.id)
+        context['photos'] = Photo.objects.all()
+        context['Image_Effects'] = Image_Effects
         return self.render_to_response(context)
-
 
     def post(self, request, *args, **kwargs):
 
-        # Only backend upload should be posting here
-        context={}
         title = request.POST["title"]
         image = request.FILES["image"]
 
@@ -104,32 +108,32 @@ class PhotoAppView(TemplateView, LoginRequiredMixin):
         return HttpResponse("success", content_type="text/plain")
 
 
-
 class EditPhotoView(TemplateView, LoginRequiredMixin):
 
     template_name = 'photoapp/editphoto.html'
 
     def get(self, request, *args, **kwargs):
-        context={}
-        photoId=self.kwargs.get('id')
-        effects=self.kwargs.get('effects')
-        context['facebook']=FacebookUser.objects.get(contrib_user_id=request.user.id)
-        context['Image_Effects']=Image_Effects
-        context['photo']=Photo.objects.get(id=photoId)
+        context = {}
+        photoid = self.kwargs.get('id')
+        effects = self.kwargs.get('effects')
+        context['facebook'] = FacebookUser.objects.get(
+            contrib_user_id=request.user.id)
+        context['Image_Effects'] = Image_Effects
+        context['photo'] = Photo.objects.get(id=photoid)
         context['effects'] = Image_Effects[effects]
         return self.render_to_response(context)
+
 
 class DeletePhotoView(View, LoginRequiredMixin):
 
     def get(self, request, *args, **kwargs):
 
-        context={}
-        photoId=self.kwargs.get('id')
-        public_id=self.kwargs.get('public_id')
+        photoid = self.kwargs.get('id')
+        public_id = self.kwargs.get('public_id')
         response, result = api.delete_resources([public_id])
 
         if response == 'deleted':
-            photo = Photo.objects.get(id=photoId)
+            photo = Photo.objects.get(id=photoid)
             photo.delete()
 
             msg = "Photo sucessfully deleted."
@@ -144,6 +148,7 @@ class DeletePhotoView(View, LoginRequiredMixin):
 
 def custom_404(request):
     return render(request, 'photoapp/404.html')
+
 
 def custom_500(request):
     return render(request, 'photoapp/500.html')
