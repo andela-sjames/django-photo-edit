@@ -100,7 +100,7 @@ body {
 }
 
 .intro {
-  text-shadow:30px 10px 20px blue;
+  /*text-shadow:30px 10px 20px blue;*/
   font-size:18px;
   font-style:italic;
 }
@@ -114,3 +114,44 @@ body {
   font-family: impact;
   font-size: 180px;
   color:#333333;
+}
+
+#backimage {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  background-image: url(../img/setimage.png);
+  width: 100%;
+  height: 100%;
+
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.page-container {
+  position: relative;
+}
+
+#col {
+  background-color: black;
+}
+
+#logoframe {
+    width: 50%;
+    margin-top: 100px;
+    border: solid #fff;
+    background-color: white;
+    opacity: 1.5;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.fbk {
+  position: relative;
+  top: -23px;
+}
+

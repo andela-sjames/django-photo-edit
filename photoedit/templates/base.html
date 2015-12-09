@@ -21,8 +21,8 @@
 
     <script src="{% static "js/jquery.js" %}"></script>
     <script src="{% static "js/main.js" %}"></script>
-     <script src="{% static "js/semantic.min.js" %}"></script>
-    
+    <script src="{% static "js/semantic.min.js" %}"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,18 +32,18 @@
 
 </head>
 
-<body>
-    
-    <div class="container">
-    {% block main %} 
+<body id="col">
+    <div id="backimage"></div>
 
-    
-    {% endblock main %} 
-    </div>  
+    <div class="container page-container">
+    {% block main %}
+    {% endblock main %}
+    </div>
+
     <!-- jQuery -->
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static "js/bootstrap.min.js" %}"></script>
-    
-    
+
+
 </body>
 </html>
