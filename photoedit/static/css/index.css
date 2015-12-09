@@ -155,3 +155,27 @@ body {
   top: -23px;
 }
 
+#headerimage {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  background-image: url(../img/headerwall.png);
+  width: 100%;
+  height: 100%;
+
+  /*-webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);*/
+}
+
+.head-container {
+  position: relative;
+}
+
+.pagehead {
+  position: relative;
+  z-index: 10;
+}

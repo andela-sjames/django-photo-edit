@@ -3,10 +3,10 @@
 {% load cloudinary %}
 {% load static %}
 {% load url from future %}
-{% block main %} 
+{% block main %}
 
     {% if photos %}
-        <div class="col-md-10" id="reload">
+        <div class="col-md-10" id="reload" style ="border: solid">
             <div class="scrll">
             {% if messages %}
             <div class="alert alert-success alert-dismissible" role="alert">
@@ -27,10 +27,10 @@
             </div>
         </div>
     {% else %}
-        
+
         <div id="reload">
             <center><h3>Welcome to GentleEdit {{ request.user.username }}</center>
-            <div class="col-md-2">                    
+            <div class="col-md-2">
                 <center>
                 </h3><P class="welcome">Make your Photos memorable and beautiful. With GentleEdit, you get to keep memories and make them look beautiful. Upload a Photo today and start making beautiful memories. </P></center>
             </div>
@@ -48,14 +48,14 @@
 
         <div class="col-md-2" id="once">
             <div class="class="ui visible sidebar">
-                <button type="button" class="ui blue basic button btn-block" data-toggle="modal" data-target="#fileupload-modal">Upload a file</button>
+                <button type="button" class="ui black basic button btn-block" data-toggle="modal" data-target="#fileupload-modal">Upload a file</button>
             </div><br>
              <p class="welcome">Click on Image to Edit</p>
         </div>
 
         {% include "photoapp/upload_modal.html" %}
         {% include "photoapp/edit_modal.html" %}
-    
+
 {% endblock main %}
 
 {% block javascript %}{% endblock %}
