@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class FacebookUser(models.Model):
 
-    facebook_id = models.IntegerField(max_length=100, unique=True)
+    facebook_id = models.BigIntegerField(unique=True)
 
     # Keep track of the facebook user -> django user mapping
     contrib_user = models.OneToOneField(User, related_name='user')
