@@ -10,7 +10,7 @@ class FacebookUser(models.Model):
 
     # Keep track of the facebook user -> django user mapping
     contrib_user = models.OneToOneField(User, related_name='user')
-    contrib_picture = models.URLField()
+    contrib_picture = models.URLField(max_length=500)
 
     def __unicode__(self):
         return "%s %s" % (self.contrib_user.first_name,
