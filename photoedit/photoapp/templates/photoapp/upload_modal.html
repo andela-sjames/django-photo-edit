@@ -17,10 +17,13 @@
                 <form action="{% url "photoview" %}" method="post" id="uploadform">
                 <div id="backend_upload">
                     {% csrf_token %}
-                    <label for="id_title">Title (optional):</label><input id="id_title" maxlength="60" name="title" type="text">
+                    <label for="id_title" class="welcome">Title (optional):</label><input id="id_title" maxlength="60" name="title" type="text">
 
-                    <label for="id_image">Image:</label><input id="id_image" name="image" type="file" required>
-                {# altenatively, could use: {% cloudinary_direct_upload_field request=request %} #}
+                    <label for="id_image" class="welcome">Image:</label>
+                    <span class="btn btn-default btn-file">Choose
+                    <input id="id_image" name="image" type="file" required>
+                    </span>
+
                 </div>
 
             </div>

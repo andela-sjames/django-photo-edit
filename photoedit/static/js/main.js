@@ -10,7 +10,6 @@ $.ajaxSetup({
     }
 });
 
-
 function socialLogin(user) {
     console.log(user)
     var ajaxinfo = {
@@ -34,8 +33,8 @@ function socialLogin(user) {
 
 var facebookLogin = {
     config: {
-        login: "#facebook",
-        fb_id: '12345678910'
+        login: "#facebookLogin", //production value
+        fb_id: '1098970130135656'
     },
     init: function(config) {
         $(facebookLogin.config.login).attr("disabled", true);
@@ -73,10 +72,10 @@ function showTable() {
     localStorage.setItem('show', 'true'); //store state in localStorage
 }
 
-$(document).ready(function(){    
+$(document).ready(function(){
     facebookLogin.init({
-        login: "#facebookLogin",
-        fb_id: "1098970130135656"
+        // login: "#facebookLogin", //test value
+        // fb_id: "1105396756159660"
     })
 
     $('#editpicture-modal').on('show.bs.modal', function (event) {
@@ -89,9 +88,13 @@ $(document).ready(function(){
 
         imgdiv.attr( "src", imageId );
         href.attr( "href", getroute );
-        
-
     })
+
+    //upload button
+    $('.btn-file :file').change(function(event) {
+        label = $(this).val().split('\\');
+        $(this).closest('span').after('<p>' + label[label.length -1] +' </p>')
+    });
 
      $('.object').click(function (e) {
         e.preventDefault();
@@ -102,7 +105,7 @@ $(document).ready(function(){
      });
 
      $('.save').click(function (){
-        
+
         var title = $('.pix').find('p').html()
         var image_src = $('.pix').find('img').attr("src")
         var save = $(this).find('a')
@@ -114,7 +117,7 @@ $(document).ready(function(){
         if(show === 'true'){
             $('#once').show();
         }
-    
+
     $('#uploadform').on('submit', function(event) {
             var $form = $(this);
             event.preventDefault();
@@ -122,7 +125,7 @@ $(document).ready(function(){
             $('.modal').modal('hide');
 
             var fd = new FormData();
-            
+
             var file_data = $form.find('input[type="file"]')[0].files[0];
             fd.append("image", file_data);
             var other_data = $form.serializeArray();
