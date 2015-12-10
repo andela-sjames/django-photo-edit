@@ -17,6 +17,7 @@ class FacebookUser(models.Model):
                           self.contrib_user.last_name)
 
 
+
 class Photo(models.Model):
 
     ''' Model holds a reference to cloudinary-stored
