@@ -6,7 +6,8 @@
 {% block main %}
 
     {% if photos %}
-        <div class="col-md-10" id="reload" style ="border: solid">
+    <div id="reload">
+        <div class="col-md-10 " style="border: solid;">
             <div class="scrll">
             {% if messages %}
             <div class="alert alert-success alert-dismissible" role="alert">
@@ -26,6 +27,7 @@
             {% endfor %}
             </div>
         </div>
+    </div>
     {% else %}
 
         <div id="reload">

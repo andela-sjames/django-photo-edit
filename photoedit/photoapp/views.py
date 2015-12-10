@@ -49,17 +49,15 @@ class FacebookLogin(View):
             # proceed to create the user
             first_name = request.POST["first_name"]
             last_name = request.POST["last_name"]
-            email = request.POST["email"]
             picture = request.POST["picture[data][url]"]
 
             # Create the user
-            user = User()
-            user.save()
-
-            user.username = u"%s, %s" % (first_name, last_name)
-            user.first_name = first_name
-            user.last_name = last_name
-            user.email = email
+            user = User(
+                username=u"%s, %s" % (first_name, last_name),
+                email=request.POST["email"],
+                first_name=first_name,
+                last_name=last_name
+            )
             user.save()
 
             # Create the facebook user
@@ -115,11 +113,17 @@ class EditPhotoView(TemplateView, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
         context = {}
         photoid = self.kwargs.get('id')
+
+        try:
+            photo = Photo.objects.get(id=photoid)
+        except Photo.DoesNotExist:
+            raise Http404
+
         effects = self.kwargs.get('effects')
         context['facebook'] = FacebookUser.objects.get(
             contrib_user_id=request.user.id)
         context['Image_Effects'] = Image_Effects
-        context['photo'] = Photo.objects.get(id=photoid)
+        context['photo'] = photo
         context['effects'] = Image_Effects[effects]
         return self.render_to_response(context)
 
@@ -130,7 +134,11 @@ class DeletePhotoView(View, LoginRequiredMixin):
 
         photoid = self.kwargs.get('id')
         public_id = self.kwargs.get('public_id')
-        photo = Photo.objects.get(id=photoid)
+
+        try:
+            photo = Photo.objects.get(id=photoid)
+        except Photo.DoesNotExist:
+            raise Http404
         response, result = self.apidelete(public_id)
 
         if response == 'deleted':

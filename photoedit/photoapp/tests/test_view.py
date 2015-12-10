@@ -7,6 +7,7 @@ from django.utils.importlib import import_module
 from django.core.urlresolvers import reverse_lazy
 from django.core.files import File
 from django.contrib.messages.storage.fallback import FallbackStorage
+from django.http import Http404
 
 from photoapp.models import FacebookUser, Photo
 from photoapp.views import FacebookLogin, PhotoAppView,\
@@ -122,6 +123,13 @@ class TestPhotoEdit(UserSetupTestCase):
         response = view(request, id=1, effects='default')
         self.assertEquals(response.status_code, 200)
 
+    def test_error_handled_view(self):
+
+        request = self.factory.get('/photoshop/edit/')
+        request.user = self.user1
+        view = EditPhotoView.as_view()
+        self.assertRaises(Http404, view, request, id=24, effects='default')
+
 
 class TestDeletePhoto(UserSetupTestCase):
 
@@ -169,3 +177,9 @@ class TestDeletePhoto(UserSetupTestCase):
             response = view(request, id=1, public_id='xxyyzz')
             self.assertTrue(DeletePhotoView.apidelete.called)
             self.assertEquals(response.status_code, 302)
+
+    def test_error_handeled_delete(self):
+
+        request = self.factory.get('/photoshop/delete/')
+        view = DeletePhotoView.as_view()
+        self.assertRaises(Http404, view, request, id=24)
