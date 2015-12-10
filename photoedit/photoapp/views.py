@@ -5,7 +5,6 @@ from django.views.generic import View
 from django.views.generic.base import TemplateView
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
-from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import login, logout
 from django.contrib import messages
@@ -44,7 +43,7 @@ class FacebookLogin(View):
             login(request, user)
             return HttpResponse("success", content_type="text/plain")
 
-        except ObjectDoesNotExist:
+        except FacebookUser.DoesNotExist:
 
             # proceed to create the user
             first_name = request.POST["first_name"]
