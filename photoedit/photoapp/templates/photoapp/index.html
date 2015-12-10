@@ -12,7 +12,6 @@
 
         <div style="padding-top:60px">
         {% csrf_token %}
-        <input type="hidde" name="facebookid" val="{{ os.env('facebook_id')}} >>"
             <button type="submit" data-action="{% url 'login' %}" id="facebookLogin" class="ui facebook button btn-primary  btn-lg btn-block fbk">
                 <i class="facebook icon"></i>
                 Login with Facebook
