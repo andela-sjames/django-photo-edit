@@ -11,15 +11,3 @@ script:
 - coverage run --source photoapp photoedit/manage.py test photoedit
 after_success:
 - coveralls
-deploy:
-  provider: heroku
-  api_key:
-    secure: LqCKyv7VVdVYVUa6n1MtVfB1egaoTZyCjwmnTcV+5Ar40XNQ4cf3/MmZS+/xzZxhQqwXZgQMeHRuDDAk/ejWD+2mWr5U+X35kG6Q3VrycXoFrGnJ/9+8N4gradsr9POA7yA7hc28x0MjEKU5iUu3FisuYSrbEqUU9+wmr1NhRYgn7WUKD56FAkHIOSWLG/F5D1EBRkjGbU7xCiqCSlDR3QfLLo4zXfKFmjjVEgsNWwZwXIxjh/99eZF2tFXWHmEy8iqz6q8pH/0+a2WP4ngBF7ZX5yJeeLAqHsF1DhJZAujW9aEI1yL19JOMINlzGkMu8sQC7cGyn3E1VKpebWvtbBTwCcESJEf8a+Q/0tvBYRGVg1EECfTlvux9aeeRNNYdPc0BpKllm+AhAZgoi9Vjl7s+cUkb910gJbiqMgYO0jUOTBV9kgyeh5HCZFSvZOIKVFbuGqgyswTJP3wYI5Z+xB+bkWQfWl945TjWa4DNxiBK3L81JKM5jpQICaADuxk1Om9G4HyVSm9pFMSkAk80HF4jNORTsi6c6yisLyNkZUlvwbtqZS5wVTAds/ZrjWYq9YiKiovJcXlhT5iYnf7GPBVDNlTX7hrx2gGr5f3/nlBm5bSgBQh1TYNd4oD0921lLZkerQgHaDuCFJtnS6tpB9rWavlBrmFBq6BgO81Gtq8=
-  strategy: git
-  app:
-    master: gentleedit
-  run:
-    - "export DJANGO_SETTINGS_MODULE=photoedit.settings.production"
-    - "python photoedit/manage.py collectstatic --noinput"
-    - "python photoedit/manage.py makemigrations --noinput"
-    - "python photoedit/manage.py migrate --noinput"
