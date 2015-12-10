@@ -49,9 +49,12 @@ coverage.xml
 
 # Django stuff:
 *.log
-
+staticfiles
+*.sqlite3
 # Sphinx documentation
 docs/_build/
 
 # PyBuilder
 target/
+# environment files
+.env.*

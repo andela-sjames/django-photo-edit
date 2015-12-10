@@ -1,0 +1,64 @@
+{% extends "headerbase.html" %}
+
+{% load cloudinary %}
+{% load static %}
+{% load url from future %}
+{% block main %}
+
+    {% if photos %}
+    <div id="reload">
+        <div class="col-md-10 " style="border: solid;">
+            <div class="scrll">
+            {% if messages %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% for photo in photos %}
+                <a href="#editpicture-modal" data-toggle="modal" class="modal-toggle hvr-grow-shadow" data-image-id="{{ photo.image.url }}" data-title="{{ photo.id }}" data-target="#editpicture-modal">
+                <div class="ui small image">
+                    {% cloudinary photo.image Image_Effects.THUMBNAIL %}
+                <p>{{ photo.title }}</p>
+                </div>
+                </a>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% else %}
+
+        <div id="reload">
+            <center><h3>Welcome to GentleEdit {{ request.user.username }}</center>
+            <div class="col-md-2">
+                <center>
+                </h3><P class="welcome">Make your Photos memorable and beautiful. With GentleEdit, you get to keep memories and make them look beautiful. Upload a Photo today and start making beautiful memories. </P></center>
+            </div>
+
+            <div class="col-md-8">
+                <div class="ui fluid image">
+                    <img src="{% static "img/sample.png" %}" width = "auto"/>
+                    <center><p class="welcome">Sample Edit View</p></center>
+                </div>
+            </div>
+
+        </div>
+
+    {% endif %}
+
+        <div class="col-md-2" id="once">
+            <div class="class="ui visible sidebar">
+                <button type="button" class="ui black basic button btn-block" data-toggle="modal" data-target="#fileupload-modal">Upload a file</button>
+            </div><br>
+             <p class="welcome">Click on Image to Edit</p>
+        </div>
+
+        {% include "photoapp/upload_modal.html" %}
+        {% include "photoapp/edit_modal.html" %}
+
+{% endblock main %}
+
+{% block javascript %}{% endblock %}
+

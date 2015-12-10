@@ -1,0 +1,217 @@
+html {
+  min-height: 100%;
+}
+
+body {
+  height: 100%;
+  background: #FFFFFF;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.navbar {
+  margin-bottom:10px;
+}
+
+#flash {
+  display: inline-block;
+  text-shadow: #bbb 0 0 1px, #fff 0 -1px 2px, #fff 0 -3px 2px, rgba(0,0,0,0.8) 0 30px 25px;
+  transition: margin-left 0.3s cubic-bezier(0, 1, 0, 1);
+}
+
+#logo:hover #flash {
+  text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
+  transform: rotateY(360deg);
+  transition:         transform 0.3s cubic-bezier(0, 0.75, 0, 1), text-shadow 0.1s ease-out;
+}
+
+.img {
+  display: inline-flex ;
+  flex-direction: row ;
+}
+
+#msize {
+  height: 400px;
+  overflow: scroll;
+  margin: 5px;
+}
+
+#effect {
+  margin-left: 70px;
+  margin-bottom: 10px;
+}
+
+.grayscale{
+      -webkit-filter: grayscale(100%) invert(75%) opacity(50%)
+}
+.amaro{
+      -webkit-filter: grayscale(0%) invert(20%) opacity(5%)
+}
+
+/* Grow Shadow */
+.hvr-grow-shadow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+}
+.hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.frame {
+  padding: 30px;
+  background-color: lightgray;
+  border: solid ;
+}
+
+.sidebar {
+  background-color: lightgray;
+  border: solid ;
+}
+
+.xframe {
+  height: 400px;
+  overflow: scroll;
+}
+
+.space {
+  margin-bottom: 8px;
+}
+
+#sp {
+  margin-bottom: 10px;
+}
+
+#eff {
+  height: 650px;
+  overflow: scroll;
+}
+
+.scrll {
+  height: 600px;
+  overflow: scroll;
+}
+
+.intro {
+  /*text-shadow:30px 10px 20px blue;*/
+  font-size:18px;
+  font-style:italic;
+}
+
+.welcome {
+  font-size:18px;
+  font-style:italic;
+}
+
+#err {
+  font-family: impact;
+  font-size: 180px;
+  color:#333333;
+}
+
+#backimage {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  background-image: url(../img/setimage.png);
+  width: 100%;
+  height: 100%;
+
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.page-container {
+  position: relative;
+}
+
+#col {
+  background-color: black;
+}
+
+#logoframe {
+    width: 50%;
+    margin-top: 100px;
+    border: solid #fff;
+    background-color: white;
+    opacity: 1.5;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.fbk {
+  position: relative;
+  top: -23px;
+}
+
+#headerimage {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  background-image: url(../img/headerwall.png);
+  width: 100%;
+  height: 100%;
+
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.head-container {
+  position: relative;
+}
+
+.pagehead {
+  position: relative;
+  z-index: 10;
+}
+
+.ui p {
+ text-align: center;
+}
+
+.canvas {
+    text-transform: uppercase;
+    font-size:18px;
+    font-style:italic;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
