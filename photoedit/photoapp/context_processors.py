@@ -8,11 +8,13 @@ Image_Effects = dict(
         ]
     ),
     THUMBNAIL={
-        "class": "thumbnail inline", "format": "jpg", "crop": "fill", "height": 150, "width": 150,
+        "class": "thumbnail inline", "format": "jpg",
+        "crop": "fill", "height": 150, "width": 150,
     },
 
     FRAME={
-        "class": "thumbnail inline", "format": "jpg", "crop": "fill", "height": 720, "width": 540,
+        "class": "thumbnail inline", "format": "jpg",
+        "crop": "fill", "height": 720, "width": 540,
     },
 
     EFFECTS=dict(
@@ -22,7 +24,8 @@ Image_Effects = dict(
         ]
     ),
     MINIFRAME={
-        "class": "thumbnail inline", "format": "jpg", "crop": "fill", "height": 130, "width": 130,
+        "class": "thumbnail inline", "format": "jpg",
+        "crop": "fill", "height": 130, "width": 130,
     },
 
 
@@ -38,19 +41,21 @@ Image_Effects = dict(
     SMALL_SERPIA=dict(
         format="png",
         transformation=[
-            dict(height=130, width=130, crop="thumb", radius=10, effect="sepia"),
+            dict(height=130, width=130, crop="thumb",
+                 radius=10, effect="sepia"),
         ]
     ),
 
     BIG_SERPIA=dict(
         format="png",
-        transformation=[dict(crop="thumb", effect="sepia"),]
+        transformation=[dict(crop="thumb", effect="sepia")]
     ),
     # EFFECT2
     S_GRAYSCALE=dict(
         format="png",
         transformation=[
-            dict(height=130, width=130, crop="thumb", radius=10, effect = "grayscale"),
+            dict(height=130, width=130, crop="thumb",
+                 radius=10, effect="grayscale"),
         ]
     ),
 
@@ -64,7 +69,8 @@ Image_Effects = dict(
     S_VIGNETTE=dict(
         format="png",
         transformation=[
-            dict(height=130, width=130, crop="thumb", radius=10, effect = "vignette"),
+            dict(height=130, width=130, crop="thumb",
+                 radius=10, effect="vignette"),
         ]
     ),
 
@@ -76,7 +82,8 @@ Image_Effects = dict(
     S_GRADIENTFADE=dict(
         format="png",
         transformation=[
-            dict(height=130, width=130, crop="thumb", radius=10, effect = "gradient_fade"),
+            dict(height=130, width=130, crop="thumb",
+                 radius=10, effect="gradient_fade"),
         ]
     ),
 
@@ -91,7 +98,8 @@ Image_Effects = dict(
     S_CONTRAST_70=dict(
         format="png",
         transformation=[
-            dict(height=130, width=130, crop="thumb", radius=10, effect = "contrast:-70"),
+            dict(height=130, width=130, crop="thumb",
+                 radius=10, effect="contrast:-70"),
         ]
     ),
 
@@ -105,7 +113,8 @@ Image_Effects = dict(
     S_BRIGHTNESS60=dict(
         format="png",
         transformation=[
-            dict(height=130, width=130, crop="thumb", radius=10, effect = "brightness:60"),
+            dict(height=130, width=130, crop="thumb",
+                 radius=10, effect="brightness:60"),
         ]
     ),
 
@@ -120,7 +129,8 @@ Image_Effects = dict(
     S_BLUR=dict(
         format="png",
         transformation=[
-            dict(height=130, width=130, crop="thumb", radius=10, effect = "blur:200"),
+            dict(height=130, width=130, crop="thumb",
+                 radius=10, effect="blur:200"),
         ]
     ),
 
@@ -135,7 +145,8 @@ Image_Effects = dict(
     S_RED=dict(
         format="png",
         transformation=[
-            dict(height=130, width=130, crop="thumb", radius=10, effect = "red:50"),
+            dict(height=130, width=130, crop="thumb",
+                 radius=10, effect="red:50"),
         ]
     ),
 
@@ -147,10 +158,11 @@ Image_Effects = dict(
     ),
 
     # FILTER4
-    S_GREEN=dict
+    S_GREEN=dict(
         format="png",
         transformation=[
-            dict(height=130, width=130, crop="thumb", radius=10, effect = "green:50"),
+            dict(height=130, width=130, crop="thumb",
+                 radius=10, effect="green:50"),
         ]
     ),
 
@@ -165,7 +177,8 @@ Image_Effects = dict(
     S_BLUE=dict(
         format="png",
         transformation=[
-            dict(height=130, width=130, crop="thumb", radius=10, effect="blue:90"),
+            dict(height=130, width=130, crop="thumb",
+                 radius=10, effect="blue:90"),
         ]
     ),
 
@@ -180,22 +193,23 @@ Image_Effects = dict(
     S_SHARPEN=dict(
         format="png",
         transformation=[
-            dict(height=130, width=130, crop="thumb", radius=10, effect="sharpen"),
+            dict(height=130, width=130, crop="thumb",
+                 radius=10, effect="sharpen"),
         ]
     ),
 
     B_SHARPEN=dict(
         format="png",
-        transformation=[dict(crop="thumb", effect="sharpen"),]
+        transformation=[dict(crop="thumb", effect="sharpen")]
     ),
 
     # FILTER7
     S_VIBRANCE=dict(
         format="png",
         transformation=[
-            dict(height=130, width=130, crop="thumb", radius=10, effect = "vibrance"),
-          ]
-        ),
+            dict(height=130, width=130, crop="thumb",
+                 radius=10, effect="vibrance")]
+    ),
 
     B_VIBRANCE=dict(
         format="png",
@@ -206,10 +220,10 @@ Image_Effects = dict(
 
     # FILTER8
     S_OILPAINT=dict(
-    format="png",
-    transformation=[
-        dict(height=130, width=130, crop="thumb", radius=10, effect = "oil_paint"),
-        ]
+        format="png",
+        transformation=[
+            dict(height=130, width=130, crop="thumb",
+                 radius=10, effect="oil_paint")]
     ),
 
     B_OILPAINT=dict(
@@ -223,7 +237,8 @@ Image_Effects = dict(
     S_BLACKWHITE=dict(
         format="png",
         transformation=[
-            dict(height=130, width=130, crop="thumb", radius=10, effect = "blackwhite"),
+            dict(height=130, width=130, crop="thumb",
+                 radius=10, effect="blackwhite"),
         ]
     ),
 
@@ -237,8 +252,9 @@ Image_Effects = dict(
     # FILTER10
     S_NEGATE=dict(
         format="png",
-          transformation=[
-            dict(height=130, width=130, crop="thumb", radius=10, effect = "negate"),
+        transformation=[
+            dict(height=130, width=130, crop="thumb",
+                 radius=10, effect="negate"),
         ]
     ),
 

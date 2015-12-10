@@ -72,8 +72,14 @@ body {
 }
 
 .frame {
-  padding: 50px;
+  padding: 30px;
   background-color: lightgray;
+  border: solid ;
+}
+
+.sidebar {
+  background-color: lightgray;
+  border: solid ;
 }
 
 .xframe {
@@ -178,4 +184,14 @@ body {
 .pagehead {
   position: relative;
   z-index: 10;
+}
+
+.ui p {
+ text-align: center;
+}
+
+.canvas {
+    text-transform: uppercase;
+    font-size:18px;
+    font-style:italic;
 }

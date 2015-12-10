@@ -86,10 +86,6 @@ if 'test' in sys.argv:
         }
     }
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-# SETTINGS_PATH=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# TEMPLATE_DIRS = (
-#     os.path.join(SETTINGS_PATH, 'templates'),
-#     )
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -108,7 +104,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-#SITE_URL = 'http://127.0.0.1:8000/facebook_connect'
+# SITE_URL = 'http://127.0.0.1:8000/facebook_connect'
 
 STATIC_URL = '/static/'
 
@@ -122,17 +118,14 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    )
+)
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    )
+)
 
 
-
-#Cloudinary configuration handshake
+# Cloudinary configuration handshake
 cloudinary.config(cloud_name=os.getenv('cloudinary_cloud_name'),
                   api_key=os.getenv('cloudinary_api_key'),
                   api_secret=os.getenv('cloudinary_api_secret'))
-
-#coverage run --source photoapp photoedit/manage.py test photoedit

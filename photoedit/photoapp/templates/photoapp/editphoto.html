@@ -5,8 +5,8 @@
 {% load url from future %}
 {% block main %}
 
-        <div class="col-md-1" id="eff">
-
+        <div class="col-md-1 sidebar" id="eff">
+            <br>
             <div class="ui small image xframe space">
                 <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='default' %}">
                 {% cloudinary photo.image Image_Effects.NORMAL %}
@@ -133,7 +133,7 @@
                     <a href="#" download>
                     <div id ="largeImage" class="pix">
                     {% cloudinary photo.image effects %}
-                    <p>{{ photo.title }}</p>
+                    <p class="canvas">{{ photo.title }}</p>
                     </div>
                     </a>
                     <div class="fb-like" data-href="http://localhost:8000/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
