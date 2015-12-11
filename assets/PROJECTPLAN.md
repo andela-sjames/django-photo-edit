@@ -22,7 +22,7 @@
 * Django, a python Framework for implementing MVC  
 * Javascript(Ajax) for asynchronous page rendering
 * Cloudinary(Python) a Webservice for storing files(Images) in the cloud. 
-* Bootsrtap CSS for styling page
+* Bootstrap CSS for styling page
 * Semantic-UI for good and simple UI look
 * HTML for creating web pages. 
 
