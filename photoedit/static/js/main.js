@@ -74,8 +74,8 @@ function showTable() {
 
 $(document).ready(function(){
     facebookLogin.init({
-        login: "#facebookLogin", //test value
-        fb_id: "1105396756159660"
+        // login: "#facebookLogin", //test value
+        // fb_id: "1105396756159660"
     })
 
     $('#editpicture-modal').on('show.bs.modal', function (event) {
