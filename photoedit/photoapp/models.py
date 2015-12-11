@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 
 class FacebookUser(models.Model):
 
+    '''Model Associates Facebook user to django user for keeping
+    sessions.'''
+
     facebook_id = models.CharField(max_length=60, unique=True)
 
     # Keep track of the facebook user -> django user mapping

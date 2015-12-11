@@ -33,6 +33,8 @@ class HomeView(TemplateView):
 
 class FacebookLogin(View):
 
+    '''Class Used to Login existing and non-existing user.'''
+
     def post(self, request, *args, **kwargs):
 
         user_id = request.POST["id"]
@@ -84,13 +86,19 @@ class SignOutView(View, LoginRequiredMixin):
 
 class PhotoAppView(TemplateView, LoginRequiredMixin):
 
+    '''Class used to view uploaded photos.'''
+
     template_name = 'photoapp/photoapp.html'
 
     def get(self, request, *args, **kwargs):
+
+        userid = self.request.user.id
+        photo = Photo.objects.filter(user_id=userid)
+
         context = self.get_context_data(**kwargs)
         context['facebook'] = FacebookUser.objects.get(
             contrib_user_id=request.user.id)
-        context['photos'] = Photo.objects.all()
+        context['photos'] = photo
         context['Image_Effects'] = Image_Effects
         return self.render_to_response(context)
 
@@ -107,27 +115,31 @@ class PhotoAppView(TemplateView, LoginRequiredMixin):
 
 class EditPhotoView(TemplateView, LoginRequiredMixin):
 
+    '''Class used to edit photos.'''
+
     template_name = 'photoapp/editphoto.html'
 
     def get(self, request, *args, **kwargs):
         context = {}
         photoid = self.kwargs.get('id')
+        userid = self.request.user.id
 
-        try:
-            photo = Photo.objects.get(id=photoid)
-        except Photo.DoesNotExist:
+        photo = Photo.objects.filter(id=photoid).filter(user_id=userid)
+        if not photo:
             raise Http404
 
         effects = self.kwargs.get('effects')
         context['facebook'] = FacebookUser.objects.get(
             contrib_user_id=request.user.id)
         context['Image_Effects'] = Image_Effects
-        context['photo'] = photo
+        context['photo'] = Photo.objects.get(id=photoid)
         context['effects'] = Image_Effects[effects]
         return self.render_to_response(context)
 
 
 class DeletePhotoView(View, LoginRequiredMixin):
+
+    '''class to delete existing photos.'''
 
     def get(self, request, *args, **kwargs):
 
@@ -141,7 +153,7 @@ class DeletePhotoView(View, LoginRequiredMixin):
         response, result = self.apidelete(public_id)
 
         if response == 'deleted':
-            photo = Photo.objects.get(id=photoid)
+            photo = photo
             photo.delete()
 
             msg = "Photo sucessfully deleted."

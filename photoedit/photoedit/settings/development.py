@@ -1,6 +1,7 @@
 """
 Development specific settings for GentleEdit project.
 """
+import sys
 
 from .base import *
 
@@ -17,3 +18,12 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+# test database
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(os.path.dirname(__file__), 'test.db')
+        }
+    }

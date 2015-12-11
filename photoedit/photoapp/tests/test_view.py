@@ -1,3 +1,5 @@
+'''Script used to test app functionality. '''
+
 import mock
 
 from django.test import TestCase, Client, RequestFactory
@@ -15,6 +17,8 @@ from photoapp.views import FacebookLogin, PhotoAppView,\
 
 
 class UserSetupTestCase(TestCase):
+
+    '''Test Setup used by subclasses, parameters already defined.'''
 
     def setUp(self):
         self.client = Client()
@@ -36,14 +40,16 @@ class UserSetupTestCase(TestCase):
             'picture[data][url]': 'https://fbkamaihd.net/hprofile'
         }
 
-        self.photo = Photo.objects.create(title='title')
+        self.photo = Photo.objects.create(title='title', user_id=1)
 
 
 class UserActionTestCase(UserSetupTestCase):
 
+    '''Test User can perform authentication action. '''
+
     def test_non_existing_user_login(self):
 
-        request = self.factory.post('/photo/login/', self.data)
+        request = self.factory.post('/photoapp/login/', self.data)
         engine = import_module(settings.SESSION_ENGINE)
         session_key = None
         request.session = engine.SessionStore(session_key)
@@ -60,7 +66,7 @@ class UserActionTestCase(UserSetupTestCase):
             'id': 1,
             'picture[data][url]': 'https://fbkamdsaihd.net/hprofile'
         }
-        request = self.factory.post('/photo/login/', data)
+        request = self.factory.post('/photoapp/login/', data)
         engine = import_module(settings.SESSION_ENGINE)
         session_key = None
         request.session = engine.SessionStore(session_key)
@@ -74,8 +80,9 @@ class UserActionTestCase(UserSetupTestCase):
         self.assertEqual(len(facebook_user2), 0)
 
         # assert that user was successfully created and saved in db
-        user2 = User.objects.create(username=self.data['first_name'],
-                                    email=self.data['email'])
+        user2 = User.objects.create_user(
+            username=self.data['first_name'],
+            email=self.data['email'])
         facebook_user2 = FacebookUser.objects.create(
             facebook_id=self.data['id'], contrib_user=user2)
         facebook_user2 = FacebookUser.objects.filter(id=2)
@@ -100,6 +107,8 @@ class UserActionTestCase(UserSetupTestCase):
 
 class TestPhotoUpload(UserSetupTestCase):
 
+    '''Test photo can be uploaded. '''
+
     @mock.patch('photoapp.models.Photo.save', mock.MagicMock(name="save"))
     def test_photo_upload_and_save(self):
 
@@ -115,9 +124,11 @@ class TestPhotoUpload(UserSetupTestCase):
 
 class TestPhotoEdit(UserSetupTestCase):
 
+    '''Test Photo Editing page can be viewed '''
+
     def test_editpage_view(self):
 
-        request = self.factory.get('/photoshop/edit/')
+        request = self.factory.get('/photoapp/edit/')
         request.user = self.user1
         view = EditPhotoView.as_view()
         response = view(request, id=1, effects='default')
@@ -125,13 +136,15 @@ class TestPhotoEdit(UserSetupTestCase):
 
     def test_error_handled_view(self):
 
-        request = self.factory.get('/photoshop/edit/')
+        request = self.factory.get('/photoapp/edit/')
         request.user = self.user1
         view = EditPhotoView.as_view()
         self.assertRaises(Http404, view, request, id=24, effects='default')
 
 
 class TestDeletePhoto(UserSetupTestCase):
+
+    '''Test Photo can be deleted.'''
 
     def test_delete_photo(self):
 
@@ -144,7 +157,8 @@ class TestDeletePhoto(UserSetupTestCase):
                  "cb4eaaf650": "deleted", }
                  })
 
-            request = self.factory.get('/photoshop/delete/')
+            request = self.factory.get('/photoapp/delete/')
+            request.user = self.user1
             engine = import_module(settings.SESSION_ENGINE)
             session_key = None
             request.session = engine.SessionStore(session_key)
@@ -166,7 +180,8 @@ class TestDeletePhoto(UserSetupTestCase):
                  "cb4eaaf650": "deleted", }
                  }, 'deleted')
 
-            request = self.factory.get('/photoshop/delete/')
+            request = self.factory.get('/photoapp/delete/')
+            request.user = self.user1
             engine = import_module(settings.SESSION_ENGINE)
             session_key = None
             request.session = engine.SessionStore(session_key)
@@ -180,6 +195,7 @@ class TestDeletePhoto(UserSetupTestCase):
 
     def test_error_handeled_delete(self):
 
-        request = self.factory.get('/photoshop/delete/')
+        request = self.factory.get('/photoapp/delete/')
+        request.user = self.user1
         view = DeletePhotoView.as_view()
         self.assertRaises(Http404, view, request, id=24)
