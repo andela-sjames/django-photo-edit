@@ -10,7 +10,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import sys
 import cloudinary
 
 
@@ -75,18 +74,14 @@ TEMPLATES = [
 ]
 TEMPLATES[0]['OPTIONS']['debug'] = True
 
-
-# Database
-
-if 'test' in sys.argv:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(os.path.dirname(__file__), 'test.db')
-        }
-    }
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
+# Database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(os.path.dirname(__file__), 'test.db')
+    }
+}
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 

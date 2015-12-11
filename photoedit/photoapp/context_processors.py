@@ -1,3 +1,5 @@
+''' Script used to define effects used in application.'''
+
 Image_Effects = dict(
 
     ICON_EFFECTS=dict(
@@ -29,7 +31,7 @@ Image_Effects = dict(
     },
 
 
-    default=dict(format='png',),
+    default=dict(format='png'),
 
     NORMAL=dict(
         format="png",
