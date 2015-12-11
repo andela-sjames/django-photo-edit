@@ -136,7 +136,9 @@
                     <p class="canvas">{{ photo.title }}</p>
                     </div>
                     </a>
-                    <div class="fb-share-button" data-href="http://gentleedit.herokuapp.com/" data-layout="button_count"></div>
+                    <button class="ui circular facebook icon button share">
+                        <i class="facebook icon"></i><p class="welcome">share</p>
+                    </button>
                 </div>
             </div>
         </div>
@@ -166,13 +168,5 @@
         </div>
 
 {% include "photoapp/delete_modal.html" %}
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1098970130135656";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
 
 {% endblock main %}
