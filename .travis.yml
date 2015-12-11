@@ -18,10 +18,5 @@ deploy:
   strategy: git
   app:
     master: gentleedit
-  run:
-    - "export DJANGO_SETTINGS_MODULE=photoedit.settings.production"
-    - "python photoedit/manage.py collectstatic --noinput"
-    - "python photoedit/manage.py makemigrations --noinput"
-    - "python photoedit/manage.py migrate --noinput"
 after_deploy:
   - "heroku ps:scale web=1 --app gentleedit"
