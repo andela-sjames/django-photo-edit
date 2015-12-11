@@ -2,12 +2,6 @@ $.ajaxSetup({
     headers: {
         "X-CSRFToken": $("input[name='csrfmiddlewaretoken']").val()
     },
-    beforeSend:function(){
-        $("#preloader").show();
-    },
-    complete:function(){
-        $("#preloader").hide();
-    }
 });
 
 function socialLogin(user) {
@@ -76,7 +70,28 @@ $(document).ready(function(){
     facebookLogin.init({
         // login: "#facebookLogin", //test value
         // fb_id: "1105396756159660"
+    });
+    //FB.getLoginStatus(updateStatusCallback);
+    $(".share").click(function(e){
+        e.preventDefault();
+        picture = $("#largeImage").find("img").attr("src");
+        name = $("#largeImage").find("p").text();
+        console.log(picture);
+        console.log(location.href);
+
+        FB.ui({
+          method: 'feed',
+          name: name,
+          display: 'popup',
+          link: location.href,
+          caption:"Gentle Edit",
+          picture: picture,
+          description: 'I just used GentleEdit to edit my Photo.'
+        }, function(response){
+
+        });
     })
+
 
     $('#editpicture-modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
@@ -89,6 +104,8 @@ $(document).ready(function(){
         imgdiv.attr( "src", imageId );
         href.attr( "href", getroute );
     })
+
+
 
     //upload button
     $('.btn-file :file').change(function(event) {
