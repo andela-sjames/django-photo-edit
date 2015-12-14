@@ -72,25 +72,43 @@ $(document).ready(function(){
         fb_id: "1105396756159660"
     });
     //FB.getLoginStatus(updateStatusCallback);
+
+    // $(".share").click(function(e){
+    //     e.preventDefault();
+    //     picture = $("#largeImage").find("img").attr("src");
+    //     name = $("#largeImage").find("p").text();
+    //     console.log(picture);
+    //     console.log(location.href);
+
+    //     FB.ui({
+    //       method: 'feed',
+    //       name: name,
+    //       display: 'popup',
+    //       link: location.href,
+    //       caption:"Gentle Edit",
+    //       picture: picture,
+    //       description: 'I just used GentleEdit to edit my Photo.'
+    //     }, function(response){
+
+    //     });
+    // })
+
     $(".share").click(function(e){
         e.preventDefault();
-        picture = $("#largeImage").find("img").attr("src");
-        name = $("#largeImage").find("p").text();
-        console.log(picture);
-        console.log(location.href);
 
-        FB.ui({
-          method: 'feed',
-          name: name,
-          display: 'popup',
-          link: location.href,
-          caption:"Gentle Edit",
-          picture: picture,
-          description: 'I just used GentleEdit to edit my Photo.'
-        }, function(response){
+        var data = canvas.toDataURL('image/png');
+        var resp = $('.image_upload').fileupload()
+     $.cloudinary.image('image.jpg', {}, function(){
 
-        });
+     })
+
+        console.log(resp)
+
+
+
+
     })
+
 
 
     $('#editpicture-modal').on('show.bs.modal', function (event) {

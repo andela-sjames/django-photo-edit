@@ -58,3 +58,6 @@ docs/_build/
 target/
 # environment files
 .env.*
+
+# bower_component
+bower_components/

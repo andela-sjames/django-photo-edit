@@ -8,10 +8,9 @@
     <div class="ui medium bordered rounded image" id="msize">
         <img src="{{ photo.image.url }}">
         <p class="#">{{ photo.title }}</p>
-    <button class="ui facebook button share">
-        <i class="facebook icon"></i>
-            Share On Facebook
-    </button>
+    </div>
+    <div style="display:none">
+        <input class="image_upload" name="image" type="file" required>
     </div>
 
 </div>
@@ -174,8 +173,6 @@
 
         <button type="button" class="ui black basic button btn-block space del" data-toggle="modal" data-target="#delete-modal" href="#delete-modal"id="sp">Delete</button>
 
-        <button type="button" class="ui black basic button btn-block space" id="savechange" style="margin-bottom: 10px;">Save Changes</button>
-
         <button class="ui black basic button btn-block space resetbtn">Reset</button>
 
     </div>
@@ -184,16 +181,16 @@
 {% include "photoapp/delete_modal.html" %}
 
     <script>
-    var canvas = document.getElementById('canvas');
-    var ctx = canvas.getContext('2d');
-    var img = new Image();
-    img.crossOrigin = '';
-          img.src="{{ photo.image.url }}"
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var img = new Image();
+        img.crossOrigin = '';
+              img.src="{{ photo.image.url }}"
 
-    img.onload = function() {
-      canvas.width = img.width;
-      canvas.height = img.height;
-      ctx.drawImage(img, 0, 0, img.width, img.height);
-    }
+        img.onload = function() {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0, img.width, img.height);
+        }
     </script>
 {% endblock main %}
