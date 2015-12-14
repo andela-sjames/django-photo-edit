@@ -20,11 +20,6 @@
     <link href="{% static 'css/semantic.min.css' %}" rel="stylesheet" type="text/css" media="screen" />
     <link href="https://fonts.googleapis.com/css?family=Lato" rel='stylesheet' type='text/css'>
 
-    <script src="{% static "js/jquery.js" %}"></script>
-    <script src="{% static "js/jquery.infinitescroll.min.js" %}"></script>
-    <script src="{% static "js/main.js" %}"></script>
-    <script src="{% static "js/jquery.filestyle.js" %}"></script>
-    <script src="{% static "js/semantic.min.js" %}"></script>
 
     {% cloudinary_includes %}
     {% cloudinary_js_config %}
@@ -81,8 +76,14 @@
 
     <!-- jQuery -->
     <!-- Bootstrap Core JavaScript -->
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "js/jquery.infinitescroll.min.js" %}"></script>
+    <script src="{% static "js/main.js" %}"></script>
+    <script src="{% static "js/jquery.filestyle.js" %}"></script>
+    <script src="{% static "js/semantic.min.js" %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
+    <script src="{% static "js/filter.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
-
 
 </body>
 </html>

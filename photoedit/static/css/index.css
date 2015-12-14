@@ -215,3 +215,14 @@ body {
     cursor: inherit;
     display: block;
 }
+
+.container-outer {
+  overflow-y: hidden;
+  width: 700px;
+  height: 150px;
+}
+
+.container-inner {
+  width: 3850px;
+   }
+

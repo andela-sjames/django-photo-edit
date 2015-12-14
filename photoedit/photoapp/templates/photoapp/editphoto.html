@@ -2,172 +2,198 @@
 
 {% load cloudinary %}
 {% load static %}
-{% load url from future %}
 {% block main %}
 
-        <div class="col-md-1 sidebar" id="eff">
-            <br>
-            <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='default' %}">
-                {% cloudinary photo.image Image_Effects.NORMAL %}
-                </div>
+<div class="col-md-3">
+    <div class="ui medium bordered rounded image" id="msize">
+        <img src="{{ photo.image.url }}">
+        <p class="#">{{ photo.title }}</p>
+    <button class="ui facebook button share">
+        <i class="facebook icon"></i>
+            Share On Facebook
+    </button>
+    </div>
+
+</div>
+
+<div class="col-md-7">
+    <div class="ui fluid bordered rounded image" id="msize">
+        <canvas id="canvas"></canvas>
+        <p class="#">{{ photo.title }}</p>
+    </div>
+    <br>
+
+
+    <div class="container-outer">
+        <div class="container-inner">
+
+            <div class="ui small rounded image space resetbtn">
+                <img src="{{photo.image.url}}" crossOrigin>
                 <P>Normal</P>
              </div>
 
-            <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='BIG_SERPIA' %}">
-                {% cloudinary photo.image Image_Effects.SMALL_SERPIA %}
-                </div>
-                <p>serpia</p>
+            <div class="ui small rounded image space" id="brightnessbtn">
+                <img data-caman="brightness(30)" src="{{photo.image.url}}" crossOrigin >
+                <P>Brightness</P>
              </div>
 
-             <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_GRAYSCALE' %}">
-                {% cloudinary photo.image Image_Effects.S_GRAYSCALE %}
-                </div>
-                <p>grayscale</p>
+             <div class="ui small rounded image space" id="noisebtn">
+                <img data-caman="noise(10)" src="{{photo.image.url}}" crossOrigin>
+                <P>Noise</P>
              </div>
 
-             <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_VIGNETTE' %}">
-                {% cloudinary photo.image Image_Effects.S_VIGNETTE %}
-                </div>
-                <p>vignette</p>
+             <div class="ui small rounded image space" id="sepiabtn">
+                <img data-caman="serpia(20)" src="{{photo.image.url}}" crossOrigin>
+                <P>serpia</P>
              </div>
 
 
-             <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_GRADIENTFADE' %}">
-                {% cloudinary photo.image Image_Effects.B_GRADIENTFADE %}
-                </div>
-                <p>gradient</p>
+             <div class="ui small rounded image space" id="contrastbtn">
+                <img data-caman="contrast(10)" src="{{photo.image.url}}" crossOrigin>
+                <P>contrast</P>
              </div>
 
-             <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_CONTRAST_70' %}">
-                {% cloudinary photo.image Image_Effects.S_CONTRAST_70 %}
-                </div>
-                <p>contrast</p>
+             <div class="ui small rounded image space" id="vintagebtn">
+                <img data-caman="vintage()" src="{{photo.image.url}}" crossOrigin>
+                <P>vintage</P>
              </div>
 
-             <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_BRIGHTNESS60' %}">
-                {% cloudinary photo.image Image_Effects.S_BRIGHTNESS60 %}
-                </div>
-                <p>brightness</p>
+             <div class="ui small rounded image space" id="lomobtn">
+                <img data-caman="lomo()" src="{{photo.image.url}}" crossOrigin>
+                <P>lomo</P>
              </div>
 
-             <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_BLUR' %}">
-                {% cloudinary photo.image Image_Effects.S_BLUR %}
-                </div>
-                <P>blur</P>
+             <div class="ui small rounded image space" id="embossbtn">
+                <img data-caman="emboss()" src="{{photo.image.url}}" crossOrigin>
+                <P>emboss</P>
              </div>
 
-             <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_RED' %}">
-                {% cloudinary photo.image Image_Effects.S_RED %}
-                </div>
-                <p>red</p>
+             <div class="ui small rounded image space" id="edgeenhancebtn">
+                <img data-caman="edgeEnhance()" src="{{photo.image.url}}" crossOrigin>
+                <P>edgeenhance</P>
              </div>
 
-             <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_GREEN' %}">
-                {% cloudinary photo.image Image_Effects.S_GREEN %}
-                </div>
-                <p>green</p>
+             <div class="ui small rounded image space" id="posterizebtn">
+                <img data-caman="posterize(8, 8)" src="{{photo.image.url}}" crossOrigin>
+                <P>posterize</P>
              </div>
 
-             <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_BLack' %}">
-                {% cloudinary photo.image Image_Effects.S_BLack %}
-                </div>
-                <p>black</p>
+             <div class="ui small rounded image space" id="claritybtn">
+                <img data-caman="clarity()" src="{{photo.image.url}}" crossOrigin>
+                <P>clarity</P>
              </div>
 
-
-             <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_SHARPEN' %}">
-                {% cloudinary photo.image Image_Effects.S_SHARPEN %}
-                </div>
-                <p>sharpen</p>
+             <div class="ui small rounded image space" id="orangepeelbtn">
+                <img data-caman="orangePeel()" src="{{photo.image.url}}" crossOrigin>
+                <P>orangepeel</P>
              </div>
 
-
-             <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_VIBRANCE' %}">
-                {% cloudinary photo.image Image_Effects.S_VIBRANCE %}
-                </div>
-                <p>vibrance</p>
+             <div class="ui small rounded image space" id="sincitybtn">
+                <img data-caman="sinCity()" src="{{photo.image.url}}" crossOrigin>
+                <P>sincity</P>
              </div>
 
-
-             <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_OILPAINT' %}">
-                {% cloudinary photo.image Image_Effects.S_OILPAINT %}
-                </div>
-                <p>oil paint</p>
+             <div class="ui small rounded image space" id="sunrisebtn">
+                <img data-caman="sunrise()" src="{{photo.image.url}}" crossOrigin>
+                <P>sunrise</P>
              </div>
 
-
-             <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_BLACKWHITE' %}">
-                {% cloudinary photo.image Image_Effects.S_BLACKWHITE %}
-                </div>
-                <p>blackwhite</p>
+             <div class="ui small rounded image space" id="crossprocessbtn">
+                <img data-caman="crossProcess()" src="{{photo.image.url}}" crossOrigin>
+                <P>crossprocess</P>
              </div>
 
+             <div class="ui small rounded image space" id="hazydaysbtn">
+                <img data-caman="hazyDays()" src="{{photo.image.url}}" crossOrigin>
+                <P>hazydays</P>
+             </div>
 
-             <div class="ui small image xframe space">
-                <div class="object" data-effect-url="{% url 'editphoto' id=photo.id effects='B_NEGATE' %}">
-                {% cloudinary photo.image Image_Effects.S_NEGATE %}
-                </div>
-                <p>negate</p>
+             <div class="ui small rounded image space" id="lovebtn">
+                <img data-caman="love()" src="{{photo.image.url}}" crossOrigin>
+                <P>love</P>
+             </div>
+
+             <div class="ui small rounded image space" id="grungybtn">
+                <img data-caman="grungy()" src="{{photo.image.url}}" crossOrigin>
+                <P>grungy</P>
+             </div>
+
+             <div class="ui small rounded image space" id="jarquesbtn">
+                <img data-caman="jarques()" src="{{photo.image.url}}" crossOrigin>
+                <P>jarques</P>
+             </div>
+
+             <div class="ui small rounded image space" id="oldbootbtn">
+                <img data-caman="oldBoot()" src="{{photo.image.url}}" crossOrigin>
+                <P>oldboot</P>
+             </div>
+
+             <div class="ui small rounded image space" id="pinholebtn">
+                <img data-caman="pinhole()"src="{{photo.image.url}}" crossOrigin>
+                <P>pinhole</P>
+             </div>
+
+             <div class="ui small rounded image space" id="glowingsunbtn">
+                <img data-caman="glowingSun()" src="{{photo.image.url}}" crossOrigin>
+                <P>glowingsun</P>
+             </div>
+
+             <div class="ui small rounded image space" id="hdrbtn">
+                <img data-caman="contrast(10) contrast(10) jarques()" src="{{photo.image.url}}" crossOrigin>
+                <P>hdr</P>
+             </div>
+
+             <div class="ui small rounded image space" id="oldpaperbtn">
+                <img data-caman="oldpaper()" src="{{photo.image.url}}" crossOrigin>
+                <P>oldpaper</P>
+             </div>
+
+             <div class="ui small rounded image space" id="pleasantbtn">
+                <img data-caman="pleasant()" src="{{photo.image.url}}" crossOrigin>
+                <P>pleasant</P>
+
              </div>
 
         </div>
-
-        <div class="col-md-9">
-            <div class="frame">
-                <div class="ui fluid image xframe">
-                    <a href="#" download>
-                    <div id ="largeImage" class="pix">
-                    {% cloudinary photo.image effects %}
-                    <p class="canvas">{{ photo.title }}</p>
-                    </div>
-                    </a>
-                    <button class="ui facebook button share">
-                        <i class="facebook icon"></i>
-                            Share On Facebook
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="class="ui visible sidebar">
-                <a href="{% url "photoview" %}">
-                <button type="button" class="ui black basic button btn-block space" id="sp" >Back</button>
-                </a>
+    </div>
 
 
-                <div class="save"><a href="#" download="{{photo.title}}.png">
-                <button type="button" class="ui black basic button btn-block space" id="sp">Save</button>
-                </a></div>
+</div>
+
+<div class="col-md-2">
+    <div class="#">
+        <a href="{% url "photoview" %}">
+        <button type="button" class="ui black basic button btn-block space" id="sp" >Back</button>
+        </a>
 
 
-                <button type="button" class="ui black basic button btn-block space del" data-toggle="modal" data-target="#delete-modal" href="#delete-modal"id="sp">Delete</button>
+        <div class="save" id="savebtn">
+        <button type="button" class="ui black basic button btn-block space" id="sp">Download</button>
+        </a></div>
 
-            </div>
 
-            <div>
-                <center>
+        <button type="button" class="ui black basic button btn-block space del" data-toggle="modal" data-target="#delete-modal" href="#delete-modal"id="sp">Delete</button>
 
-                </center>
-            </div>
+        <button type="button" class="ui black basic button btn-block space" id="savechange" style="margin-bottom: 10px;">Save Changes</button>
 
-        </div>
+        <button class="ui black basic button btn-block space resetbtn">Reset</button>
+
+    </div>
+<div>
 
 {% include "photoapp/delete_modal.html" %}
 
+    <script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    var img = new Image();
+    img.crossOrigin = '';
+          img.src="{{ photo.image.url }}"
+
+    img.onload = function() {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0, img.width, img.height);
+    }
+    </script>
 {% endblock main %}

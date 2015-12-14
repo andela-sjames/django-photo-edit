@@ -68,8 +68,8 @@ function showTable() {
 
 $(document).ready(function(){
     facebookLogin.init({
-        // login: "#facebookLogin", //test value
-        // fb_id: "1105396756159660"
+        login: "#facebookLogin", //test value
+        fb_id: "1105396756159660"
     });
     //FB.getLoginStatus(updateStatusCallback);
     $(".share").click(function(e){
