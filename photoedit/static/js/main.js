@@ -88,31 +88,37 @@ $(document).ready(function(){
     //display picture on central div
     $(".editpix").on('click', function(e){
         e.preventDefault();
-        var imageId = $(this).find('img').attr('src');
+        var imageurl = $(this).find('img').attr('src');
         var imgdiv = $('#pixedit').find('img');
         var effectsdiv = $('.effects').find('img');
 
-        imgdiv.attr( "src", imageId );
-        effectsdiv.attr('src',imageId);
-        console.log(imageId)
+
+        var imagepath = $(this).attr('data-image-id')
+
+        imgdiv.attr( "src", imageurl );
+        effectsdiv.attr('src',imageurl);
+        effectsdiv.attr('data-image-id', imagepath)
+
+        console.log(imageurl)
 
     })
 
     //get image from template
     $(".setup").click(function(e){
         e.preventDefault();
-        var image = $('.editpix').attr('data-image-id')
+        var image = $(this).find('img').attr('data-image-id')
+        var imgeffect = $(this).attr('data-effect')
         console.log(image)
+        console.log(imgeffect)
+
 
         $.ajax({
             type: "GET",
             url: "/photoapp/addeffects/",
-            data: {'image': image },
+            data: {'image': image, 'effect': imgeffect },
             success: function(data) {
-                console.log('success');
-                console.log(data);
-                var url = "/photoapp/photos/"
-                // $("#pixedit").load(url + " #pixedit")
+                console.log("data " + data);
+                $("#avatar").attr('src', '/' + data);
             },
 
             error: function(error) {

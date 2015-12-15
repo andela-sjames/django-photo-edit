@@ -1,6 +1,3 @@
-import os
-from PIL import Image, ImageFilter
-from django.conf import settings
 from django.shortcuts import render
 from django.views.generic import View
 from django.views.generic.base import TemplateView
@@ -114,45 +111,28 @@ class PhotoAppView(TemplateView, LoginRequiredMixin):
         return HttpResponse("success", content_type="text/plain")
 
 
-# class EditPhotoView(TemplateView, LoginRequiredMixin):
+class EditPhotoView(TemplateView, LoginRequiredMixin):
 
-#     '''Class used to edit photos.'''
+    '''Class used to edit photos.'''
 
-#     template_name = 'photoapp/editphoto.html'
-
-#     def get(self, request, *args, **kwargs):
-#         context = {}
-#         photoid = self.kwargs.get('id')
-#         userid = self.request.user.id
-
-#         photo = Photo.objects.filter(id=photoid).filter(user_id=userid)
-#         if not photo:
-#             raise Http404
-
-#         effects = self.kwargs.get('effects')
-#         context['facebook'] = FacebookUser.objects.get(
-#             contrib_user_id=request.user.id)
-#         context['Image_Effects'] = Image_Effects
-#         context['photo'] = Photo.objects.get(id=photoid)
-#         context['effects'] = Image_Effects[effects]
-#         return self.render_to_response(context)
-
-
-class PillowImageView(TemplateView, LoginRequiredMixin):
+    template_name = 'photoapp/editphoto.html'
 
     def get(self, request, *args, **kwargs):
-        pilimage = str(request.GET.get('image'))
-        print pilimage
-        img = Image.open(pilimage)
-        out = img.filter(ImageFilter.DETAIL)
-        filepath, ext = os.path.splitext(pilimage)
+        context = {}
+        photoid = self.kwargs.get('id')
+        userid = self.request.user.id
 
-        edit_path = filepath + 'edited' + ext
-        out.save(edit_path, format='PNG')
+        photo = Photo.objects.filter(id=photoid).filter(user_id=userid)
+        if not photo:
+            raise Http404
 
-        # return response and we're done!
-        return HttpResponse(os.path.relpath(edit_path, settings.BASE_DIR),
-                            content_type="text/plain")
+        effects = self.kwargs.get('effects')
+        context['facebook'] = FacebookUser.objects.get(
+            contrib_user_id=request.user.id)
+        context['Image_Effects'] = Image_Effects
+        context['photo'] = Photo.objects.get(id=photoid)
+        context['effects'] = Image_Effects[effects]
+        return self.render_to_response(context)
 
 
 class DeletePhotoView(View, LoginRequiredMixin):

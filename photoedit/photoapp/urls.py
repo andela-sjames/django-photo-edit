@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from photoapp import views
+from photoapp import views, effects
 
 urlpatterns = [
     url(r'^edit/(?P<id>[0-9]+)/(?P<effects>\w+)?$',
@@ -9,5 +9,5 @@ urlpatterns = [
     url(r'^signout/$', views.SignOutView.as_view(), name='signout'),
     url(r'^delete/(?P<public_id>[A-Za-z0-9]+)/(?P<id>[0-9]+)$',
         views.DeletePhotoView.as_view(), name='delete'),
-    url(r'^addeffects/$', views.PillowImageView.as_view(), name='addeffects'),
+    url(r'^addeffects/$', effects.PillowImageView.as_view(), name='addeffects')
 ]
