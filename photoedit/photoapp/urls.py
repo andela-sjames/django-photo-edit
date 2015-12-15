@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^signout/$', views.SignOutView.as_view(), name='signout'),
     url(r'^delete/(?P<public_id>[A-Za-z0-9]+)/(?P<id>[0-9]+)$',
         views.DeletePhotoView.as_view(), name='delete'),
+    url(r'^addeffects/$', views.PillowImageView.as_view(), name='addeffects'),
 ]

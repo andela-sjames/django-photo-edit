@@ -1,6 +1,4 @@
 {% load staticfiles %}
-{% load cloudinary %}
-{% load url from future %}
 
 <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog">
@@ -14,7 +12,7 @@
                 <h3>Yes, I am sure</h3>
 
 
-        
+
             </div>
             <div class="modal-footer">
                 <a href="/photoapp/delete/{{ photo.image.public_id }}/{{photo.id }}">

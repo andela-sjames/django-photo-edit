@@ -1,5 +1,6 @@
-from cloudinary import api
-
+import os
+from PIL import Image, ImageFilter
+from django.conf import settings
 from django.shortcuts import render
 from django.views.generic import View
 from django.views.generic.base import TemplateView
@@ -113,28 +114,45 @@ class PhotoAppView(TemplateView, LoginRequiredMixin):
         return HttpResponse("success", content_type="text/plain")
 
 
-class EditPhotoView(TemplateView, LoginRequiredMixin):
+# class EditPhotoView(TemplateView, LoginRequiredMixin):
 
-    '''Class used to edit photos.'''
+#     '''Class used to edit photos.'''
 
-    template_name = 'photoapp/editphoto.html'
+#     template_name = 'photoapp/editphoto.html'
+
+#     def get(self, request, *args, **kwargs):
+#         context = {}
+#         photoid = self.kwargs.get('id')
+#         userid = self.request.user.id
+
+#         photo = Photo.objects.filter(id=photoid).filter(user_id=userid)
+#         if not photo:
+#             raise Http404
+
+#         effects = self.kwargs.get('effects')
+#         context['facebook'] = FacebookUser.objects.get(
+#             contrib_user_id=request.user.id)
+#         context['Image_Effects'] = Image_Effects
+#         context['photo'] = Photo.objects.get(id=photoid)
+#         context['effects'] = Image_Effects[effects]
+#         return self.render_to_response(context)
+
+
+class PillowImageView(TemplateView, LoginRequiredMixin):
 
     def get(self, request, *args, **kwargs):
-        context = {}
-        photoid = self.kwargs.get('id')
-        userid = self.request.user.id
+        pilimage = str(request.GET.get('image'))
+        print pilimage
+        img = Image.open(pilimage)
+        out = img.filter(ImageFilter.DETAIL)
+        filepath, ext = os.path.splitext(pilimage)
 
-        photo = Photo.objects.filter(id=photoid).filter(user_id=userid)
-        if not photo:
-            raise Http404
+        edit_path = filepath + 'edited' + ext
+        out.save(edit_path, format='PNG')
 
-        effects = self.kwargs.get('effects')
-        context['facebook'] = FacebookUser.objects.get(
-            contrib_user_id=request.user.id)
-        context['Image_Effects'] = Image_Effects
-        context['photo'] = Photo.objects.get(id=photoid)
-        context['effects'] = Image_Effects[effects]
-        return self.render_to_response(context)
+        # return response and we're done!
+        return HttpResponse(os.path.relpath(edit_path, settings.BASE_DIR),
+                            content_type="text/plain")
 
 
 class DeletePhotoView(View, LoginRequiredMixin):
@@ -150,23 +168,7 @@ class DeletePhotoView(View, LoginRequiredMixin):
             photo = Photo.objects.get(id=photoid)
         except Photo.DoesNotExist:
             raise Http404
-        response, result = self.apidelete(public_id)
-
-        if response == 'deleted':
-            photo = photo
-            photo.delete()
-
-            msg = "Photo sucessfully deleted."
-            messages.add_message(request, messages.SUCCESS, msg)
-            return HttpResponseRedirect(reverse_lazy('photoview'))
-
-        else:
-            msg = "server error please, try deleting again."
-            messages.add_message(request, messages.ERROR, msg)
-            return HttpResponseRedirect(reverse_lazy('photoview'))
-
-    def apidelete(self, public_id):
-            return api.delete_resources([public_id])
+        pass
 
 
 def custom_404(request):

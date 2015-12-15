@@ -1,6 +1,4 @@
 {% load staticfiles %}
-{% load cloudinary %}
-{% load url from future %}
 
 <div class="modal fade" id="editpicture-modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
     <div class="modal-dialog">
@@ -11,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="ui fluid image" id="msize">
-                    {% cloudinary photo.image %}
+
                     <p>{{ photo.title }}</p>
                 </div>
 

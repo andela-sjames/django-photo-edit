@@ -32,7 +32,7 @@ body {
   flex-direction: row ;
 }
 
-#msize {
+.msize {
   height: 400px;
   overflow: scroll;
   margin: 5px;
@@ -75,6 +75,8 @@ body {
   padding: 30px;
   background-color: lightgray;
   border: solid ;
+  height: 600px;
+  width: 600px;
 }
 
 .sidebar {
@@ -215,3 +217,21 @@ body {
     cursor: inherit;
     display: block;
 }
+
+.container-outer {
+  overflow-y: hidden;
+  width: 800px;
+  height: 150px;
+}
+
+.container-inner {
+  width: 2500px;
+}
+.pixframe {
+  height: 600px;
+  width: 600px;
+}
+
+/*.setup {
+  display: hidden;
+}*/

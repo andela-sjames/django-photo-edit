@@ -1,7 +1,11 @@
-from cloudinary.models import CloudinaryField
+from time import time
 
 from django.db import models
 from django.contrib.auth.models import User
+
+
+def get_upload_file_name(instance, filename):
+    return "upload_files/%s_%s" % (str(time()).replace('.', '_'), filename)
 
 
 class FacebookUser(models.Model):
@@ -31,22 +35,12 @@ class Photo(models.Model):
         blank=True,
         null=True)
 
-    image = CloudinaryField(
-        resource_type='image',
-        type='upload',
-        blank=True,
-        default="img/photo_default.png",
-    )
-
+    image = models.ImageField(upload_to=get_upload_file_name, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, null=True, blank=True)
 
     def __unicode__(self):
-        try:
-            public_id = self.image.public_id
-        except AttributeError:
-            public_id = ''
-        return "Photo <%s:%s>" % (self.title, public_id)
+        return "Photo <%s:%s>" % (self.title, self.id)
 
     class Meta:
         ordering = ('-created',)
