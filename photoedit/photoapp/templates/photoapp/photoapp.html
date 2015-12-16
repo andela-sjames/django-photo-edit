@@ -32,16 +32,15 @@
             <div class="col-md-8">
                 <center>
                 <div class="ui big image" id="pixedit">
-
-                    <div class="frame">
-                        <img id="avatar" src = "#">
-                        <p>{{ photo.title }}</p>
+                    <div id="begin"><p class="welcome">Click on Image to begin edit...</p></div>
+                    <div class="frame" id="frameid">
+                        <img id="avatar" src="" style="display:none" class="flex">
                     </div>
                 </div>
                 </center>
                 <br>
                 <div class="container-outer">
-                    <div class="container-inner">
+                    <div class="container-inner flex" style="display:none">
 
                         <div class="ui small image effects">
                         <a href="#" class="setup" data-effect="brightness">
@@ -56,25 +55,25 @@
                         </div>
 
                         <div class="ui small image effects">
-                        <a href="#" class="setup" data-effect="vintage">
+                        <a href="#" class="setup" data-effect="grayscale">
                         <img src = "#"></a>
                         <p>{{ photo.title }}</p>
                         </div>
 
                         <div class="ui small image effects">
-                        <a href="#" class="setup" data-effect="effect1">
+                        <a href="#" class="setup" data-effect="blur">
                         <img src = "#"></a>
                         <p>{{ photo.title }}</p>
                         </div>
 
                         <div class="ui small image effects">
-                        <a href="#" class="setup" data-effect="effect2">
+                        <a href="#" class="setup" data-effect="contour">
                         <img src = "#"></a>
                         <p>{{ photo.title }}</p>
                         </div>
 
                         <div class="ui small image effects">
-                        <a href="#" class="setup" data-effect="effect3">
+                        <a href="#" class="setup" data-effect="hue">
                         <img src = "#"></a>
                         <p>{{ photo.title }}</p>
                         </div>

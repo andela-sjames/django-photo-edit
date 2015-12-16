@@ -1,8 +1,10 @@
 $.ajaxSetup({
     headers: {
-        "X-CSRFToken": $("input[name='csrfmiddlewaretoken']").val()
+        "X-CSRFToken": $("meta[name='csrf-token']").attr("content"),
+        'Cache-Control': 'no-store'
     },
 });
+$.ajaxSetup({ cache: false });
 
 function socialLogin(user) {
     console.log(user)
@@ -88,6 +90,7 @@ $(document).ready(function(){
     //display picture on central div
     $(".editpix").on('click', function(e){
         e.preventDefault();
+        $('#begin').hide();
         var imageurl = $(this).find('img').attr('src');
         var imgdiv = $('#pixedit').find('img');
         var effectsdiv = $('.effects').find('img');
@@ -98,6 +101,7 @@ $(document).ready(function(){
         imgdiv.attr( "src", imageurl );
         effectsdiv.attr('src',imageurl);
         effectsdiv.attr('data-image-id', imagepath)
+        $(".flex").show();
 
         console.log(imageurl)
 
@@ -106,26 +110,34 @@ $(document).ready(function(){
     //get image from template
     $(".setup").click(function(e){
         e.preventDefault();
+        e.stopPropagation();
         var image = $(this).find('img').attr('data-image-id')
         var imgeffect = $(this).attr('data-effect')
         console.log(image)
         console.log(imgeffect)
-
 
         $.ajax({
             type: "GET",
             url: "/photoapp/addeffects/",
             data: {'image': image, 'effect': imgeffect },
             success: function(data) {
-                console.log("data " + data);
-                $("#avatar").attr('src', '/' + data);
+               var avatatr = $("#avatar").attr("src", '/'+ data + "?" + new Date().getTime());
+                $("#frameid").html(avatar);
+
             },
 
             error: function(error) {
                     console.log(error.responseText)
                 },
+                complete: function(data){
+                    //console.log(data);
+                    //$("#frameid").load(data.responseText);
+                }
 
         });
+        // $("#frameid").load("/photoapp/addeffects/",{'image': image, 'effect': imgeffect }, function(x,y,z){
+        //     console.log(z.responseText);
+        // });
 
     });
 
