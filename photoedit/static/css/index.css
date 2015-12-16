@@ -75,8 +75,12 @@ body {
   padding: 30px;
   background-color: lightgray;
   border: solid ;
-  /*height: 600px;*/
-  /*width: 600px;*/
+  height: 466.5px;
+  width: 600px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
 }
 
 .sidebar {
@@ -225,13 +229,25 @@ body {
 }
 
 .container-inner {
-  width: 2000px;
+  width: 1600px;
 }
 .pixframe {
   height: 600px;
   width: 600px;
 }
 
-/*.setup {
-  display: hidden;
-}*/
+.set {
+  height: 128.5px;
+  width: 150px;
+  border-radius: 18px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.sideimg{
+  height: 131px;
+  border-radius: 15px;
+  width:112.5;
+
+}

@@ -8,6 +8,14 @@ from django.http import HttpResponse
 from photoapp.views import LoginRequiredMixin
 
 
+def make_linear_ramp(white):
+    ramp = []
+    r, g, b = white
+    for i in range(255):
+        ramp.extend((r * i / 255, g * i / 255, b * i / 255))
+    return ramp
+
+
 class PillowImageView(TemplateView, LoginRequiredMixin):
 
     def get(self, request, *args, **kwargs):
@@ -18,25 +26,21 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
             pilimage = str(request.GET.get('image'))
 
             img = Image.open(pilimage)
-            enh = ImageEnhance.Contrast(img)
-            out = enh.enhance(2.3)
+            enh = ImageEnhance.Brightness(img)
+            out = enh.enhance(1.3)
             filepath, ext = os.path.splitext(pilimage)
 
             edit_path = filepath + 'edited' + ext
-            # if os.path.isdir(edit_path):
-            #     os.rmdir(edit_path)
             out.save(edit_path, 'png', quality=100)
 
-        if effect == 'sharp':
+        if effect == 'sharpness':
 
             img = Image.open(pilimage)
-            enh = ImageEnhance.Contrast(img)
-            out = enh.enhance(1.5)
+            enh = ImageEnhance.Sharpness(img)
+            out = enh.enhance(2.0)
             filepath, ext = os.path.splitext(pilimage)
 
             edit_path = filepath + 'edited' + ext
-            # if os.path.isdir(edit_path):
-            #     os.rmdir(edit_path)
             out.save(edit_path, 'png', quality=100)
 
         if effect == 'grayscale':
@@ -45,12 +49,33 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
 
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext
+            img.save(edit_path, 'png', quality=100)
 
-            # if os.path.isdir(edit_path):
-            #     os.rmdir(edit_path)
+        if effect == 'serpia':
+
+            serpia = make_linear_ramp((255, 240, 192))
+            img = Image.open(pilimage).convert('L')
+
+            img.putpalette(serpia)
+
+            filepath, ext = os.path.splitext(pilimage)
+            edit_path = filepath + 'edited' + ext
 
             img.save(edit_path, 'png', quality=100)
 
+        if effect == 'contrast':
+
+            img = Image.open(pilimage)
+
+            enh = ImageEnhance.Contrast(img)
+            out = enh.enhance(2.0)
+
+            filepath, ext = os.path.splitext(pilimage)
+            edit_path = filepath + 'edited' + ext
+
+            out.save(edit_path, 'png', quality=100)
+
+        # Filters here
         if effect == 'blur':
 
             img = Image.open(pilimage)
@@ -58,10 +83,6 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
 
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext
-
-            if os.path.isdir(edit_path):
-                os.rmdir(edit_path)
-
             img.save(edit_path, 'png', quality=100)
 
         if effect == 'contour':
@@ -72,26 +93,37 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext
 
-            # if os.path.isdir(edit_path):
-            #     os.rmdir(edit_path)
-
             img.save(edit_path, 'png', quality=100)
 
-        if effect == 'hue':
+        if effect == 'emboss':
 
-            img = Image.open(pilimage).convert('HSV')
-
-            enh = ImageEnhance.Contrast(img)
-            out = enh.enhance(-1.5)
+            img = Image.open(pilimage)
+            img = img.filter(ImageFilter.EMBOSS)
 
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext
 
-            # if os.path.isdir(edit_path):
-            #     os.rmdir(edit_path)
+            img.save(edit_path, 'png', quality=100)
 
-            out.save(edit_path, 'png', quality=100)
+        if effect == 'enhance':
+
+            img = Image.open(pilimage)
+            img = img.filter(ImageFilter.EDGE_ENHANCE)
+
+            filepath, ext = os.path.splitext(pilimage)
+            edit_path = filepath + 'edited' + ext
+
+            img.save(edit_path, 'png', quality=100)
+
+        if effect == 'smooth':
+
+            img = Image.open(pilimage)
+            img = img.filter(ImageFilter.SMOOTH_MORE)
+
+            filepath, ext = os.path.splitext(pilimage)
+            edit_path = filepath + 'edited' + ext
+
+            img.save(edit_path, 'png', quality=100)
 
         return HttpResponse(os.path.relpath(edit_path, settings.BASE_DIR),
                             content_type="text/plain")
-

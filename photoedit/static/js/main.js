@@ -74,19 +74,6 @@ $(document).ready(function(){
         fb_id: "1105396756159660"
     })
 
-    //display modal with picture clicked
-    // $('#editpicture-modal').on('show.bs.modal', function (event) {
-    //     var button = $(event.relatedTarget) // Button that triggered the modal
-    //     var imageId = button.data('imageId')
-    //     var imagePublicId = button.data('title')
-    //     var imgdiv = $(this).find('img')
-    //     var href = $(this).find('a')
-    //     var getroute = "/photoapp/edit/" + imagePublicId + "/default"
-
-    //     imgdiv.attr( "src", imageId );
-    //     href.attr( "href", getroute );
-    // })
-
     //display picture on central div
     $(".editpix").on('click', function(e){
         e.preventDefault();
@@ -129,16 +116,7 @@ $(document).ready(function(){
             error: function(error) {
                     console.log(error.responseText)
                 },
-                complete: function(data){
-                    //console.log(data);
-                    //$("#frameid").load(data.responseText);
-                }
-
         });
-        // $("#frameid").load("/photoapp/addeffects/",{'image': image, 'effect': imgeffect }, function(x,y,z){
-        //     console.log(z.responseText);
-        // });
-
     });
 
 
@@ -148,15 +126,6 @@ $(document).ready(function(){
         label = $(this).val().split('\\');
         $(this).closest('span').after('<p>' + label[label.length -1] +' </p>')
     });
-
-    //apply effects to image
-     $('.object').click(function (e) {
-        e.preventDefault();
-        console.log("This is clicked")
-        var url = $(this).data("effectUrl");
-
-        $("#largeImage").load(url + " #largeImage")
-     });
 
      // save image to user system
      $('.save').click(function (){

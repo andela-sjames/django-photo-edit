@@ -11,7 +11,6 @@ from django.utils.decorators import method_decorator
 from django.http import Http404
 
 from photoapp.models import FacebookUser, Photo
-from context_processors import Image_Effects
 
 
 class LoginRequiredMixin(object):
@@ -126,12 +125,9 @@ class EditPhotoView(TemplateView, LoginRequiredMixin):
         if not photo:
             raise Http404
 
-        effects = self.kwargs.get('effects')
         context['facebook'] = FacebookUser.objects.get(
             contrib_user_id=request.user.id)
-        context['Image_Effects'] = Image_Effects
         context['photo'] = Photo.objects.get(id=photoid)
-        context['effects'] = Image_Effects[effects]
         return self.render_to_response(context)
 
 

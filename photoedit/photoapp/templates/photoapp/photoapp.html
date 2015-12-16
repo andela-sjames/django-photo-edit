@@ -21,7 +21,7 @@
                 {% for photo in photos %}
                     <a class="hvr-grow-shadow editpix" data-title="{{ photo.id }}" data-image-id="{{ photo.image.path }}">
                     <div class="ui small image">
-                        <img src = "{{ photo.image.url }}">
+                        <img src = "{{ photo.image.url }}" class="sideimg">
                     <p>{{ photo.title }}</p>
                     </div>
                     </a>
@@ -44,79 +44,61 @@
 
                         <div class="ui small image effects">
                         <a href="#" class="setup" data-effect="brightness">
-                        <img src = "#"></a>
+                        <img src = "#" class="set"></a>
                         <p>{{ photo.title }}</p>
                         </div>
 
                         <div class="ui small image effects">
-                        <a href="#" class="setup" data-effect="sharp">
-                        <img src = "#"></a>
+                        <a href="#" class="setup" data-effect="sharpness">
+                        <img src = "#" class="set"></a>
                         <p>{{ photo.title }}</p>
                         </div>
 
                         <div class="ui small image effects">
                         <a href="#" class="setup" data-effect="grayscale">
-                        <img src = "#"></a>
+                        <img src = "#" class="set"></a>
                         <p>{{ photo.title }}</p>
                         </div>
 
                         <div class="ui small image effects">
                         <a href="#" class="setup" data-effect="blur">
-                        <img src = "#"></a>
+                        <img src = "#" class="set"></a>
                         <p>{{ photo.title }}</p>
                         </div>
 
                         <div class="ui small image effects">
                         <a href="#" class="setup" data-effect="contour">
-                        <img src = "#"></a>
+                        <img src = "#" class="set"></a>
                         <p>{{ photo.title }}</p>
                         </div>
 
                         <div class="ui small image effects">
-                        <a href="#" class="setup" data-effect="hue">
-                        <img src = "#"></a>
+                        <a href="#" class="setup" data-effect="serpia">
+                        <img src = "#" class="set"></a>
                         <p>{{ photo.title }}</p>
                         </div>
 
                         <div class="ui small image effects">
-                        <a href="#" class="setup" data-effect="effect4">
-                        <img src = "#"></a>
+                        <a href="#" class="setup" data-effect="contrast">
+                        <img src = "#" class="set"></a>
                         <p>{{ photo.title }}</p>
                         </div>
 
                         <div class="ui small image effects">
-                        <a href="#" class="setup" data-effect="effect5">
-                        <img src = "#"></a>
+                        <a href="#" class="setup" data-effect="emboss">
+                        <img src = "#" class="set"></a>
                         <p>{{ photo.title }}</p>
                         </div>
 
                         <div class="ui small image effects">
-                        <a href="#" class="setup" data-effect="effect6">
-                        <img src = "#"></a>
+                        <a href="#" class="setup" data-effect="enhance">
+                        <img src = "#" class="set"></a>
                         <p>{{ photo.title }}</p>
                         </div>
 
                         <div class="ui small image effects">
-                        <a href="#" class="setup" data-effect="effect7">
-                        <img src = "#"></a>
-                        <p>{{ photo.title }}</p>
-                        </div>
-
-                        <div class="ui small image effects">
-                        <a href="#" class="setup" data-effect="effect8">
-                        <img src = "#"></a>
-                        <p>{{ photo.title }}</p>
-                        </div>
-
-                        <div class="ui small image effects">
-                        <a href="#" class="setup" data-effect="effect9">
-                        <img src = "#"></a>
-                        <p>{{ photo.title }}</p>
-                        </div>
-
-                        <div class="ui small image effects">
-                        <a href="#" class="setup" data-effect="effect10">
-                        <img src = "#"></a>
+                        <a href="#" class="setup" data-effect="smooth">
+                        <img src = "#" class="set"></a>
                         <p>{{ photo.title }}</p>
                         </div>
 
