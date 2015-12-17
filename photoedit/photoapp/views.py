@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import render
 from django.views.generic import View
 from django.views.generic.base import TemplateView
@@ -115,14 +117,23 @@ class DeletePhotoView(View, LoginRequiredMixin):
 
     def get(self, request, *args, **kwargs):
 
-        photoid = self.kwargs.get('id')
-        public_id = self.kwargs.get('public_id')
+        photoid = request.GET.get('id')
+        path = request.GET.get('path')
 
         try:
             photo = Photo.objects.get(id=photoid)
         except Photo.DoesNotExist:
             raise Http404
-        pass
+
+        photo.delete()
+
+        filepath, ext = os.path.splitext(path)
+        delete_path = filepath + 'edited' + ext
+        if os.path.isdir(delete_path):
+            print 'TRUE'
+            os.rmdir(delete_path)
+
+        return HttpResponse("success", content_type="text/plain")
 
 
 def custom_404(request):

@@ -51,7 +51,7 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
             edit_path = filepath + 'edited' + ext
             img.save(edit_path, 'png', quality=100)
 
-        if effect == 'serpia':
+        if effect == 'sepia':
 
             serpia = make_linear_ramp((255, 240, 192))
             img = Image.open(pilimage).convert('L')
@@ -119,6 +119,26 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
 
             img = Image.open(pilimage)
             img = img.filter(ImageFilter.SMOOTH_MORE)
+
+            filepath, ext = os.path.splitext(pilimage)
+            edit_path = filepath + 'edited' + ext
+
+            img.save(edit_path, 'png', quality=100)
+
+        if effect == 'emboss':
+
+            img = Image.open(pilimage)
+            img = img.filter(ImageFilter.EMBOSS)
+
+            filepath, ext = os.path.splitext(pilimage)
+            edit_path = filepath + 'edited' + ext
+
+            img.save(edit_path, 'png', quality=100)
+
+        if effect == 'contour':
+
+            img = Image.open(pilimage)
+            img = img.filter(ImageFilter.CONTOUR)
 
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext

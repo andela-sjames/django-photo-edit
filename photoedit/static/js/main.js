@@ -73,19 +73,16 @@ function BindEvents()
     $("body").on('click', ".editpix", function(e){
         e.preventDefault();
         $('#begin').hide();
-        var imageurl = $(this).find('img').attr('src');
-        var imgdiv = $('#pixedit').find('img');
-        var effectsdiv = $('.effects').find('img');
+        var imageUrl = $(this).find('img').attr('src');
+        var imgDiv = $('#pixedit').find('img');
+        var effectsDiv = $('.effects').find('button');
 
 
-        var imagepath = $(this).attr('data-image-id')
+        var imagePath = $(this).attr('data-image-id')
 
-        imgdiv.attr( "src", imageurl );
-        effectsdiv.attr('src',imageurl);
-        effectsdiv.attr('data-image-id', imagepath)
+        imgDiv.attr( "src", imageUrl );
+        effectsDiv.attr('data-image-id', imagePath)
         $(".flex").show();
-
-        console.log(imageurl)
 
     })
 }
@@ -142,9 +139,9 @@ function Uploadbutton() {
 
 function ApplyEffects()
     {
-        $(".setup").on('click', function(e){
+        $("body").on('click', ".setup", function(e){
         e.preventDefault();
-        var image = $(this).find('img').attr('data-image-id')
+        var image = $(this).find('button').attr('data-image-id')
         var imgeffect = $(this).attr('data-effect')
         console.log(image)
         console.log(imgeffect)
@@ -166,8 +163,36 @@ function ApplyEffects()
     });
 }
 
+function DeleteImage()
+    {
+        $("body").on('click', ".glyphicon-trash", function(e){
+            var imagePath = $(".editpix").attr('data-image-id')
+            var imageId = $(".editpix").attr('data-title')
+            console.log(imagePath)
+            console.log(imageId)
+
+            $.ajax({
+            type: "GET",
+            url: "/photoapp/delete/",
+            data: {'path': imagePath, 'id': imageId },
+            success: function(data) {
+                if (data == "success") {
+                    location.reload()
+                }
+            },
+
+            error: function(error) {
+                    console.log(error.responseText)
+                },
+
+        });//end ajax
+
+    })//end
+}
+
 function SaveImage(){
-     $('.save').click(function (){
+
+     $("body").on("click", ".save", function (){
 
         var title = $('.pix').find('p').html()
         var image_src = $('.pix').find('img').attr("src")
@@ -195,6 +220,7 @@ $(document).ready(function(){
     UploadForm();
     Uploadbutton();
     SaveImage();
+    DeleteImage();
 
 })
 

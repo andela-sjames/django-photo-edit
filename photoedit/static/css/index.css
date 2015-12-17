@@ -97,7 +97,6 @@ body {
 }
 
 .intro {
-  /*text-shadow:30px 10px 20px blue;*/
   font-size:18px;
   font-style:italic;
 }
@@ -193,25 +192,6 @@ body {
     background: white;
     cursor: inherit;
     display: block;
-}
-
-.container-outer {
-  overflow-y: hidden;
-  width: 800px;
-  height: 150px;
-}
-
-.container-inner {
-  width: 1600px;
-}
-
-.set {
-  height: 128.5px;
-  width: 150px;
-  border-radius: 18px;
-  display: flex;
-  align-content: center;
-  justify-content: center;
 }
 
 .sideimg{
