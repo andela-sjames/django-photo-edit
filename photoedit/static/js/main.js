@@ -68,14 +68,9 @@ function showTable() {
     localStorage.setItem('show', 'true'); //store state in localStorage
 }
 
-$(document).ready(function(){
-    facebookLogin.init({
-        login: "#facebookLogin", //test value
-        fb_id: "1105396756159660"
-    })
-
-    //display picture on central div
-    $(".editpix").on('click', function(e){
+function BindEvents()
+{
+    $("body").on('click', ".editpix", function(e){
         e.preventDefault();
         $('#begin').hide();
         var imageurl = $(this).find('img').attr('src');
@@ -93,55 +88,10 @@ $(document).ready(function(){
         console.log(imageurl)
 
     })
+}
 
-    //get image from template
-    $(".setup").click(function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        var image = $(this).find('img').attr('data-image-id')
-        var imgeffect = $(this).attr('data-effect')
-        console.log(image)
-        console.log(imgeffect)
-
-        $.ajax({
-            type: "GET",
-            url: "/photoapp/addeffects/",
-            data: {'image': image, 'effect': imgeffect },
-            success: function(data) {
-               var avatatr = $("#avatar").attr("src", '/'+ data + "?" + new Date().getTime());
-                $("#frameid").html(avatar);
-
-            },
-
-            error: function(error) {
-                    console.log(error.responseText)
-                },
-        });
-    });
-
-
-
-    //upload button
-    $('.btn-file :file').change(function(event) {
-        label = $(this).val().split('\\');
-        $(this).closest('span').after('<p>' + label[label.length -1] +' </p>')
-    });
-
-     // save image to user system
-     $('.save').click(function (){
-
-        var title = $('.pix').find('p').html()
-        var image_src = $('.pix').find('img').attr("src")
-        var save = $(this).find('a')
-        save.attr('href', image_src);
-
-     });
-
-    var show = localStorage.getItem('show');
-        if(show === 'true'){
-            $('#once').show();
-        }
-
+function UploadForm()
+{
     $('#uploadform').on('submit', function(event) {
             var $form = $(this);
             event.preventDefault();
@@ -181,7 +131,70 @@ $(document).ready(function(){
             });
 
         });
+}
 
+function Uploadbutton() {
+    $('.btn-file :file').change(function(event) {
+        label = $(this).val().split('\\');
+        $(this).closest('span').after('<p>' + label[label.length -1] +' </p>')
+    });
+}
+
+function ApplyEffects()
+    {
+        $(".setup").on('click', function(e){
+        e.preventDefault();
+        var image = $(this).find('img').attr('data-image-id')
+        var imgeffect = $(this).attr('data-effect')
+        console.log(image)
+        console.log(imgeffect)
+
+        $.ajax({
+            type: "GET",
+            url: "/photoapp/addeffects/",
+            data: {'image': image, 'effect': imgeffect },
+            success: function(data) {
+               var avatatr = $("#avatar").attr("src", '/'+ data + "?" + new Date().getTime());
+                $("#frameid").html(avatar);
+
+            },
+
+            error: function(error) {
+                    console.log(error.responseText)
+                },
+        });
+    });
+}
+
+function SaveImage(){
+     $('.save').click(function (){
+
+        var title = $('.pix').find('p').html()
+        var image_src = $('.pix').find('img').attr("src")
+        var save = $(this).find('a')
+        save.attr('href', image_src);
+
+     });
+}
+
+function KeepUploadButton() {
+    var show = localStorage.getItem('show');
+        if(show === 'true'){
+            $('#once').show();
+        }
+}
+
+$(document).ready(function(){
+    facebookLogin.init({
+        login: "#facebookLogin", //test value
+        fb_id: "1105396756159660"
+    })
+
+    BindEvents();
+    ApplyEffects();
+    UploadForm();
+    Uploadbutton();
+    SaveImage();
 
 })
 

@@ -1,5 +1,5 @@
 import os
-from PIL import Image, ImageFilter, ImageEnhance
+from PIL import Image, ImageFilter, ImageEnhance, ImageOps
 
 from django.conf import settings
 from django.views.generic.base import TemplateView
@@ -27,7 +27,7 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
 
             img = Image.open(pilimage)
             enh = ImageEnhance.Brightness(img)
-            out = enh.enhance(1.3)
+            out = enh.enhance(1.8)
             filepath, ext = os.path.splitext(pilimage)
 
             edit_path = filepath + 'edited' + ext
@@ -37,7 +37,7 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
 
             img = Image.open(pilimage)
             enh = ImageEnhance.Sharpness(img)
-            out = enh.enhance(2.0)
+            out = enh.enhance(3.0)
             filepath, ext = os.path.splitext(pilimage)
 
             edit_path = filepath + 'edited' + ext
@@ -85,20 +85,20 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
             edit_path = filepath + 'edited' + ext
             img.save(edit_path, 'png', quality=100)
 
-        if effect == 'contour':
+        if effect == 'invert':
 
             img = Image.open(pilimage)
-            img = img.filter(ImageFilter.CONTOUR)
+            img = ImageOps.invert(img)
 
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext
 
             img.save(edit_path, 'png', quality=100)
 
-        if effect == 'emboss':
+        if effect == 'bigenhance':
 
             img = Image.open(pilimage)
-            img = img.filter(ImageFilter.EMBOSS)
+            img = img.filter(ImageFilter.EDGE_ENHANCE_MORE)
 
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext

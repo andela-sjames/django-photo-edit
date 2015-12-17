@@ -20,7 +20,8 @@
                 <div class="scrll">
                 {% for photo in photos %}
                     <a class="hvr-grow-shadow editpix" data-title="{{ photo.id }}" data-image-id="{{ photo.image.path }}">
-                    <div class="ui small image">
+                    <div class="ui small image makep">
+                        <span class="glyphicon glyphicon-trash" id="del" aria-hidden="true"></span>
                         <img src = "{{ photo.image.url }}" class="sideimg">
                     <p>{{ photo.title }}</p>
                     </div>
@@ -44,62 +45,62 @@
 
                         <div class="ui small image effects">
                         <a href="#" class="setup" data-effect="brightness">
-                        <img src = "#" class="set"></a>
-                        <p>{{ photo.title }}</p>
+                        <img style="filter: brightness(2)"src = "#" class="set"></a>
+                        <p>Brightness</p>
                         </div>
 
                         <div class="ui small image effects">
                         <a href="#" class="setup" data-effect="sharpness">
-                        <img src = "#" class="set"></a>
-                        <p>{{ photo.title }}</p>
+                        <img style="filter: contrast(1.3);" src = "#" class="set"></a>
+                        <p>sharpness</p>
                         </div>
 
                         <div class="ui small image effects">
                         <a href="#" class="setup" data-effect="grayscale">
-                        <img src = "#" class="set"></a>
-                        <p>{{ photo.title }}</p>
+                        <img style="filter: grayscale(2);" src = "#" class="set"></a>
+                        <p>grayscale</p>
                         </div>
 
                         <div class="ui small image effects">
                         <a href="#" class="setup" data-effect="blur">
-                        <img src = "#" class="set"></a>
-                        <p>{{ photo.title }}</p>
+                        <img style="filter: blur(0.4px);" src = "#" class="set"></a>
+                        <p>blur</p>
                         </div>
 
                         <div class="ui small image effects">
-                        <a href="#" class="setup" data-effect="contour">
-                        <img src = "#" class="set"></a>
-                        <p>{{ photo.title }}</p>
+                        <a href="#" class="setup" data-effect="invert">
+                        <img style="filter: invert(100);"src = "#" class="set"></a>
+                        <p>invert</p>
                         </div>
 
                         <div class="ui small image effects">
                         <a href="#" class="setup" data-effect="serpia">
-                        <img src = "#" class="set"></a>
-                        <p>{{ photo.title }}</p>
+                        <img style="filter:sepia(26) saturate(1) contrast(1);" src = "#" class="set"></a>
+                        <p>serpia</p>
                         </div>
 
                         <div class="ui small image effects">
                         <a href="#" class="setup" data-effect="contrast">
-                        <img src = "#" class="set"></a>
-                        <p>{{ photo.title }}</p>
+                        <img style="filter:contrast(2)" src = "#" class="set"></a>
+                        <p>contrast</p>
                         </div>
 
                         <div class="ui small image effects">
-                        <a href="#" class="setup" data-effect="emboss">
-                        <img src = "#" class="set"></a>
-                        <p>{{ photo.title }}</p>
+                        <a href="#" class="setup" data-effect="bigenhance">
+                        <img style="filter: contrast(1.5) grayscale(0.1)" src = "#" class="set"></a>
+                        <p>bigenhance</p>
                         </div>
 
                         <div class="ui small image effects">
                         <a href="#" class="setup" data-effect="enhance">
-                        <img src = "#" class="set"></a>
-                        <p>{{ photo.title }}</p>
+                        <img style="filter:contrast(1.4) grayscale(0.4)" src = "#" class="set"></a>
+                        <p>enhance</p>
                         </div>
 
                         <div class="ui small image effects">
                         <a href="#" class="setup" data-effect="smooth">
-                        <img src = "#" class="set"></a>
-                        <p>{{ photo.title }}</p>
+                        <img style="filter:filter: blur(0.05px) contrast(90.1%)" src = "#" class="set"></a>
+                        <p>smooth</p>
                         </div>
 
                     </div>

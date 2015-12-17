@@ -27,17 +27,6 @@ body {
   transition:         transform 0.3s cubic-bezier(0, 0.75, 0, 1), text-shadow 0.1s ease-out;
 }
 
-.img {
-  display: inline-flex ;
-  flex-direction: row ;
-}
-
-.msize {
-  height: 400px;
-  overflow: scroll;
-  margin: 5px;
-}
-
 #effect {
   margin-left: 70px;
   margin-bottom: 10px;
@@ -81,7 +70,7 @@ body {
   align-content: center;
   justify-content: center;
 }
-}
+
 
 .sidebar {
   background-color: lightgray;
@@ -91,10 +80,6 @@ body {
 .xframe {
   height: 400px;
   overflow: scroll;
-}
-
-.space {
-  margin-bottom: 8px;
 }
 
 #sp {
@@ -120,12 +105,6 @@ body {
 .welcome {
   font-size:18px;
   font-style:italic;
-}
-
-#err {
-  font-family: impact;
-  font-size: 180px;
-  color:#333333;
 }
 
 #backimage {
@@ -196,12 +175,6 @@ body {
  text-align: center;
 }
 
-.canvas {
-    text-transform: uppercase;
-    font-size:18px;
-    font-style:italic;
-}
-
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -231,10 +204,6 @@ body {
 .container-inner {
   width: 1600px;
 }
-.pixframe {
-  height: 600px;
-  width: 600px;
-}
 
 .set {
   height: 128.5px;
@@ -249,5 +218,20 @@ body {
   height: 131px;
   border-radius: 15px;
   width:112.5;
+}
 
+#del {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  display: none;
+
+}
+
+.makep:hover #del {
+  display: inline-block;
+}
+
+.makep {
+  position: relative;
 }

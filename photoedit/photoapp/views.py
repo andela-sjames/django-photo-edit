@@ -96,7 +96,6 @@ class PhotoAppView(TemplateView, LoginRequiredMixin):
         context['facebook'] = FacebookUser.objects.get(
             contrib_user_id=request.user.id)
         context['photos'] = photo
-        context['Image_Effects'] = Image_Effects
         return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
@@ -108,27 +107,6 @@ class PhotoAppView(TemplateView, LoginRequiredMixin):
         photo.save()
 
         return HttpResponse("success", content_type="text/plain")
-
-
-class EditPhotoView(TemplateView, LoginRequiredMixin):
-
-    '''Class used to edit photos.'''
-
-    template_name = 'photoapp/editphoto.html'
-
-    def get(self, request, *args, **kwargs):
-        context = {}
-        photoid = self.kwargs.get('id')
-        userid = self.request.user.id
-
-        photo = Photo.objects.filter(id=photoid).filter(user_id=userid)
-        if not photo:
-            raise Http404
-
-        context['facebook'] = FacebookUser.objects.get(
-            contrib_user_id=request.user.id)
-        context['photo'] = Photo.objects.get(id=photoid)
-        return self.render_to_response(context)
 
 
 class DeletePhotoView(View, LoginRequiredMixin):
