@@ -22,7 +22,7 @@
 
                     <a class="hvr-grow-shadow editpix" data-title="{{ photo.id }}" data-image-id="{{ photo.image.path }}">
                     <div class="ui small image makep">
-                        <span class="glyphicon glyphicon-trash" id="del" aria-hidden="true"></span>
+                        <button type="button" class="ui brown button" id="del" data-toggle="modal" data-target="#delete-modal" href="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                         <img src = "{{ photo.image.url }}" class="sideimg">
                     <p>{{ photo.title }}</p>
                     </div>
@@ -147,7 +147,7 @@
     </div>
 
         {% include "photoapp/upload_modal.html" %}
-        {% include "photoapp/edit_modal.html" %}
+        {% include "photoapp/delete_modal.html" %}
 
 {% endblock main %}
 

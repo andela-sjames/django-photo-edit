@@ -124,9 +124,7 @@ function UploadForm()
                 headers: {
                     "X-CSRFToken": $("input[name='csrfmiddlewaretoken']").val()
                     },
-
             });
-
         });
 }
 
@@ -143,8 +141,6 @@ function ApplyEffects()
         e.preventDefault();
         var image = $(this).find('button').attr('data-image-id')
         var imgeffect = $(this).attr('data-effect')
-        console.log(image)
-        console.log(imgeffect)
 
         $.ajax({
             type: "GET",
@@ -165,10 +161,10 @@ function ApplyEffects()
 
 function DeleteImage()
     {
-        $("body").on('click', ".glyphicon-trash", function(e){
+        $("body").on('click', "#confirmdelete", function(e){
             e.preventDefault();
-            var imagePath = $(this).closest(".editpix").attr('data-image-id')
-            var imageId = $(this).closest(".editpix").attr('data-title')
+            var imagePath = $(this).attr('data-image-id')
+            var imageId = $(this).attr('data-title')
             console.log(imagePath)
             console.log(imageId)
 
@@ -185,11 +181,7 @@ function DeleteImage()
                 error: function(error) {
                         console.log(error.responseText)
                     },
-
         });//end ajax
-
-
-
     })//end
 }
 
@@ -203,6 +195,20 @@ function SaveImage(){
         save.attr('href', image_src);
 
      });
+}
+
+function DeleteModalProperty(){
+
+    $('#delete-modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var imagePath = button.closest(".editpix").attr('data-image-id')
+        var imageId = button.closest(".editpix").attr('data-title')
+
+        var deleteDiv = $('#photodeletediv').find('button');
+        deleteDiv.attr('data-image-id', imagePath)
+        deleteDiv.attr('data-title', imageId)
+
+    })
 }
 
 function KeepUploadButton() {
@@ -224,6 +230,7 @@ $(document).ready(function(){
     Uploadbutton();
     SaveImage();
     DeleteImage();
+    DeleteModalProperty();
 
 })
 
