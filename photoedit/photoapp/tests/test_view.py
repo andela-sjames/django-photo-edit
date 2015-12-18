@@ -13,7 +13,7 @@ from django.http import Http404
 
 from photoapp.models import FacebookUser, Photo
 from photoapp.views import FacebookLogin, PhotoAppView,\
-    EditPhotoView, DeletePhotoView
+     DeletePhotoView
 
 
 class UserSetupTestCase(TestCase):
@@ -104,98 +104,3 @@ class UserActionTestCase(UserSetupTestCase):
         response = PhotoAppView.as_view()(request)
         self.assertEquals(response.status_code, 200)
 
-
-class TestPhotoUpload(UserSetupTestCase):
-
-    '''Test photo can be uploaded. '''
-
-    @mock.patch('photoapp.models.Photo.save', mock.MagicMock(name="save"))
-    def test_photo_upload_and_save(self):
-
-        mock_file = mock.MagicMock(spec=File, name='FileMock')
-        mock_file.name = 'testimage.jpg'
-        request = self.factory.post(
-            '/photoapp/photos/',
-            data={'title': '', 'image': mock_file, })
-        request.user = self.user1
-        response = PhotoAppView.as_view()(request)
-        self.assertEquals(response.status_code, 200)
-
-
-class TestPhotoEdit(UserSetupTestCase):
-
-    '''Test Photo Editing page can be viewed '''
-
-    def test_editpage_view(self):
-
-        request = self.factory.get('/photoapp/edit/')
-        request.user = self.user1
-        view = EditPhotoView.as_view()
-        response = view(request, id=1, effects='default')
-        self.assertEquals(response.status_code, 200)
-
-    def test_error_handled_view(self):
-
-        request = self.factory.get('/photoapp/edit/')
-        request.user = self.user1
-        view = EditPhotoView.as_view()
-        self.assertRaises(Http404, view, request, id=24, effects='default')
-
-
-class TestDeletePhoto(UserSetupTestCase):
-
-    '''Test Photo can be deleted.'''
-
-    def test_delete_photo(self):
-
-        with mock.patch('photoapp.views.DeletePhotoView.apidelete')\
-                as mock_delete:
-
-            mock_delete.return_value = (
-                'deleted',
-                {"deleted": {
-                 "cb4eaaf650": "deleted", }
-                 })
-
-            request = self.factory.get('/photoapp/delete/')
-            request.user = self.user1
-            engine = import_module(settings.SESSION_ENGINE)
-            session_key = None
-            request.session = engine.SessionStore(session_key)
-            messages = FallbackStorage(request)
-            setattr(request, '_messages', messages)
-
-            view = DeletePhotoView.as_view()
-            response = view(request, id=1, public_id='xxyyzz')
-            self.assertTrue(DeletePhotoView.apidelete.called)
-            self.assertEquals(response.status_code, 302)
-
-    def test_photo_not_deleted(self):
-
-        with mock.patch('photoapp.views.DeletePhotoView.apidelete')\
-                as mock_delete:
-
-            mock_delete.return_value = (
-                {"deleted": {
-                 "cb4eaaf650": "deleted", }
-                 }, 'deleted')
-
-            request = self.factory.get('/photoapp/delete/')
-            request.user = self.user1
-            engine = import_module(settings.SESSION_ENGINE)
-            session_key = None
-            request.session = engine.SessionStore(session_key)
-            messages = FallbackStorage(request)
-            setattr(request, '_messages', messages)
-
-            view = DeletePhotoView.as_view()
-            response = view(request, id=1, public_id='xxyyzz')
-            self.assertTrue(DeletePhotoView.apidelete.called)
-            self.assertEquals(response.status_code, 302)
-
-    def test_error_handeled_delete(self):
-
-        request = self.factory.get('/photoapp/delete/')
-        request.user = self.user1
-        view = DeletePhotoView.as_view()
-        self.assertRaises(Http404, view, request, id=24)
