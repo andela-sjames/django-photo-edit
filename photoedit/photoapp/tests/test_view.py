@@ -103,4 +103,3 @@ class UserActionTestCase(UserSetupTestCase):
         request.user = self.user1
         response = PhotoAppView.as_view()(request)
         self.assertEquals(response.status_code, 200)
-
