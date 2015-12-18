@@ -4,14 +4,17 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.views.generic.base import TemplateView
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse,\
+    HttpResponseBadRequest, HttpResponseNotAllowed
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import Http404
+from django.conf import settings
 
 from photoapp.models import FacebookUser, Photo
+from photoapp.forms import PhotoForm
 
 
 class LoginRequiredMixin(object):
@@ -101,13 +104,19 @@ class PhotoAppView(TemplateView, LoginRequiredMixin):
 
     def post(self, request, *args, **kwargs):
 
-        title = request.POST["title"]
-        image = request.FILES["image"]
+        photoform = PhotoForm(request.POST, request.FILES)
 
-        photo = Photo(title=title, user_id=request.user.id, image=image)
-        photo.save()
+        if photoform.files['image'].size > settings.MAX_UPLOAD_SIZE:
+            return HttpResponseNotAllowed('largefile')
 
-        return HttpResponse("success", content_type="text/plain")
+        try:
+            img = photoform.save(commit=False)
+            img.user = request.user
+            img.save()
+            return HttpResponse("success", content_type="text/plain")
+
+        except:
+            return HttpResponseBadRequest('InvalidFile')
 
 
 class DeletePhotoView(View, LoginRequiredMixin):

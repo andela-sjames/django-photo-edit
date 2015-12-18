@@ -5,7 +5,11 @@ from django.contrib.auth.models import User
 
 
 def get_upload_file_name(instance, filename):
-    return "upload_files/%s_%s" % (str(time()).replace('.', '_'), filename)
+    return "upload_files/user_{0}/{1}_{2}" .format(
+        instance.user.id,
+        str(time()).replace('.', '_'),
+        filename
+    )
 
 
 class FacebookUser(models.Model):
@@ -35,7 +39,8 @@ class Photo(models.Model):
         blank=True,
         null=True)
 
-    image = models.ImageField(upload_to=get_upload_file_name, blank=True)
+    image = models.ImageField(upload_to=get_upload_file_name,
+                              blank=True)
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, null=True, blank=True)
 

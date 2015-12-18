@@ -20,7 +20,7 @@
                 <div class="scrll">
                 {% for photo in photos %}
 
-                    <a class="hvr-grow-shadow editpix" data-title="{{ photo.id }}" data-image-id="{{ photo.image.path }}">
+                    <a class="hvr-grow-shadow editpix" data-title="{{ photo.id }}" data-image-id="{{ photo.image.path }}" data-name="{{photo.title}}">
                     <div class="ui small image makep">
                         <button type="button" class="ui brown button" id="del" data-toggle="modal" data-target="#delete-modal" href="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                         <img src = "{{ photo.image.url }}" class="sideimg">
@@ -34,14 +34,17 @@
 
             <div class="col-md-8">
                 <center>
-                <div class="ui big image" id="pixedit">
+                <div class="ui big image pix" id="pixedit">
                     <div id="begin"><p class="welcome">Click on Image to begin edit...</p></div>
                     <div class="frame" id="frameid">
                         <img id="avatar" src="" style="display:none" class="flex">
                     </div>
+                    <button class="ui facebook button share" id="fbk">
+                        <i class="facebook icon"></i>
+                        Facebook share
+                    </button>
                 </div>
                 </center>
-                <br>
                 <div class="flex" style="display:none">
                     <div class="ui horizontal segments">
                         <div class="effects">
@@ -141,13 +144,19 @@
     {% endif %}
     <div class="col-md-2" id="once">
         <div>
-            <button type="button" class="ui black basic button btn-block" data-toggle="modal" data-target="#fileupload-modal">Upload a file</button>
+            <button type="button" class="ui brown basic button btn-block" data-toggle="modal" data-target="#fileupload-modal">Upload a file</button>
+
+            <div class="save" style="display:none">
+            <button type="button" class="ui brown basic button btn-block space" id="sp">Save</button>
+            </div>
         </div><br>
          <p class="welcome">Click on Image to Edit</p>
     </div>
 
         {% include "photoapp/upload_modal.html" %}
         {% include "photoapp/delete_modal.html" %}
+
+
 
 {% endblock main %}
 

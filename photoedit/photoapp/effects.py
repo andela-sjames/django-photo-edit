@@ -18,6 +18,8 @@ def make_linear_ramp(white):
 
 class PillowImageView(TemplateView, LoginRequiredMixin):
 
+    ''' Class defined to apply effect to image.'''
+
     def get(self, request, *args, **kwargs):
         pilimage = str(request.GET.get('image'))
         effect = request.GET.get('effect')

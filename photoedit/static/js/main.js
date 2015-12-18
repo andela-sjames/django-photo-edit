@@ -77,12 +77,16 @@ function BindEvents()
         var imgDiv = $('#pixedit').find('img');
         var effectsDiv = $('.effects').find('button');
 
-
         var imagePath = $(this).attr('data-image-id')
+        var imageName = $(this).attr('data-name')
 
         imgDiv.attr( "src", imageUrl );
+        imgDiv.attr('data-name', imageName)
         effectsDiv.attr('data-image-id', imagePath)
+
         $(".flex").show();
+        $('#fbk').show();
+        $('.save').show();
 
     })
 }
@@ -94,6 +98,7 @@ function UploadForm()
             event.preventDefault();
             $('#fileupload-modal').hide();
             $('.modal').modal('hide');
+            $form.find('p').remove();
 
             var fd = new FormData();
 
@@ -119,6 +124,15 @@ function UploadForm()
             },
                 error: function(error) {
                     console.log(error.responseText)
+
+                    if (error.status == 405) {
+                        //alert badrequest
+                        alert("File size should not exceed 10mb")
+                    } else {
+                        //alert file toolarge
+                        alert("Upload File should be image !!")
+
+                    }
                 },
 
                 headers: {
@@ -165,8 +179,6 @@ function DeleteImage()
             e.preventDefault();
             var imagePath = $(this).attr('data-image-id')
             var imageId = $(this).attr('data-title')
-            console.log(imagePath)
-            console.log(imageId)
 
             $.ajax({
                 type: "GET",
@@ -211,11 +223,47 @@ function DeleteModalProperty(){
     })
 }
 
+function FacebookShare() {
+     $(".share").click(function(e){
+        e.preventDefault();
+        picture = $(".frame").find("img").attr("src");
+        name = $(".frame").find("img").attr('data-name');
+        console.log(picture);
+        console.log(name);
+
+        // FB.ui({
+        //   method: 'feed',
+        //   name: name,
+        //   display: 'popup',
+        //   link: location.href='/',
+        //   caption:"Gentle Edit",
+        //   picture: picture,
+        //   description: 'I just used GentleEdit to edit my Photo.'
+        // }, function(response){
+
+        // });
+
+
+    })
+
+}
+
 function KeepUploadButton() {
     var show = localStorage.getItem('show');
         if(show === 'true'){
             $('#once').show();
         }
+}
+
+function DownloadFile() {
+
+    $("body").on('click', ".save", function(){
+        var link = document.createElement('a');
+        link.href = $('.pix').find('img').attr("src")
+        link.download =$('.editpix').find('p').text()
+        document.body.appendChild(link);
+        link.click();
+    });
 }
 
 $(document).ready(function(){
@@ -231,6 +279,8 @@ $(document).ready(function(){
     SaveImage();
     DeleteImage();
     DeleteModalProperty();
+    FacebookShare();
+    DownloadFile();
 
 })
 

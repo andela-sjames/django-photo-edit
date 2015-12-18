@@ -216,8 +216,13 @@ body {
   position: relative;
 }
 
-/*span.glyphicon-trash {
-  font-size: 2.2em;
-  color:black !important;
-}*/
+#fbk {
+  display: none;
+  position: relative;
+  right: 218px;
+  margin-top: 15px;
+}
 
+.save {
+  margin-top: 10px;
+}
