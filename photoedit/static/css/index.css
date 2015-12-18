@@ -215,3 +215,9 @@ body {
 .makep {
   position: relative;
 }
+
+span.glyphicon-trash {
+  font-size: 2.2em;
+  color:black !important;
+}
+

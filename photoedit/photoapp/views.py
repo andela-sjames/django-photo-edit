@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import login, logout
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import Http404
@@ -129,9 +128,9 @@ class DeletePhotoView(View, LoginRequiredMixin):
 
         filepath, ext = os.path.splitext(path)
         delete_path = filepath + 'edited' + ext
-        if os.path.isdir(delete_path):
-            print 'TRUE'
-            os.rmdir(delete_path)
+        if os.path.exists(delete_path):
+            os.remove(delete_path)
+            os.remove(path)
 
         return HttpResponse("success", content_type="text/plain")
 

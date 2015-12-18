@@ -166,26 +166,29 @@ function ApplyEffects()
 function DeleteImage()
     {
         $("body").on('click', ".glyphicon-trash", function(e){
-            var imagePath = $(".editpix").attr('data-image-id')
-            var imageId = $(".editpix").attr('data-title')
+            e.preventDefault();
+            var imagePath = $(this).closest(".editpix").attr('data-image-id')
+            var imageId = $(this).closest(".editpix").attr('data-title')
             console.log(imagePath)
             console.log(imageId)
 
             $.ajax({
-            type: "GET",
-            url: "/photoapp/delete/",
-            data: {'path': imagePath, 'id': imageId },
-            success: function(data) {
-                if (data == "success") {
-                    location.reload()
-                }
-            },
-
-            error: function(error) {
-                    console.log(error.responseText)
+                type: "GET",
+                url: "/photoapp/delete/",
+                data: {'path': imagePath, 'id': imageId },
+                success: function(data) {
+                    if (data == "success") {
+                        location.reload()
+                    }
                 },
 
+                error: function(error) {
+                        console.log(error.responseText)
+                    },
+
         });//end ajax
+
+
 
     })//end
 }

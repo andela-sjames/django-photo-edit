@@ -1,5 +1,5 @@
 import os
-from PIL import Image, ImageFilter, ImageEnhance, ImageOps
+from PIL import Image, ImageFilter, ImageEnhance
 
 from django.conf import settings
 from django.views.generic.base import TemplateView
@@ -31,17 +31,17 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
             filepath, ext = os.path.splitext(pilimage)
 
             edit_path = filepath + 'edited' + ext
-            out.save(edit_path, 'png', quality=100)
+            out.save(edit_path, format='PNG', quality=100)
 
         if effect == 'sharpness':
 
             img = Image.open(pilimage)
             enh = ImageEnhance.Sharpness(img)
-            out = enh.enhance(3.0)
+            out = enh.enhance(2.5)
             filepath, ext = os.path.splitext(pilimage)
 
             edit_path = filepath + 'edited' + ext
-            out.save(edit_path, 'png', quality=100)
+            out.save(edit_path, format='PNG', quality=100)
 
         if effect == 'grayscale':
 
@@ -49,7 +49,15 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
 
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext
-            img.save(edit_path, 'png', quality=100)
+            img.save(edit_path, format='PNG', quality=100)
+
+        if effect == 'blackwhite':
+
+            img = Image.open(pilimage).convert('1')
+
+            filepath, ext = os.path.splitext(pilimage)
+            edit_path = filepath + 'edited' + ext
+            img.save(edit_path, format='PNG', quality=100)
 
         if effect == 'sepia':
 
@@ -61,7 +69,7 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext
 
-            img.save(edit_path, 'png', quality=100)
+            img.save(edit_path, format='PNG', quality=100)
 
         if effect == 'contrast':
 
@@ -73,7 +81,7 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext
 
-            out.save(edit_path, 'png', quality=100)
+            out.save(edit_path, format='PNG', quality=100)
 
         # Filters here
         if effect == 'blur':
@@ -83,17 +91,17 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
 
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext
-            img.save(edit_path, 'png', quality=100)
+            img.save(edit_path, format='PNG', quality=100)
 
-        if effect == 'invert':
+        if effect == 'findedges':
 
             img = Image.open(pilimage)
-            img = ImageOps.invert(img)
+            img = img.filter(ImageFilter.FIND_EDGES)
 
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext
 
-            img.save(edit_path, 'png', quality=100)
+            img.save(edit_path, format='PNG', quality=100)
 
         if effect == 'bigenhance':
 
@@ -103,7 +111,7 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext
 
-            img.save(edit_path, 'png', quality=100)
+            img.save(edit_path, format='PNG', quality=100)
 
         if effect == 'enhance':
 
@@ -113,7 +121,7 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext
 
-            img.save(edit_path, 'png', quality=100)
+            img.save(edit_path, format='PNG', quality=100)
 
         if effect == 'smooth':
 
@@ -123,7 +131,7 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext
 
-            img.save(edit_path, 'png', quality=100)
+            img.save(edit_path, format='PNG', quality=100)
 
         if effect == 'emboss':
 
@@ -133,7 +141,7 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext
 
-            img.save(edit_path, 'png', quality=100)
+            img.save(edit_path, format='PNG', quality=100)
 
         if effect == 'contour':
 
@@ -143,7 +151,17 @@ class PillowImageView(TemplateView, LoginRequiredMixin):
             filepath, ext = os.path.splitext(pilimage)
             edit_path = filepath + 'edited' + ext
 
-            img.save(edit_path, 'png', quality=100)
+            img.save(edit_path, format='PNG', quality=100)
+
+        if effect == 'sharpen':
+
+            img = Image.open(pilimage)
+            img = img.filter(ImageFilter.SHARPEN)
+
+            filepath, ext = os.path.splitext(pilimage)
+            edit_path = filepath + 'edited' + ext
+
+            img.save(edit_path, format='PNG', quality=100)
 
         return HttpResponse(os.path.relpath(edit_path, settings.BASE_DIR),
                             content_type="text/plain")
