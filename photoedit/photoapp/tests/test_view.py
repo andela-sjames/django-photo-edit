@@ -40,7 +40,8 @@ class UserSetupTestCase(TestCase):
             'picture[data][url]': 'https://fbkamaihd.net/hprofile'
         }
 
-        self.photo = Photo.objects.create(title='title', user_id=1)
+        self.photo = Photo.objects.create(title='title',
+                                          user_id=1, image='testimage.jpg')
 
 
 class UserActionTestCase(UserSetupTestCase):
@@ -100,6 +101,22 @@ class UserActionTestCase(UserSetupTestCase):
 
     def test_user_view_photopage(self):
         request = self.factory.get(reverse_lazy('photoview'))
+        request.user = self.user1
+        response = PhotoAppView.as_view()(request)
+        self.assertEquals(response.status_code, 200)
+
+
+class TestPhotoUpload(UserSetupTestCase):
+
+    '''Test photo can be uploaded. '''
+    @mock.patch('photoapp.forms.PhotoForm.save', mock.MagicMock(name="save"))
+    def test_photo_upload_and_save(self):
+
+        mock_file = mock.MagicMock(spec=File, name='FileMock')
+        mock_file.name = 'testimage.jpg'
+        request = self.factory.post(
+            '/photoapp/photos/',
+            data={'title': 'friend', 'image': mock_file, })
         request.user = self.user1
         response = PhotoAppView.as_view()(request)
         self.assertEquals(response.status_code, 200)
