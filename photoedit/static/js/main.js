@@ -261,7 +261,7 @@ function DownloadFile() {
     $("body").on('click', ".save", function(){
         var link = document.createElement('a');
         link.href = $('.pix').find('img').attr("src")
-        link.download =$('.editpix').find('p').text()
+        link.download = $('.frame').find('img').attr('data-name')
         document.body.appendChild(link);
         link.click();
     });
@@ -269,8 +269,8 @@ function DownloadFile() {
 
 $(document).ready(function(){
     facebookLogin.init({
-        // login: "#facebookLogin", //test value
-        // fb_id: "1105396756159660"
+        login: "#facebookLogin", //test value
+        fb_id: "1105396756159660"
     })
 
     BindEvents();
