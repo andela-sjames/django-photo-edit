@@ -231,17 +231,17 @@ function FacebookShare() {
         console.log(picture);
         console.log(name);
 
-        // FB.ui({
-        //   method: 'feed',
-        //   name: name,
-        //   display: 'popup',
-        //   link: location.href='/',
-        //   caption:"Gentle Edit",
-        //   picture: picture,
-        //   description: 'I just used GentleEdit to edit my Photo.'
-        // }, function(response){
+        FB.ui({
+          method: 'feed',
+          name: name,
+          display: 'popup',
+          link: location.href='/',
+          caption:"Gentle Edit",
+          picture: picture,
+          description: 'I just used GentleEdit to edit my Photo.'
+        }, function(response){
 
-        // });
+        });
 
 
     })
@@ -268,8 +268,8 @@ function DownloadFile() {
 
 $(document).ready(function(){
     facebookLogin.init({
-        login: "#facebookLogin", //test value
-        fb_id: "1105396756159660"
+        // login: "#facebookLogin", //test value
+        // fb_id: "1105396756159660"
     })
 
     BindEvents();
