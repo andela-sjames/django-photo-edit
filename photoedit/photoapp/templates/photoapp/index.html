@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block main %}
+
+
+<div class="row">
+    <center><div id="logoframe">
+        <h1 id="flash"><img src="{% static "img/theicon.png" width = "auto" %}"/></h1><p class="welcome">Gentle Edit</p><p class="welcome">Take the world in your hand.</p>
+        <hr>
+        <p class="intro">With GentleEdit you have the power to apply filters and effects to your favorite photos as well as save them to your system. Usage is Simple, it's free and easy to use. Have fun!</p>
+
+        <div style="padding-top:60px">
+        {% csrf_token %}
+            <button type="submit" data-action="{% url 'login' %}" id="facebookLogin" class="ui facebook button btn-primary  btn-lg btn-block fbk">
+                <i class="facebook icon"></i>
+                Login with Facebook
+            </button>
+        </div>
+    </div></center>
+</div>
+
+{% endblock main %}

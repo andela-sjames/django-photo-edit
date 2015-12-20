@@ -3,18 +3,18 @@
 GentleEdit is a simple django based application that allows users to apply effects and filters to their favourite images.
 
 ###__Technology__.
-The application demonstrates the power of Django and makes use of python cloudinary for storing images as well as applying effects to them. Cloudinary Web service is simple and allows for easy upload of images to their server, their service also allows for easy manipulation of images such as applying effects, filters and cropping of images.
+The application demonstrates the power of Django and makes use of PIL (Python Image Library) for rendering effects on images.
 
-The relative ease of usage is what gives this application its fine ability to apply effects and filters to users photos.
+The relative ease of usage of PIL is what gives this application its fine ability to apply effects and filters to users photos.
 
 ###__Workflow__.
 
 * User logs in via facebook.
 * User uploads images which are all previewed on a single page.
 * User clicks on image to edit image.
-* User is taken to Edit page where He/She can apply different effects/filters
+* User applies different effects/filters to image.
 * User can save, delete or apply effects to images.
 * User saves images down to system.
-* User can share image on social network (Facebook)
+* User can share image on social network (Facebook).
 
 
