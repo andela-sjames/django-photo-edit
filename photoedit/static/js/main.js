@@ -236,9 +236,9 @@ function FacebookShare() {
           method: 'feed',
           name: name,
           display: 'popup',
-          link: location.href='/',
+          link: location.protocol + '//' + location.host,
           caption:"Gentle Edit",
-          picture: picture,
+          picture: location.protocol + '//' + location.host + location.pathname+ picture,
           description: 'I just used GentleEdit to edit my Photo.'
         }, function(response){
 
