@@ -1,0 +1,22 @@
+language: python
+python:
+- '2.7'
+env:
+  global:
+  - DJANGO_SETTINGS_MODULE='photoedit.settings.base'
+install:
+- pip install -r requirements.txt
+- pip install coveralls
+script:
+- coverage run --source photoapp photoedit/manage.py test photoedit
+after_success:
+- coveralls
+deploy:
+  provider: heroku
+  api_key:
+    secure: EkcesFrv3pVwolnzYu5WU244CJOwEjZu4aaMCi/0uQv0h3dh4jDchiLsg9UYYAnW746hddop6adx7f0ruhY4DoqqzpyO/iSWFQbkOnxZsGfsKRtsQD5GGSB1tROtUXDvi4DjPnlSGQtiChkfEFm2NxJ3pYXX/pOomlPmdxjfgpqBP0K0+iEWzTk8HTtwXhvpxfa4IRnVR1boMyqzMzLFKAlKbV4XFfvO/ZH6baiV7CynfXfXsmRyDXtdH4I1hTLl3XszSMOoFyKHogaw600j7Rr2W6/9RWs3V7yfDnXpvdP3ie4fKOCpdoZKHA2ChKHAtI6K8/r+wIqmJkH6mDkiw6cyyXG7/wQ4SG7GkIXFtEmJ67oOjlsoddoYLR7Wt2OdjQdrstcf2U7gt8ZBuhNxuiHuj4HKgjLRtG/FSHf4TFT43Xt+RQcpUP4oTS+aHbx5QiQMvKSJlwBlg1mGzCs0tNEtHwFubKNPofIdXcPjsJ6hIPQMqoYfXdr0hb4A8DhQYFV7uuCeo8XgoInWcTTaweLmKNLDo4I/1rjHqIWIraglFjMwcy7bJK6O/rOqZ8uh23q49UV/uEGLg/GzsdxF4H4cKwwz8IyQavBX+aWbKuD8kduEEOaa6XQZG3HqU42IieuHK2jrjOm8qQIoVm0G+DcuPJem8/jsP5jmMjKeV1s=
+  strategy: git
+  app:
+    master: gentleedit
+after_deploy:
+  - "heroku ps:scale web=1 --app gentleedit"
