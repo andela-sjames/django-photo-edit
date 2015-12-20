@@ -1,0 +1,33 @@
+{% load staticfiles %}
+
+
+<div class="modal fade" id="fileupload-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Upload a file?</h4>
+            </div>
+            <div class="modal-body">
+
+                <form action="{% url "photoview" %}" method="post" id="uploadform">
+                <div id="backend_upload">
+                    {% csrf_token %}
+                    <label for="id_title" class="welcome">Title (optional):</label><input id="id_title" maxlength="60" name="title" type="text">
+
+                    <label for="id_image" class="welcome">Image:</label>
+                    <span class="btn btn-default btn-file">Choose
+                    <input id="id_image" name="image" type="file" required>
+                    </span>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="ui black basic button" data-dismiss="modal">Close</button>
+                <button type="submit" class="ui black basic button">Upload</button>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
