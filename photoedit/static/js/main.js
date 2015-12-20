@@ -224,7 +224,8 @@ function DeleteModalProperty(){
 }
 
 function FacebookShare() {
-     $(".share").click(function(e){
+
+     $("body").on('click', ".share", function(e){
         e.preventDefault();
         picture = $(".frame").find("img").attr("src");
         name = $(".frame").find("img").attr('data-name');
