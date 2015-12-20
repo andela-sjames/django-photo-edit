@@ -127,10 +127,10 @@ function UploadForm()
 
                     if (error.status == 405) {
                         //alert badrequest
-                        alert("File size should not exceed 10mb")
+                        alert("File size should not exceed 10MB")
                     } else {
                         //alert file toolarge
-                        alert("Upload File should be image !!")
+                        alert("Upload File should be image only")
 
                     }
                 },

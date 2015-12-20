@@ -1,19 +1,25 @@
 '''Script used to test app functionality. '''
 
-import mock
+from io import BytesIO
+from PIL import Image
 
 from django.test import TestCase, Client, RequestFactory
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.utils.importlib import import_module
 from django.core.urlresolvers import reverse_lazy
-from django.core.files import File
-from django.contrib.messages.storage.fallback import FallbackStorage
-from django.http import Http404
 
 from photoapp.models import FacebookUser, Photo
-from photoapp.views import FacebookLogin, PhotoAppView,\
-     DeletePhotoView
+from photoapp.views import FacebookLogin, PhotoAppView
+
+
+def create_test_image():
+    file = BytesIO()
+    image = Image.new('RGBA', size=(50, 50), color=(155, 0, 0))
+    image.save(file, 'png')
+    file.name = 'test.png'
+    file.seek(0)
+    return file
 
 
 class UserSetupTestCase(TestCase):
@@ -39,9 +45,11 @@ class UserSetupTestCase(TestCase):
             'id': 2,
             'picture[data][url]': 'https://fbkamaihd.net/hprofile'
         }
+        self.file = create_test_image()
 
         self.photo = Photo.objects.create(title='title',
-                                          user_id=1, image='testimage.jpg')
+                                          user_id=1,
+                                          image=self.file.name)
 
 
 class UserActionTestCase(UserSetupTestCase):
@@ -101,22 +109,6 @@ class UserActionTestCase(UserSetupTestCase):
 
     def test_user_view_photopage(self):
         request = self.factory.get(reverse_lazy('photoview'))
-        request.user = self.user1
-        response = PhotoAppView.as_view()(request)
-        self.assertEquals(response.status_code, 200)
-
-
-class TestPhotoUpload(UserSetupTestCase):
-
-    '''Test photo can be uploaded. '''
-    @mock.patch('photoapp.forms.PhotoForm.save', mock.MagicMock(name="save"))
-    def test_photo_upload_and_save(self):
-
-        mock_file = mock.MagicMock(spec=File, name='FileMock')
-        mock_file.name = 'testimage.jpg'
-        request = self.factory.post(
-            '/photoapp/photos/',
-            data={'title': 'friend', 'image': mock_file, })
         request.user = self.user1
         response = PhotoAppView.as_view()(request)
         self.assertEquals(response.status_code, 200)
