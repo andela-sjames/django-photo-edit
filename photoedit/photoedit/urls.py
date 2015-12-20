@@ -23,6 +23,12 @@ if settings.DEBUG:
                                         'document_root': settings.STATIC_ROOT,
                                     }),
                                 )
+if not settings.DEBUG:
+        urlpatterns += patterns('',
+                                url(r'^media/(?P<path>.*)$',
+                                    'django.views.static.serve', {
+                                        'document_root': settings.MEDIA_ROOT,
+                                    }))
 
 handler404 = 'photoapp.views.custom_404'
 handler500 = 'photoapp.views.custom_500'
