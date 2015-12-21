@@ -178,9 +178,9 @@ function ApplyEffects()
             url: "/photoapp/addeffects/",
             data: {'image': image, 'effect': imgeffect },
             success: function(data) {
-                $(".loader").hide();
                var avatatr = $("#avatar").attr("src", '/'+ data + "?" + new Date().getTime());
                 $("#frameid").html(avatar);
+                $(".loader").hide();
 
             },
 
@@ -220,6 +220,7 @@ function DeleteImage()
 
                         if (img_id == imageId) {
                             $("#avatar").hide();
+                            $("#repeat").show();
                         }
                     }
                 },
