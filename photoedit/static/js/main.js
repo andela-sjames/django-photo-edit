@@ -220,6 +220,7 @@ function DeleteImage()
 
                         if (img_id == imageId) {
                             $("#avatar").hide();
+                            $("#repeat").show();
                         }
                     }
                 },

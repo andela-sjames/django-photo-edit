@@ -45,7 +45,7 @@
 
                     <div id="begin">
                     {% if photos %}
-                    <center><p class="welcome" id="repeat">Click on Image to edit...</p></center>
+                    <center><p class="welcome">Click on Image to edit...</p></center>
                     {% endif %}
                     {% if not photos %}
                     <center><p class="welcome1">Dear {{ request.user.username }}, you currently have no picture uploaded. Upload a File to begin.</p></center>
@@ -55,6 +55,9 @@
                     <div class="ui active large inverted loader" style="display:none"></div>
 
                     <img class="flex img-responsive" id="avatar" src="" style="display:none">
+
+                    <center><p class="welcome" id="repeat" style="display:none">Click on Image to edit/Upload a file...</p></center>
+
 
 
                 </div>
