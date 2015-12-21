@@ -1,3 +1,4 @@
+var timeout;
 $.ajaxSetup({
     headers: {
         "X-CSRFToken": $("meta[name='csrf-token']").attr("content"),
@@ -20,9 +21,9 @@ function socialLogin(user) {
         error: function(error) {
             console.log(error.responseText)
         },
-    headers: {
-        "X-CSRFToken": $("input[name='csrfmiddlewaretoken']").val()
-    },
+        headers: {
+            "X-CSRFToken": $("input[name='csrfmiddlewaretoken']").val()
+        },
     };
     $.ajax(ajaxinfo);
 }
@@ -79,9 +80,11 @@ function BindEvents()
 
         var imagePath = $(this).attr('data-image-id')
         var imageName = $(this).attr('data-name')
+        var imageidentity = $(this).attr('data-title')
 
         imgDiv.attr( "src", imageUrl );
         imgDiv.attr('data-name', imageName)
+        imgDiv.attr('data-title', imageidentity)
         effectsDiv.attr('data-image-id', imagePath)
 
         $(".flex").show();
@@ -94,8 +97,13 @@ function BindEvents()
 function UploadForm()
 {
     $('#uploadform').on('submit', function(event) {
-            var $form = $(this);
             event.preventDefault();
+            var notify = $.notify('<strong>Upload</strong> in progress ...', {
+                allow_dismiss: true,
+                showProgressbar: false
+                });
+
+            var $form = $(this);
             $('#fileupload-modal').hide();
             $('.modal').modal('hide');
             $form.find('p').remove();
@@ -117,6 +125,14 @@ function UploadForm()
                 processData: false,
 
                 success: function(data) {
+
+                $(".welcome1").hide();
+
+                clearTimeout(timeout);
+                timeout = setTimeout(function() {
+                notify.update({'type': 'success', 'message': '<strong>Success</strong> Upload complete!', 'progress': 25});
+                }, 3000);
+
                 if (data == "success") {
                     var url = "/photoapp/photos/"
                     $("#reload").load(url + " #reload")
@@ -130,7 +146,7 @@ function UploadForm()
                         alert("File size should not exceed 10MB")
                     } else {
                         //alert file toolarge
-                        alert("Upload File should be image only")
+                        alert("An Error Occurred While Uploading File.")
 
                     }
                 },
@@ -155,12 +171,14 @@ function ApplyEffects()
         e.preventDefault();
         var image = $(this).find('button').attr('data-image-id')
         var imgeffect = $(this).attr('data-effect')
+        $(".loader").show();//preloader show
 
         $.ajax({
             type: "GET",
             url: "/photoapp/addeffects/",
             data: {'image': image, 'effect': imgeffect },
             success: function(data) {
+                $(".loader").hide();
                var avatatr = $("#avatar").attr("src", '/'+ data + "?" + new Date().getTime());
                 $("#frameid").html(avatar);
 
@@ -186,7 +204,23 @@ function DeleteImage()
                 data: {'path': imagePath, 'id': imageId },
                 success: function(data) {
                     if (data == "success") {
-                        location.reload()
+
+                        var notify = $.notify('<strong>Image</strong> successfully deleted...', {
+                                type: 'success',
+                                allow_dismiss: true,
+                                showProgressbar: false
+                            });
+
+                        $('#delete-modal').hide();
+                        $('.modal').modal('hide');
+
+                        var url = "/photoapp/photos/"
+                        $("#reload").load(url + " #reload")
+                        var img_id = $('.frame').find('img').attr('data-title')
+
+                        if (img_id == imageId) {
+                            $("#avatar").hide();
+                        }
                     }
                 },
 
@@ -269,8 +303,8 @@ function DownloadFile() {
 
 $(document).ready(function(){
     facebookLogin.init({
-        // login: "#facebookLogin", //test value
-        // fb_id: "1105396756159660"
+        login: "#facebookLogin", //test value
+        fb_id: "1105396756159660"
     })
 
     BindEvents();

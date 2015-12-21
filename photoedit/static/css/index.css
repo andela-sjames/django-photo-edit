@@ -4,7 +4,7 @@ html {
 
 body {
   height: 100%;
-  background: #FFFFFF;
+  background: lightgrey;
   font-family: "Lato", sans-serif;
   font-weight: 300;
   smoothing: antialiased;
@@ -62,10 +62,10 @@ body {
 
 .frame {
   padding: 30px;
-  background-color: lightgray;
+  background-color: white;
   border: solid ;
   height: 466.5px;
-  width: 600px;
+  width: auto;
   display: flex;
   align-content: center;
   justify-content: center;
@@ -73,7 +73,7 @@ body {
 
 
 .sidebar {
-  background-color: lightgray;
+  background-color: white;
   border: solid ;
 }
 
@@ -103,6 +103,11 @@ body {
 
 .welcome {
   font-size:18px;
+  font-style:italic;
+}
+
+.welcome1 {
+  font-size:30px;
   font-style:italic;
 }
 
@@ -218,11 +223,47 @@ body {
 
 #fbk {
   display: none;
-  position: relative;
-  right: 218px;
   margin-top: 15px;
 }
 
 .save {
   margin-top: 10px;
+}
+
+#edge {
+  border: solid;
+  background-color: white;
+  position: relative;
+  left: 3px;
+}
+
+.img-responsive {
+  height: 100%;
+}
+
+.ui.loader.large {
+    width: 4.5714em;
+    height: 8.5714em;
+    font-size: 3.142857em;
+}
+
+[data-notify="progressbar"] {
+  margin-bottom: 0px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 5px;
+}
+
+.move {
+      margin-left: 17px;
+}
+
+.mv {
+      margin-left: 20px;
+}
+
+.my {
+      margin-left: 38px;
 }
