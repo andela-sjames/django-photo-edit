@@ -303,8 +303,8 @@ function DownloadFile() {
 
 $(document).ready(function(){
     facebookLogin.init({
-        login: "#facebookLogin", //test value
-        fb_id: "1105396756159660"
+        // login: "#facebookLogin", //test value
+        // fb_id: "1105396756159660"
     })
 
     BindEvents();
