@@ -1,4 +1,4 @@
-#Django-Photo-Editing Application [![Coverage Status](https://coveralls.io/repos/andela-sjames/django-photo-edit/badge.svg?branch=develop&service=github)](https://coveralls.io/github/andela-sjames/django-photo-edit?branch=develop) [![Build Status](https://travis-ci.org/andela-sjames/django-photo-edit.svg?branch=master)](https://travis-ci.org/andela-sjames/django-photo-edit)
+#Django-Photo-Editing Application [![Coverage Status](https://coveralls.io/repos/andela-sjames/django-photo-edit/badge.svg?branch=master&service=github)](https://coveralls.io/github/andela-sjames/django-photo-edit?branch=master)[![Build Status](https://travis-ci.org/andela-sjames/django-photo-edit.svg?branch=master)](https://travis-ci.org/andela-sjames/django-photo-edit)
 
 GentleEdit is a simple django based application that allows users to apply effects and filters to their favourite images.
 
