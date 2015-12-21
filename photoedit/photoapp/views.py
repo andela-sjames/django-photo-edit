@@ -94,12 +94,11 @@ class PhotoAppView(TemplateView, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
 
         userid = self.request.user.id
-        photo = Photo.objects.filter(user_id=userid)
 
         context = self.get_context_data(**kwargs)
         context['facebook'] = FacebookUser.objects.get(
             contrib_user_id=request.user.id)
-        context['photos'] = photo
+        context['photos'] = Photo.objects.filter(user_id=userid)
         return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
@@ -116,7 +115,7 @@ class PhotoAppView(TemplateView, LoginRequiredMixin):
             return HttpResponse("success", content_type="text/plain")
 
         except:
-            return HttpResponseBadRequest('InvalidFile')
+            return HttpResponseBadRequest('Unknownerror')
 
 
 class DeletePhotoView(View, LoginRequiredMixin):
