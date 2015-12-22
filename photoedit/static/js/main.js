@@ -1,4 +1,5 @@
 var timeout;
+var timeout1;
 $.ajaxSetup({
     headers: {
         "X-CSRFToken": $("meta[name='csrf-token']").attr("content"),
@@ -180,7 +181,11 @@ function ApplyEffects()
             success: function(data) {
                var avatatr = $("#avatar").attr("src", '/'+ data + "?" + new Date().getTime());
                 $("#frameid").html(avatar);
-                $(".loader").hide();
+
+                clearTimeout(timeout1);
+                timeout1 = setTimeout(function() {
+                    $(".loader").hide();
+                }, 3500);
 
             },
 
