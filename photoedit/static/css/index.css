@@ -257,13 +257,23 @@ body {
 }
 
 .move {
-      margin-left: 17px;
+    flex-grow: 1;
 }
 
-.mv {
-      margin-left: 20px;
+.outer {
+  overflow-y: hidden;
+  width: 700px;
+  height: 50px;
 }
 
-.my {
-      margin-left: 38px;
+.inner {
+  width: 3850px;
+   }
+
+.ui.segment {
+ border:0px;
+}
+
+.ui.horizontal.segments{
+  background-color: inherit;
 }
