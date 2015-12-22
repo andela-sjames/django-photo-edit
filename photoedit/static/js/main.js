@@ -172,20 +172,22 @@ function ApplyEffects()
         e.preventDefault();
         var image = $(this).find('button').attr('data-image-id')
         var imgeffect = $(this).attr('data-effect')
-        $(".loader").show();//preloader show
+        // clearTimeout(timeout1);
+        setTimeout(function() {
+            $(".loader").show();
+        }, 3500);
 
         $.ajax({
             type: "GET",
             url: "/photoapp/addeffects/",
             data: {'image': image, 'effect': imgeffect },
             success: function(data) {
-               var avatatr = $("#avatar").attr("src", '/'+ data + "?" + new Date().getTime());
+                setTimeout(function() {
+                    $(".loader").show();
+            }, 3500);// preloader hide
+                var avatatr = $("#avatar").attr("src", '/'+ data + "?" + new Date().getTime());
                 $("#frameid").html(avatar);
 
-                clearTimeout(timeout1);
-                timeout1 = setTimeout(function() {
-                    $(".loader").hide();
-                }, 3500);
 
             },
 
