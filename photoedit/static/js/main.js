@@ -101,8 +101,11 @@ function UploadForm()
             event.preventDefault();
             var notify = $.notify('<strong>Upload</strong> in progress ...', {
                 allow_dismiss: true,
-                showProgressbar: false
-                });
+                placement: {
+                    from: "top",
+                    align: "center"
+                },
+            });
 
             var $form = $(this);
             $('#fileupload-modal').hide();
@@ -172,19 +175,24 @@ function ApplyEffects()
         e.preventDefault();
         var image = $(this).find('button').attr('data-image-id')
         var imgeffect = $(this).attr('data-effect')
-        // clearTimeout(timeout1);
-        setTimeout(function() {
-            $(".loader").show();
-        }, 3500);
+        $(".loader").show();
+        var notify = $.notify('<strong>Applying effects...</strong>', {
+            type: 'success',
+            allow_dismiss: true,
+            delay: 1000,
+            timer: 700,
+            placement: {
+                from: "top",
+                align: "center"
+            },
+        });
 
         $.ajax({
             type: "GET",
             url: "/photoapp/addeffects/",
             data: {'image': image, 'effect': imgeffect },
             success: function(data) {
-                setTimeout(function() {
-                    $(".loader").show();
-            }, 3500);// preloader hide
+                $(".loader").show();
                 var avatatr = $("#avatar").attr("src", '/'+ data + "?" + new Date().getTime());
                 $("#frameid").html(avatar);
 
@@ -215,7 +223,11 @@ function DeleteImage()
                         var notify = $.notify('<strong>Image</strong> successfully deleted...', {
                                 type: 'success',
                                 allow_dismiss: true,
-                                showProgressbar: false
+                                delay: 1000,
+                                placement: {
+                                    from: "top",
+                                    align: "center"
+                                },
                             });
 
                         $('#delete-modal').hide();
