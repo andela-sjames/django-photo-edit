@@ -21,7 +21,7 @@
                 {% endfor %}
                 {% else%}
                     <div>
-                        <h2>Nothing Uploaded Yet!</h2>
+                        <h3 id="bigup">Nothing Uploaded Yet!</h3>
                     </div>
 
                     <div>
@@ -46,11 +46,16 @@
 
                     <div id="begin">
                     {% if photos %}
-                    <center><p class="welcome" id="visible">Click on Image to edit...</p></center>
+                    <center><p class="info" id="visible">Click on Image to edit...</p></center>
                     {% endif %}
                     {% if not photos %}
-                    <center><p class="welcome1">Dear {{ request.user.username }} you currently have no picture uploaded. Upload a File to begin.</p>
+                    <center><p class="welcome1">Dear {{ request.user.username }} you currently have no picture uploaded.</p>
                     <img src=""></center>
+
+                    <div class="#" id="firstupload">
+                        <button type="button" class="ui black button" data-toggle="modal" data-target="#fileupload-modal">Upload a file</button>
+                    </div>
+
                     {% endif %}
                     </div>
 
@@ -78,9 +83,17 @@
         <div class="row topspace">
 
         </div>
-        <div class="row">
-            <button type="button" class="ui button" data-toggle="modal" data-target="#fileupload-modal">Upload a file</button>
+        {% if not photos %}
+        <div class="row" id="disp">
+            <button type="button" class="ui black button" data-toggle="modal" data-target="#fileupload-modal">Upload a file</button>
         </div><br>
+        {% endif %}
+
+        {% if photos %}
+        <div class="row">
+            <button type="button" class="ui black button" data-toggle="modal" data-target="#fileupload-modal">Upload a file</button>
+        </div><br>
+        {% endif %}
 
 
         <div class="outer flex row">

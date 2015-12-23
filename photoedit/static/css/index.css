@@ -4,7 +4,7 @@ html {
 
 body {
   height: 100%;
-  background: #D4CFD4;
+  background: #EDEDED;
   font-family: "Lato", sans-serif;
   font-weight: 300;
   smoothing: antialiased;
@@ -14,6 +14,8 @@ body {
 .navbar {
   margin-bottom:0px;
   border-radius: 0px;
+  border: 0px solid transparent;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
 #flash {
@@ -69,6 +71,7 @@ body {
   display: flex;
   align-content: center;
   justify-content: center;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
 
@@ -105,9 +108,15 @@ body {
   font-style:italic;
 }
 
+.info {
+  font-size:18px;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
 .welcome1 {
-  font-size:30px;
-  font-style:italic;
+  font-size:20px;
+  font-weight: 300px;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 #backimage {
@@ -228,6 +237,7 @@ body {
   background-color: white;
   position: relative;
   left: 0px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
 .img-responsive {
@@ -284,6 +294,7 @@ body {
 
 #show {
   display: none;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 .top{
   top:0;
@@ -316,4 +327,17 @@ body {
 
 #up {
   margin-top: 80px;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+#bigup {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+#disp {
+  display: none;
+}
+
+.welcomediv {
+  background-color:inherit;
 }
