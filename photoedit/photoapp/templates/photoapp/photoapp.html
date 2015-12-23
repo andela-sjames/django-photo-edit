@@ -35,7 +35,6 @@
                     {% else %}
                     <center><p class="welcome1">Dear {{ request.user.username }} you currently have no picture uploaded.</p>
                     </center>
-
                     {% endif %}
                     </div>
                     <img class="flex img-responsive" id="avatar" src="">
@@ -57,7 +56,8 @@
 
             <div class="row">
                 <button type="button" class="ui black button" data-toggle="modal" data-target="#fileupload-modal">Upload a file</button>
-            </div><br>
+            <h3 id="showme">Click on Image to edit..</h3>
+            </div>
 
             <div class="outer flex row">
 

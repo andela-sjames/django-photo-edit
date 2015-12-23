@@ -44,6 +44,7 @@
 <body {% if not request.user.is_authenticated %} id="col"{% endif %}>
 
     {% if request.user.is_authenticated %}
+
     <nav class="navbar navbar-inverse pagehead" role="navigation" id="head">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -71,10 +72,8 @@
     </nav>
     {% block main %}
     {% endblock main %}
-    {% endif %}
 
-
-    {% if not request.user.is_authenticated %}
+    {% else %}
     <div id="backimage"></div>
     <div class="container page-container">
         {% block mainone %}
