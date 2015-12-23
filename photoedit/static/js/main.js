@@ -82,16 +82,22 @@ function BindEvents()
         var imagePath = $(this).attr('data-image-id')
         var imageName = $(this).attr('data-name')
         var imageidentity = $(this).attr('data-title')
+        var resetDiv = $('#reset')
 
         imgDiv.attr( "src", imageUrl );
         imgDiv.attr('data-name', imageName)
         imgDiv.attr('data-title', imageidentity)
         effectsDiv.attr('data-image-id', imagePath)
+        resetDiv.attr('data-src', imageUrl)
 
         $(".flex").show();
         $('#fbk').show();
-        $('.save').show();
+        $('#sp').show();
+        $('#show').hide();
+        $('#hide').show();
 
+        var button  = $('.setup').find('button');
+        button.removeAttr('disabled');
     })
 }
 
@@ -99,7 +105,7 @@ function UploadForm()
 {
     $('#uploadform').on('submit', function(event) {
             event.preventDefault();
-            var notify = $.notify('<strong>Upload</strong> in progress ...', {
+            var notify = $.notify('<strong>Uploading</strong>...', {
                 allow_dismiss: true,
                 placement: {
                     from: "top",
@@ -131,6 +137,7 @@ function UploadForm()
                 success: function(data) {
 
                 $(".welcome1").hide();
+                $('#show').show();
 
                 clearTimeout(timeout);
                 timeout = setTimeout(function() {
@@ -175,7 +182,6 @@ function ApplyEffects()
         e.preventDefault();
         var image = $(this).find('button').attr('data-image-id')
         var imgeffect = $(this).attr('data-effect')
-        $(".loader").show();
         var notify = $.notify('<strong>Applying effects...</strong>', {
             type: 'success',
             allow_dismiss: true,
@@ -192,7 +198,6 @@ function ApplyEffects()
             url: "/photoapp/addeffects/",
             data: {'image': image, 'effect': imgeffect },
             success: function(data) {
-                $(".loader").show();
                 var avatatr = $("#avatar").attr("src", '/'+ data + "?" + new Date().getTime());
                 $("#frameid").html(avatar);
 
@@ -210,13 +215,17 @@ function DeleteImage()
     {
         $("body").on('click', "#confirmdelete", function(e){
             e.preventDefault();
-            var imagePath = $(this).attr('data-image-id')
             var imageId = $(this).attr('data-title')
+            var button  = $('.setup').find('button');
+            button.attr('disabled', 'disabled');
+            $('#hide').hide();
+            $('#show').show();
+
 
             $.ajax({
                 type: "GET",
                 url: "/photoapp/delete/",
-                data: {'path': imagePath, 'id': imageId },
+                data: {'id': imageId },
                 success: function(data) {
                     if (data == "success") {
 
@@ -236,6 +245,7 @@ function DeleteImage()
                         var url = "/photoapp/photos/"
                         $("#reload").load(url + " #reload")
                         var img_id = $('.frame').find('img').attr('data-title')
+                        $("#show").show();
 
                         if (img_id == imageId) {
                             $("#avatar").hide();
@@ -266,11 +276,8 @@ function DeleteModalProperty(){
 
     $('#delete-modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
-        var imagePath = button.closest(".editpix").attr('data-image-id')
         var imageId = button.closest(".editpix").attr('data-title')
-
         var deleteDiv = $('#photodeletediv').find('button');
-        deleteDiv.attr('data-image-id', imagePath)
         deleteDiv.attr('data-title', imageId)
 
     })
@@ -320,10 +327,41 @@ function DownloadFile() {
     });
 }
 
+function Disable() {
+    $("body").on('click', ".setup", function(e){
+        e.preventDefault();
+        var button  = $(this).find('button');
+
+        if ($(this).hasClass( "active")) {
+            return
+        } else {
+            $('.active').removeAttr('disabled');
+            button.addClass( "active");
+            button.attr('disabled', 'disabled');
+        }
+    })
+}
+
+function DefaultDisable(){
+
+    var button  = $('.setup').find('button');
+    button.attr('disabled', 'disabled');
+
+}
+
+function ResetImage(){
+    $("body").on('click', "#reset", function(e){
+        e.preventDefault();
+        var replace = $(this).attr('data-src');
+        var canvas = $('#avatar');
+        canvas.attr('src', replace);
+    })
+}
+
 $(document).ready(function(){
     facebookLogin.init({
-        // login: "#facebookLogin", //test value
-        // fb_id: "1105396756159660"
+        login: "#facebookLogin", //test value
+        fb_id: "1105396756159660"
     })
 
     BindEvents();
@@ -335,6 +373,9 @@ $(document).ready(function(){
     DeleteModalProperty();
     FacebookShare();
     DownloadFile();
+    Disable();
+    DefaultDisable();
+    ResetImage();
 
 })
 

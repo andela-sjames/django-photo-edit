@@ -12,7 +12,7 @@
 
                     <a class="hvr-grow-shadow editpix" data-title="{{ photo.id }}" data-image-id="{{ photo.image.path }}" data-name="{{photo.title}}">
                     <div class="ui small image makep">
-                        <button type="button" class="ui brown button" id="del" data-toggle="modal" data-target="#delete-modal" href="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                        <button type="button" class="ui button" id="del" data-toggle="modal" data-target="#delete-modal" href="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                         <img src = "{{ photo.image.url }}" class="sideimg">
                     <p>{{ photo.title }}</p>
                     </div>
@@ -20,17 +20,13 @@
 
                 {% endfor %}
                 {% else%}
-                <div>
-                    <img src="http://placehold.it/150x150">
-                </div><br>
+                    <div>
+                        <h2>Nothing Uploaded Yet!</h2>
+                    </div>
 
-                <div>
-                    <img src="http://placehold.it/150x150">
-                </div><br>
-
-                <div>
-                    <img src="http://placehold.it/150x150">
-                </div>
+                    <div>
+                        <h3 id="up">Images you upload will appear here.</h3>
+                    </div>
 
                 {% endif %}
                 <br>
@@ -39,119 +35,129 @@
         </div>
 
         <div class="col-md-8">
+            <div class="row top">
 
-            <div class="pix" id="pixedit">
+
+            </div>
+
+            <center>
+            <div class="pix row set" id="pixedit">
                 <div class="frame" id="frameid">
 
                     <div id="begin">
                     {% if photos %}
-                    <center><p class="welcome">Click on Image to edit...</p></center>
+                    <center><p class="welcome" id="visible">Click on Image to edit...</p></center>
                     {% endif %}
                     {% if not photos %}
-                    <center><p class="welcome1">Dear {{ request.user.username }}, you currently have no picture uploaded. Upload a File to begin.</p></center>
+                    <center><p class="welcome1">Dear {{ request.user.username }} you currently have no picture uploaded. Upload a File to begin.</p>
+                    <img src=""></center>
                     {% endif %}
                     </div>
 
-                    <div class="ui active large inverted loader" style="display:none"></div>
+                    <img class="flex img-responsive" id="avatar" src="">
 
-                    <img class="flex img-responsive" id="avatar" src="" style="display:none">
+                    <h3 id="show">Click on Image to edit..</h3>
 
                 </div>
-                <button class="ui facebook button share" id="fbk">
-                    <i class="facebook icon"></i>
-                    Facebook share
-                </button>
+                <div class="row" id="hide">
+                    <button class="ui facebook button share" id="fbk">
+                        <i class="facebook icon"></i>
+                        Facebook share
+                    </button>
+                    <button type="button" class="ui button save space" id="sp">Save</button>
+                </div>
             </div>
+            </center>
 
-            <div class="flex" style="display:none">
-                <div class="ui horizontal segments" style="flex-wrap:wrap">
-                    <div class="effects move">
-                    <a href="#" class="setup" data-effect="brightness">
-                    <button class="ui brown inverted button">Brightness</button></a>
-                    </div>
-
-                    <div class="effects move">
-                    <a href="#" class="setup" data-effect="sharpness">
-                    <button class="ui brown inverted button">Sharpness</button></a>
-                    </div>
-
-                    <div class="effects move">
-                    <a href="#" class="setup" data-effect="grayscale">
-                    <button class="ui brown inverted button">Grayscale</button></a>
-                    </div>
-
-                    <div class="effects move">
-                    <a href="#" class="setup" data-effect="blur">
-                    <button class="ui brown inverted button">Blur</button></a>
-                    </div>
-
-                    <div class="effects move">
-                    <a href="#" class="setup" data-effect="findedges">
-                    <button class="ui brown inverted button">FindEdges</button></a>
-                    </div>
-
-                    <div class="effects move">
-                    <a href="#" class="setup" data-effect="blackwhite">
-                    <button class="ui brown inverted button">Black-White</button></a>
-                    </div>
-
-                    <div class="effects move">
-                    <a href="#" class="setup" data-effect="sepia">
-                    <button class="ui brown inverted button">Sepia</button></a>
-                    </div>
-                </div>
-
-                <div class="ui horizontal segments" style="flex-wrap:wrap">
-
-                    <div class="effects move">
-                    <a href="#" class="setup" data-effect="contrast">
-                    <button class="ui brown inverted button">Contrast</button></a>
-                    </div>
-
-                    <div class="effects move">
-                    <a href="#" class="setup" data-effect="bigenhance">
-                    <button class="ui brown inverted button">Bigenhance</button></a>
-                    </div>
-
-                    <div class="effects move">
-                    <a href="#" class="setup" data-effect="enhance">
-                    <button class="ui brown inverted button">Enhance</button></a>
-                    </div>
-
-                    <div class="effects move">
-                    <a href="#" class="setup" data-effect="smooth">
-                    <button class="ui brown inverted button">Smooth</button></a>
-                    </div>
-
-                    <div class="effects move">
-                    <a href="#" class="setup" data-effect="emboss">
-                    <button class="ui brown inverted button">Emboss</button></a>
-                    </div>
-
-                    <div class="effects move">
-                    <a href="#" class="setup" data-effect="contour">
-                    <button class="ui brown inverted button">Contour</button></a>
-                    </div>
-
-                    <div class="effects move">
-                    <a href="#" class="setup" data-effect="sharpen">
-                    <button class="ui brown inverted button">Sharpen</button></a>
-                    </div>
-                </div>
-            </div> <!--end container outer -->
 
         </div>
 
 
     <div class="col-md-2" id="once">
-        <div>
-            <button type="button" class="ui brown basic button btn-block" data-toggle="modal" data-target="#fileupload-modal">Upload a file</button>
 
-            <div class="save" style="display:none">
-            <button type="button" class="ui brown basic button btn-block space" id="sp">Save</button>
-            </div>
+        <div class="row topspace">
+
+        </div>
+        <div class="row">
+            <button type="button" class="ui button" data-toggle="modal" data-target="#fileupload-modal">Upload a file</button>
         </div><br>
-         <p class="welcome">Click on Image to Edit</p>
+
+
+        <div class="outer flex row">
+
+            <div class="effects move">
+            <a href="#" class="#" id="reset" data-src="reset">
+            <button class="ui button">Reset</button></a>
+            </div>
+
+            <div class="effects move">
+            <a href="#" class="setup" data-effect="brightness">
+            <button class="ui button">Brightness</button></a>
+            </div>
+
+            <div class="effects move">
+            <a href="#" class="setup" data-effect="grayscale">
+            <button class="ui button">Grayscale</button></a>
+            </div>
+
+            <div class="effects move">
+            <a href="#" class="setup" data-effect="blur">
+            <button class="ui button">Blur</button></a>
+            </div>
+
+            <div class="effects move">
+            <a href="#" class="setup" data-effect="findedges">
+            <button class="ui button">FindEdges</button></a>
+            </div>
+
+            <div class="effects move">
+            <a href="#" class="setup" data-effect="blackwhite">
+            <button class="ui button">Black-White</button></a>
+            </div>
+
+            <div class="effects move">
+            <a href="#" class="setup" data-effect="sepia">
+            <button class="ui button">Sepia</button></a>
+            </div>
+
+
+            <div class="effects move">
+            <a href="#" class="setup" data-effect="contrast">
+            <button class="ui button">Contrast</button></a>
+            </div>
+
+            <div class="effects move">
+            <a href="#" class="setup" data-effect="bigenhance">
+            <button class="ui button">Bigenhance</button></a>
+            </div>
+
+            <div class="effects move">
+            <a href="#" class="setup" data-effect="enhance">
+            <button class="ui button">Enhance</button></a>
+            </div>
+
+            <div class="effects move">
+            <a href="#" class="setup" data-effect="smooth">
+            <button class="ui button">Smooth</button></a>
+            </div>
+
+            <div class="effects move">
+            <a href="#" class="setup" data-effect="emboss">
+            <button class="ui button">Emboss</button></a>
+            </div>
+
+            <div class="effects move">
+            <a href="#" class="setup" data-effect="contour">
+            <button class="ui button">Contour</button></a>
+            </div>
+
+            <div class="effects move">
+            <a href="#" class="setup" data-effect="sharpen">
+            <button class="ui button">Sharpen</button></a>
+            </div>
+        </div>
+
+
     </div>
 
         {% include "photoapp/upload_modal.html" %}

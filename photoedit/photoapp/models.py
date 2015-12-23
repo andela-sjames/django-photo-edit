@@ -1,6 +1,9 @@
+import os
 from time import time
 
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 from django.contrib.auth.models import User
 
 
@@ -49,3 +52,17 @@ class Photo(models.Model):
 
     class Meta:
         ordering = ('-created',)
+
+
+@receiver(post_delete, sender=Photo)
+def delete_from_file_system(sender, instance, **kwargs):
+
+    path = instance.image.path
+
+    filepath, ext = os.path.splitext(path)
+    delete_path = filepath + 'edited' + ext
+
+    if os.path.exists(delete_path):
+        os.remove(delete_path)
+    if os.path.exists(path):
+        os.remove(path)

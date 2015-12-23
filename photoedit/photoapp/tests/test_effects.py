@@ -5,8 +5,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.http import Http404
 
 from photoapp.tests.test_view import UserSetupTestCase
-from photoapp.effects import PillowImageView
-from photoapp.views import PhotoAppView, DeletePhotoView
+from photoapp.views import PhotoAppView, DeletePhotoView, PillowImageView
 from photoapp.models import Photo
 
 
@@ -32,12 +31,6 @@ class FilterPhotoTestCase(UserSetupTestCase):
         # test effects applied to images
         data1 = {'image': photo.image.path, 'effect': 'brightness'}
         request = self.factory.get(reverse('addeffects'), data1)
-        request.user = self.user1
-        response = PillowImageView.as_view()(request)
-        self.assertEquals(response.status_code, 200)
-
-        b_data = {'image': photo.image.path, 'effect': 'sharpness'}
-        request = self.factory.get(reverse('addeffects'), b_data)
         request.user = self.user1
         response = PillowImageView.as_view()(request)
         self.assertEquals(response.status_code, 200)
