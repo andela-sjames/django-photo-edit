@@ -1,7 +1,7 @@
-{% extends "base.html" %}
+{% extends "headerbase.html" %}
 
 {% load static %}
-{% block main %}
+{% block mainone %}
 
 
 <div class="row">
@@ -10,7 +10,7 @@
         <hr>
         <p class="intro">With GentleEdit you have the power to apply filters and effects to your favorite photos as well as save them to your system. Usage is Simple, it's free and easy to use. Have fun!</p>
 
-        <div style="padding-top:60px">
+        <div id="simplebase">
         {% csrf_token %}
             <button type="submit" data-action="{% url 'login' %}" id="facebookLogin" class="ui facebook button btn-primary  btn-lg btn-block fbk">
                 <i class="facebook icon"></i>
@@ -20,4 +20,4 @@
     </div></center>
 </div>
 
-{% endblock main %}
+{% endblock mainone %}

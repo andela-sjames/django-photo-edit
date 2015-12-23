@@ -70,8 +70,7 @@ function showTable() {
     localStorage.setItem('show', 'true'); //store state in localStorage
 }
 
-function BindEvents()
-{
+function bindEvents() {
     $("body").on('click', ".editpix", function(e){
         e.preventDefault();
         $('#begin').hide();
@@ -101,8 +100,7 @@ function BindEvents()
     })
 }
 
-function UploadForm()
-{
+function uploadForm() {
     $('#uploadform').on('submit', function(event) {
             event.preventDefault();
             var notify = $.notify('<strong>Uploading</strong>...', {
@@ -137,11 +135,7 @@ function UploadForm()
                 success: function(data) {
 
                 $(".welcome1").hide();
-                $("#firstupload").hide();
-                $('#show').show();
-                $('#disp').show();
-                //remove welcomediv
-                // $('#frameid').removeClass( "welcomediv");
+
 
                 clearTimeout(timeout);
                 timeout = setTimeout(function() {
@@ -173,15 +167,15 @@ function UploadForm()
         });
 }
 
-function Uploadbutton() {
+
+function uploadbutton() {
     $('.btn-file :file').change(function(event) {
         label = $(this).val().split('\\');
         $(this).closest('span').after('<p>' + label[label.length -1] +' </p>')
     });
 }
 
-function ApplyEffects()
-    {
+function applyEffects() {
         $("body").on('click', ".setup", function(e){
         e.preventDefault();
         var image = $(this).find('button').attr('data-image-id')
@@ -215,16 +209,13 @@ function ApplyEffects()
     });
 }
 
-function DeleteImage()
-    {
+function deleteImage() {
         $("body").on('click', "#confirmdelete", function(e){
             e.preventDefault();
             var imageId = $(this).attr('data-title')
             var button  = $('.setup').find('button');
             button.attr('disabled', 'disabled');
             $('#hide').hide();
-            $('#show').show();
-
 
             $.ajax({
                 type: "GET",
@@ -264,7 +255,7 @@ function DeleteImage()
     })//end
 }
 
-function SaveImage(){
+function saveImage() {
 
      $("body").on("click", ".save", function (){
 
@@ -276,7 +267,7 @@ function SaveImage(){
      });
 }
 
-function DeleteModalProperty(){
+function deleteModalProperty() {
 
     $('#delete-modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
@@ -287,7 +278,7 @@ function DeleteModalProperty(){
     })
 }
 
-function FacebookShare() {
+function facebookShare() {
 
      $("body").on('click', ".share", function(e){
         e.preventDefault();
@@ -313,14 +304,14 @@ function FacebookShare() {
 
 }
 
-function KeepUploadButton() {
+function keepUploadButton() {
     var show = localStorage.getItem('show');
         if(show === 'true'){
             $('#once').show();
         }
 }
 
-function DownloadFile() {
+function downloadFile() {
 
     $("body").on('click', ".save", function(){
         var link = document.createElement('a');
@@ -331,7 +322,7 @@ function DownloadFile() {
     });
 }
 
-function Disable() {
+function disable() {
     $("body").on('click', ".setup", function(e){
         e.preventDefault();
         var button  = $(this).find('button');
@@ -346,14 +337,14 @@ function Disable() {
     })
 }
 
-function DefaultDisable(){
+function defaultDisable() {
 
     var button  = $('.setup').find('button');
     button.attr('disabled', 'disabled');
 
 }
 
-function ResetImage(){
+function resetImage() {
     $("body").on('click', "#reset", function(e){
         e.preventDefault();
         var replace = $(this).attr('data-src');
@@ -364,22 +355,22 @@ function ResetImage(){
 
 $(document).ready(function(){
     facebookLogin.init({
-        // login: "#facebookLogin", //test value
-        // fb_id: "1105396756159660"
+        login: "#facebookLogin", //test value
+        fb_id: "1105396756159660"
     })
 
-    BindEvents();
-    Disable();
-    ApplyEffects();
-    UploadForm();
-    Uploadbutton();
-    SaveImage();
-    DeleteImage();
-    DeleteModalProperty();
-    FacebookShare();
-    DownloadFile();
-    DefaultDisable();
-    ResetImage();
+    bindEvents();
+    disable();
+    applyEffects();
+    uploadForm();
+    uploadbutton();
+    saveImage();
+    deleteImage();
+    deleteModalProperty();
+    facebookShare();
+    downloadFile();
+    defaultDisable();
+    resetImage();
 
 })
 
