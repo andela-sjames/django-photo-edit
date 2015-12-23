@@ -65,11 +65,6 @@ var facebookLogin = {
     },
 };
 
-function showTable() {
-    $('#once').show();
-    localStorage.setItem('show', 'true'); //store state in localStorage
-}
-
 function bindEvents() {
     $("body").on('click', ".editpix", function(e){
         e.preventDefault();
@@ -135,7 +130,6 @@ function uploadForm() {
                 success: function(data) {
 
                 $(".welcome1").hide();
-
 
                 clearTimeout(timeout);
                 timeout = setTimeout(function() {
