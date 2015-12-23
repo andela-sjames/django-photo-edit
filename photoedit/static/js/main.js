@@ -90,8 +90,10 @@ function BindEvents()
 
         $(".flex").show();
         $('#fbk').show();
-        $('.save').show();
+        $('#sp').show();
 
+        var button  = $('.setup').find('button');
+        button.removeAttr('disabled');
     })
 }
 
@@ -210,13 +212,12 @@ function DeleteImage()
     {
         $("body").on('click', "#confirmdelete", function(e){
             e.preventDefault();
-            var imagePath = $(this).attr('data-image-id')
             var imageId = $(this).attr('data-title')
 
             $.ajax({
                 type: "GET",
                 url: "/photoapp/delete/",
-                data: {'path': imagePath, 'id': imageId },
+                data: {'id': imageId },
                 success: function(data) {
                     if (data == "success") {
 
@@ -239,6 +240,7 @@ function DeleteImage()
 
                         if (img_id == imageId) {
                             $("#avatar").hide();
+                            $("#show").show();
                         }
                     }
                 },
@@ -266,11 +268,8 @@ function DeleteModalProperty(){
 
     $('#delete-modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
-        var imagePath = button.closest(".editpix").attr('data-image-id')
         var imageId = button.closest(".editpix").attr('data-title')
-
         var deleteDiv = $('#photodeletediv').find('button');
-        deleteDiv.attr('data-image-id', imagePath)
         deleteDiv.attr('data-title', imageId)
 
     })
@@ -320,10 +319,32 @@ function DownloadFile() {
     });
 }
 
+function Disable() {
+    $("body").on('click', ".setup", function(e){
+        e.preventDefault();
+        var button  = $(this).find('button');
+
+        if ($(this).hasClass( "active")) {
+            return
+        } else {
+            $('.active').removeAttr('disabled');
+            button.addClass( "active");
+            button.attr('disabled', 'disabled');
+        }
+    })
+}
+
+function DefaultDisable(){
+
+    var button  = $('.setup').find('button');
+    button.attr('disabled', 'disabled');
+
+}
+
 $(document).ready(function(){
     facebookLogin.init({
-        // login: "#facebookLogin", //test value
-        // fb_id: "1105396756159660"
+        login: "#facebookLogin", //test value
+        fb_id: "1105396756159660"
     })
 
     BindEvents();
@@ -335,6 +356,8 @@ $(document).ready(function(){
     DeleteModalProperty();
     FacebookShare();
     DownloadFile();
+    Disable();
+    DefaultDisable();
 
 })
 

@@ -5,8 +5,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.http import Http404
 
 from photoapp.tests.test_view import UserSetupTestCase
-from photoapp.effects import PillowImageView
-from photoapp.views import PhotoAppView, DeletePhotoView
+from photoapp.views import PhotoAppView, DeletePhotoView, PillowImageView
 from photoapp.models import Photo
 
 

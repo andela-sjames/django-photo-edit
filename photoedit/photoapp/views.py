@@ -15,6 +15,7 @@ from django.conf import settings
 
 from photoapp.models import FacebookUser, Photo
 from photoapp.forms import PhotoForm
+from photoapp.effects import Applyeffects
 
 
 class LoginRequiredMixin(object):
@@ -134,13 +135,26 @@ class DeletePhotoView(View, LoginRequiredMixin):
 
         photo.delete()
 
-        filepath, ext = os.path.splitext(path)
-        delete_path = filepath + 'edited' + ext
-        if os.path.exists(delete_path):
-            os.remove(delete_path)
-            os.remove(path)
-
         return HttpResponse("success", content_type="text/plain")
+
+
+class PillowImageView(TemplateView):
+
+    ''' Class defined to apply effect to image.'''
+
+    def get(self, request, *args, **kwargs):
+
+        pilimage = str(request.GET.get('image'))
+        effect = request.GET.get('effect')
+
+        filepath, ext = os.path.splitext(pilimage)
+        edit_path = filepath + 'edited' + ext
+
+        image_effects = Applyeffects(pilimage)
+        image_effects.effect(effect)
+
+        return HttpResponse(os.path.relpath(edit_path, settings.BASE_DIR),
+                            content_type="text/plain")
 
 
 def custom_404(request):

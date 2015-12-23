@@ -13,12 +13,11 @@
                 <form action="{% url "photoview" %}" method="post" id="uploadform">
                 <div id="backend_upload">
                     {% csrf_token %}
-                    <label for="id_title" class="welcome">Title (optional):</label><input id="id_title" maxlength="60" name="title" type="text">
+                    <input id="id_title" maxlength="60" name="title" type="text" placeholder="Title(optional)">
 
                     <span class="btn btn-default btn-file">Choose
                     <input id="id_image" name="image" type="file" required>
                     </span>
-
                 </div>
 
             </div>

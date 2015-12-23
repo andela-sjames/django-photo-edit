@@ -4,7 +4,7 @@ html {
 
 body {
   height: 100%;
-  background: lightgrey;
+  background: #D4CFD4;
   font-family: "Lato", sans-serif;
   font-weight: 300;
   smoothing: antialiased;
@@ -12,7 +12,8 @@ body {
 }
 
 .navbar {
-  margin-bottom:10px;
+  margin-bottom:0px;
+  border-radius: 0px;
 }
 
 #flash {
@@ -56,14 +57,13 @@ body {
 }
 .hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
   box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  -webkit-transform: scale(1.0);
+  transform: scale(1.0);
 }
 
 .frame {
   padding: 30px;
   background-color: white;
-  border: solid ;
   height: 466.5px;
   width: auto;
   display: flex;
@@ -74,7 +74,6 @@ body {
 
 .sidebar {
   background-color: white;
-  border: solid ;
 }
 
 .xframe {
@@ -92,7 +91,7 @@ body {
 }
 
 .scrll {
-  height: 600px;
+  height: 650px;
   overflow: scroll;
 }
 
@@ -143,11 +142,6 @@ body {
     opacity: 1.5;
     border-radius: 20px;
     padding: 30px;
-}
-
-.fbk {
-  position: relative;
-  top: -23px;
 }
 
 #headerimage {
@@ -231,10 +225,9 @@ body {
 }
 
 #edge {
-  border: solid;
   background-color: white;
   position: relative;
-  left: 3px;
+  left: 0px;
 }
 
 .img-responsive {
@@ -261,14 +254,12 @@ body {
 }
 
 .outer {
-  overflow-y: hidden;
-  width: 700px;
-  height: 50px;
+  display: flex;
+  flex-direction: column ;
+  justify-content:space-around;
+  height: 540px;
+  /*display: none;*/
 }
-
-.inner {
-  width: 3850px;
-   }
 
 .ui.segment {
  border:0px;
@@ -276,4 +267,45 @@ body {
 
 .ui.horizontal.segments{
   background-color: inherit;
+}
+
+#head {
+  background-color:white;
+}
+
+.set {
+  margin-right: 35px;
+  margin-left: 35px;
+}
+
+#avatar {
+  display: none;
+}
+
+#show {
+  display: none;
+}
+.top{
+  top:0;
+  left:0;
+  width:inherit;
+  height: 97px;
+}
+
+.topspace {
+  width:inherit;
+  height: 5px;
+}
+#sp {
+  display: none;
+}
+
+.ui.button {
+  background: white;
+}
+
+#id_title {
+  line-height: 26px;
+  position: relative;
+  top: 1px;
 }
