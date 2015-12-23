@@ -228,7 +228,7 @@ function DeleteImage()
                 data: {'id': imageId },
                 success: function(data) {
                     if (data == "success") {
-
+                        $('#show').show();
                         var notify = $.notify('<strong>Image</strong> successfully deleted...', {
                                 type: 'success',
                                 allow_dismiss: true,
