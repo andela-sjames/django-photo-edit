@@ -48,14 +48,12 @@
                     {% endif %}
                     </div>
 
-                    <div class="ui active large loader" style="display:none"></div>
-
                     <img class="flex img-responsive" id="avatar" src="">
 
-                    <p id="show">Click on Image to edit..</p>
+                    <h3 id="show">Click on Image to edit..</h3>
 
                 </div>
-                <div class="row">
+                <div class="row" id="hide">
                     <button class="ui facebook button share" id="fbk">
                         <i class="facebook icon"></i>
                         Facebook share
@@ -81,14 +79,15 @@
 
 
         <div class="outer flex row">
+
             <div class="effects move">
-            <a href="#" class="setup" data-effect="brightness">
-            <button class="ui button">Brightness</button></a>
+            <a href="#" class="#" id="reset" data-src="reset">
+            <button class="ui button">Reset</button></a>
             </div>
 
             <div class="effects move">
-            <a href="#" class="setup" data-effect="sharpness">
-            <button class="ui button">Sharpness</button></a>
+            <a href="#" class="setup" data-effect="brightness">
+            <button class="ui button">Brightness</button></a>
             </div>
 
             <div class="effects move">

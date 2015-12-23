@@ -35,12 +35,6 @@ class FilterPhotoTestCase(UserSetupTestCase):
         response = PillowImageView.as_view()(request)
         self.assertEquals(response.status_code, 200)
 
-        b_data = {'image': photo.image.path, 'effect': 'sharpness'}
-        request = self.factory.get(reverse('addeffects'), b_data)
-        request.user = self.user1
-        response = PillowImageView.as_view()(request)
-        self.assertEquals(response.status_code, 200)
-
         data3 = {'image': photo.image.path, 'effect': 'grayscale'}
         request = self.factory.get(reverse('addeffects'), data3)
         request.user = self.user1

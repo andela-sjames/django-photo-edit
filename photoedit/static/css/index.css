@@ -309,3 +309,7 @@ body {
   position: relative;
   top: 1px;
 }
+
+.ui.active.button {
+  background-color: white;
+}

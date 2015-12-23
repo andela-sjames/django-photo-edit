@@ -30,12 +30,6 @@ class Applyeffects(object):
             enh = ImageEnhance.Brightness(img)
             img = enh.enhance(1.8)
 
-        if effect == 'sharpness':
-
-            img = Image.open(self.pilimage)
-            enh = ImageEnhance.Sharpness(img)
-            img = enh.enhance(2.5)
-
         if effect == 'grayscale':
 
             img = Image.open(self.pilimage).convert('L')
