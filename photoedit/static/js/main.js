@@ -137,7 +137,11 @@ function UploadForm()
                 success: function(data) {
 
                 $(".welcome1").hide();
+                $("#firstupload").hide();
                 $('#show').show();
+                $('#disp').show();
+                //remove welcomediv
+                // $('#frameid').removeClass( "welcomediv");
 
                 clearTimeout(timeout);
                 timeout = setTimeout(function() {
