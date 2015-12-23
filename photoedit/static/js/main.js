@@ -369,6 +369,7 @@ $(document).ready(function(){
     })
 
     BindEvents();
+    Disable();
     ApplyEffects();
     UploadForm();
     Uploadbutton();
@@ -377,7 +378,6 @@ $(document).ready(function(){
     DeleteModalProperty();
     FacebookShare();
     DownloadFile();
-    Disable();
     DefaultDisable();
     ResetImage();
 
