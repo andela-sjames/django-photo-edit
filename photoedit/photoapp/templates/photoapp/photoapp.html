@@ -20,7 +20,13 @@
 
                 {% endfor %}
                 {% else%}
+                    <div>
+                        <h2>Nothing Uploaded Yet!</h2>
+                    </div>
 
+                    <div>
+                        <h3 id="up">Images you upload will appear here.</h3>
+                    </div>
 
                 {% endif %}
                 <br>
@@ -40,7 +46,7 @@
 
                     <div id="begin">
                     {% if photos %}
-                    <center><p class="welcome">Click on Image to edit...</p></center>
+                    <center><p class="welcome" id="visible">Click on Image to edit...</p></center>
                     {% endif %}
                     {% if not photos %}
                     <center><p class="welcome1">Dear {{ request.user.username }} you currently have no picture uploaded. Upload a File to begin.</p>
@@ -74,7 +80,6 @@
         </div>
         <div class="row">
             <button type="button" class="ui button" data-toggle="modal" data-target="#fileupload-modal">Upload a file</button>
-         <p class="welcome">Click on Image to Edit</p>
         </div><br>
 
 

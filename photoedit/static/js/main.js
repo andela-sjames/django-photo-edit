@@ -137,6 +137,7 @@ function UploadForm()
                 success: function(data) {
 
                 $(".welcome1").hide();
+                $('#show').show();
 
                 clearTimeout(timeout);
                 timeout = setTimeout(function() {
@@ -197,7 +198,6 @@ function ApplyEffects()
             url: "/photoapp/addeffects/",
             data: {'image': image, 'effect': imgeffect },
             success: function(data) {
-                $(".loader").show();
                 var avatatr = $("#avatar").attr("src", '/'+ data + "?" + new Date().getTime());
                 $("#frameid").html(avatar);
 
@@ -219,6 +219,7 @@ function DeleteImage()
             var button  = $('.setup').find('button');
             button.attr('disabled', 'disabled');
             $('#hide').hide();
+            $('#show').show();
 
 
             $.ajax({

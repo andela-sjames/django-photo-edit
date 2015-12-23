@@ -313,3 +313,7 @@ body {
 .ui.active.button {
   background-color: white;
 }
+
+#up {
+  margin-top: 80px;
+}

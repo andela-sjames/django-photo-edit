@@ -64,4 +64,5 @@ def delete_from_file_system(sender, instance, **kwargs):
 
     if os.path.exists(delete_path):
         os.remove(delete_path)
+    if os.path.exists(path):
         os.remove(path)
