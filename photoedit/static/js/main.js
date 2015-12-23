@@ -355,8 +355,8 @@ function resetImage() {
 
 $(document).ready(function(){
     facebookLogin.init({
-        login: "#facebookLogin", //test value
-        fb_id: "1105396756159660"
+        login: "#facebookLogin", //production value
+        fb_id: '1098970130135656'
     })
 
     bindEvents();
