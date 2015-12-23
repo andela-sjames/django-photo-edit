@@ -74,6 +74,10 @@ body {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
+#frameid {
+  min-height: 300px;
+  text-align: center
+}
 
 .sidebar {
   background-color: white;
@@ -117,6 +121,7 @@ body {
   font-size:20px;
   font-weight: 300px;
   font-family: 'Roboto Condensed', sans-serif;
+  margin-bottom: 20px;
 }
 
 #backimage {
@@ -234,10 +239,15 @@ body {
 }
 
 #edge {
-  background-color: white;
-  position: relative;
-  left: 0px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 50px;
+  background: #fff;
+  box-shadow: 0 0 6px 0 rgba(0,0,0,0.26);
+  width: 300px;
+  padding: 35px;
+  text-align: center
 }
 
 .img-responsive {
@@ -303,10 +313,6 @@ body {
   height: 97px;
 }
 
-.topspace {
-  width:inherit;
-  height: 5px;
-}
 #sp {
   display: none;
 }
@@ -332,6 +338,17 @@ body {
 
 #bigup {
   font-family: 'Roboto Condensed', sans-serif;
+  margin-top: 30px;
+}
+
+#main {
+  position: absolute;
+  bottom: 0;
+  top: 50px;
+  left: 300px;
+  right: 0;
+  padding-top: 30px;
+  overflow-y: scroll
 }
 
 #disp {
@@ -340,4 +357,12 @@ body {
 
 .welcomediv {
   background-color:inherit;
+}
+
+#emptyimg {
+  height: auto;
+}
+
+#simplebase {
+  padding-top:60px
 }
