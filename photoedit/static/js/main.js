@@ -68,7 +68,7 @@ var facebookLogin = {
 function bindEvents() {
     $("body").on('click', ".editpix", function(e){
         e.preventDefault();
-        $('#begin').hide();
+
         var imageUrl = $(this).find('img').attr('src');
         var imgDiv = $('#pixedit').find('img');
         var effectsDiv = $('.effects').find('button');
@@ -87,6 +87,7 @@ function bindEvents() {
         $(".flex").show();
         $('#fbk').show();
         $('#sp').show();
+        $('#null').hide()
         $('#show').hide();
         $('#hide').show();
 
@@ -172,34 +173,47 @@ function uploadbutton() {
 function applyEffects() {
         $("body").on('click', ".setup", function(e){
         e.preventDefault();
-        var image = $(this).find('button').attr('data-image-id')
-        var imgeffect = $(this).attr('data-effect')
-        var notify = $.notify('<strong>Applying effects...</strong>', {
-            type: 'success',
-            allow_dismiss: true,
-            delay: 1000,
-            timer: 700,
-            placement: {
-                from: "top",
-                align: "center"
-            },
-        });
-
-        $.ajax({
-            type: "GET",
-            url: "/photoapp/addeffects/",
-            data: {'image': image, 'effect': imgeffect },
-            success: function(data) {
-                var avatatr = $("#avatar").attr("src", '/'+ data + "?" + new Date().getTime());
-                $("#frameid").html(avatar);
 
 
-            },
+        var button  = $(this).find('button');
 
-            error: function(error) {
-                    console.log(error.responseText)
+        if ((button.hasClass("nothing") && button.hasClass("active")) || (button.attr('disabled'))) {
+            return
+        } else {
+            $('.active').removeAttr('disabled');
+            $('.active').removeClass('active');
+            button.addClass( "active");
+            button.attr('disabled', 'disabled');
+
+            var image = $(this).find('button').attr('data-image-id')
+            var imgeffect = $(this).attr('data-effect')
+            var notify = $.notify('<strong>Applying effects...</strong>', {
+                type: 'success',
+                allow_dismiss: true,
+                delay: 1000,
+                timer: 700,
+                placement: {
+                    from: "top",
+                    align: "center"
                 },
-        });
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "/photoapp/addeffects/",
+                data: {'image': image, 'effect': imgeffect },
+                success: function(data) {
+                    var avatatr = $("#avatar").attr("src", '/'+ data + "?" + new Date().getTime());
+                    $("#frameid").html(avatar);
+
+
+                },
+
+                error: function(error) {
+                        console.log(error.responseText)
+                    },
+            });
+        }
     });
 }
 
@@ -217,7 +231,6 @@ function deleteImage() {
                 data: {'id': imageId },
                 success: function(data) {
                     if (data == "success") {
-                        $('#show').show();
                         var notify = $.notify('<strong>Image</strong> successfully deleted...', {
                                 type: 'success',
                                 allow_dismiss: true,
@@ -234,10 +247,10 @@ function deleteImage() {
                         var url = "/photoapp/photos/"
                         $("#reload").load(url + " #reload")
                         var img_id = $('.frame').find('img').attr('data-title')
-                        $("#show").show();
 
                         if (img_id == imageId) {
                             $("#avatar").hide();
+                            $('#null').show()
                         }
                     }
                 },
@@ -316,21 +329,6 @@ function downloadFile() {
     });
 }
 
-function disable() {
-    $("body").on('click', ".setup", function(e){
-        e.preventDefault();
-        var button  = $(this).find('button');
-
-        if ($(this).hasClass( "active")) {
-            return
-        } else {
-            $('.active').removeAttr('disabled');
-            button.addClass( "active");
-            button.attr('disabled', 'disabled');
-        }
-    })
-}
-
 function defaultDisable() {
 
     var button  = $('.setup').find('button');
@@ -347,6 +345,12 @@ function resetImage() {
     })
 }
 
+function emptyDatabase() {
+    if ($('#nulltrigger').length) {
+        $('#null').show()
+    }
+}
+
 $(document).ready(function(){
     facebookLogin.init({
         login: "#facebookLogin", //production value
@@ -354,7 +358,6 @@ $(document).ready(function(){
     })
 
     bindEvents();
-    disable();
     applyEffects();
     uploadForm();
     uploadbutton();
@@ -365,6 +368,7 @@ $(document).ready(function(){
     downloadFile();
     defaultDisable();
     resetImage();
+    emptyDatabase();
 
 })
 
