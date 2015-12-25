@@ -172,34 +172,47 @@ function uploadbutton() {
 function applyEffects() {
         $("body").on('click', ".setup", function(e){
         e.preventDefault();
-        var image = $(this).find('button').attr('data-image-id')
-        var imgeffect = $(this).attr('data-effect')
-        var notify = $.notify('<strong>Applying effects...</strong>', {
-            type: 'success',
-            allow_dismiss: true,
-            delay: 1000,
-            timer: 700,
-            placement: {
-                from: "top",
-                align: "center"
-            },
-        });
-
-        $.ajax({
-            type: "GET",
-            url: "/photoapp/addeffects/",
-            data: {'image': image, 'effect': imgeffect },
-            success: function(data) {
-                var avatatr = $("#avatar").attr("src", '/'+ data + "?" + new Date().getTime());
-                $("#frameid").html(avatar);
 
 
-            },
+        var button  = $(this).find('button');
 
-            error: function(error) {
-                    console.log(error.responseText)
+        if ((button.hasClass("nothing") && button.hasClass("active")) || (button.attr('disabled'))) {
+            return
+        } else {
+            $('.active').removeAttr('disabled');
+            $('.active').removeClass('active');
+            button.addClass( "active");
+            button.attr('disabled', 'disabled');
+
+            var image = $(this).find('button').attr('data-image-id')
+            var imgeffect = $(this).attr('data-effect')
+            var notify = $.notify('<strong>Applying effects...</strong>', {
+                type: 'success',
+                allow_dismiss: true,
+                delay: 1000,
+                timer: 700,
+                placement: {
+                    from: "top",
+                    align: "center"
                 },
-        });
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "/photoapp/addeffects/",
+                data: {'image': image, 'effect': imgeffect },
+                success: function(data) {
+                    var avatatr = $("#avatar").attr("src", '/'+ data + "?" + new Date().getTime());
+                    $("#frameid").html(avatar);
+
+
+                },
+
+                error: function(error) {
+                        console.log(error.responseText)
+                    },
+            });
+        }
     });
 }
 
@@ -316,21 +329,6 @@ function downloadFile() {
     });
 }
 
-function disable() {
-    $("body").on('click', ".setup", function(e){
-        e.preventDefault();
-        var button  = $(this).find('button');
-
-        if ($(this).hasClass( "active")) {
-            return
-        } else {
-            $('.active').removeAttr('disabled');
-            button.addClass( "active");
-            button.attr('disabled', 'disabled');
-        }
-    })
-}
-
 function defaultDisable() {
 
     var button  = $('.setup').find('button');
@@ -349,12 +347,11 @@ function resetImage() {
 
 $(document).ready(function(){
     facebookLogin.init({
-        login: "#facebookLogin", //production value
-        fb_id: '1098970130135656'
+        login: "#facebookLogin", //test value
+        fb_id: "1105396756159660"
     })
 
     bindEvents();
-    disable();
     applyEffects();
     uploadForm();
     uploadbutton();
