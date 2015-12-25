@@ -68,7 +68,7 @@ var facebookLogin = {
 function bindEvents() {
     $("body").on('click', ".editpix", function(e){
         e.preventDefault();
-        $('#begin').hide();
+
         var imageUrl = $(this).find('img').attr('src');
         var imgDiv = $('#pixedit').find('img');
         var effectsDiv = $('.effects').find('button');
@@ -87,6 +87,7 @@ function bindEvents() {
         $(".flex").show();
         $('#fbk').show();
         $('#sp').show();
+        $('#null').hide()
         $('#show').hide();
         $('#hide').show();
 
@@ -230,7 +231,6 @@ function deleteImage() {
                 data: {'id': imageId },
                 success: function(data) {
                     if (data == "success") {
-                        $('#show').show();
                         var notify = $.notify('<strong>Image</strong> successfully deleted...', {
                                 type: 'success',
                                 allow_dismiss: true,
@@ -247,10 +247,10 @@ function deleteImage() {
                         var url = "/photoapp/photos/"
                         $("#reload").load(url + " #reload")
                         var img_id = $('.frame').find('img').attr('data-title')
-                        $("#show").show();
 
                         if (img_id == imageId) {
                             $("#avatar").hide();
+                            $('#null').show()
                         }
                     }
                 },
@@ -345,10 +345,16 @@ function resetImage() {
     })
 }
 
+function emptyDatabase() {
+    if ($('#nulltrigger').length) {
+        $('#null').show()
+    }
+}
+
 $(document).ready(function(){
     facebookLogin.init({
-        login: "#facebookLogin", //test value
-        fb_id: "1105396756159660"
+        login: "#facebookLogin", //production value
+        fb_id: '1098970130135656'
     })
 
     bindEvents();
@@ -362,6 +368,7 @@ $(document).ready(function(){
     downloadFile();
     defaultDisable();
     resetImage();
+    emptyDatabase();
 
 })
 

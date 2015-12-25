@@ -12,15 +12,18 @@
                     <button type="button" class="ui button" id="del" data-toggle="modal" data-target="#delete-modal" href="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                     <img src = "{{ photo.image.url }}" class="sideimg">
                 <p>{{ photo.title }}</p>
+                <br>
                 </div>
             </a>
         {% empty %}
+        <div id="nulltrigger">
             <div>
                 <img src="http://www.megaicons.net/static/img/icons_sizes/8/178/512/photo-video-slr-camera-icon.png" class="img-responsive" id="emptyimg" />
             </div>
             <div>
-                <h3 id="bigup" Uploaded Yet!</h3>
+                <h3 id="bigup">Nothing Uploaded Yet!</h3>
             </div>
+        </div>
         {% endfor %}
     </div>
 </div>
@@ -29,14 +32,12 @@
         <div class="col-md-9">
             <div class="pix row set" id="pixedit">
                 <div class="frame" id="frameid">
-                    <div id="begin">
-                    {% if photos %}
-                    <center><p class="info" id="visible">Click on Image to edit...</p></center>
-                    {% else %}
-                    <center><p class="welcome1">Dear {{ request.user.username }} you currently have no picture uploaded.</p>
+
+
+                    <center><p id="null" class="welcome1">Dear {{ request.user.username }} Upload/Click on Image to edit....</p>
                     </center>
-                    {% endif %}
-                    </div>
+
+
                     <img class="flex img-responsive" id="avatar" src="">
                     <h3 id="show">Click on Image to edit..</h3>
                 </div>
