@@ -12,15 +12,18 @@
                     <button type="button" class="ui button" id="del" data-toggle="modal" data-target="#delete-modal" href="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                     <img src = "{{ photo.image.url }}" class="sideimg">
                 <p>{{ photo.title }}</p>
+                <br>
                 </div>
             </a>
         {% empty %}
+        <div id="nulltrigger">
             <div>
                 <img src="http://www.megaicons.net/static/img/icons_sizes/8/178/512/photo-video-slr-camera-icon.png" class="img-responsive" id="emptyimg" />
             </div>
             <div>
                 <h3 id="bigup">Nothing Uploaded Yet!</h3>
             </div>
+        </div>
         {% endfor %}
     </div>
 </div>
@@ -29,14 +32,12 @@
         <div class="col-md-9">
             <div class="pix row set" id="pixedit">
                 <div class="frame" id="frameid">
-                    <div id="begin">
-                    {% if photos %}
-                    <center><p class="info" id="visible">Click on Image to edit...</p></center>
-                    {% else %}
-                    <center><p class="welcome1">Dear {{ request.user.username }} you currently have no picture uploaded.</p>
+
+
+                    <center><p id="null" class="welcome1">Dear {{ request.user.username }} Upload/Click on Image to edit....</p>
                     </center>
-                    {% endif %}
-                    </div>
+
+
                     <img class="flex img-responsive" id="avatar" src="">
                     <h3 id="show">Click on Image to edit..</h3>
                 </div>
@@ -68,68 +69,68 @@
 
                 <div class="effects move">
                     <a href="#" class="setup" data-effect="brightness">
-                    <button class="ui button">Brightness</button></a>
+                    <button class="ui button nothing">Brightness</button></a>
                 </div>
 
                 <div class="effects move">
                     <a href="#" class="setup" data-effect="grayscale">
-                    <button class="ui button">Grayscale</button></a>
+                    <button class="ui button nothing">Grayscale</button></a>
                 </div>
 
                 <div class="effects move">
                     <a href="#" class="setup" data-effect="blur">
-                    <button class="ui button">Blur</button></a>
+                    <button class="ui button nothing">Blur</button></a>
                 </div>
 
                 <div class="effects move">
                     <a href="#" class="setup" data-effect="findedges">
-                    <button class="ui button">FindEdges</button></a>
+                    <button class="ui button nothing">FindEdges</button></a>
                 </div>
 
                 <div class="effects move">
                     <a href="#" class="setup" data-effect="blackwhite">
-                    <button class="ui button">Black-White</button></a>
+                    <button class="ui button nothing">Black-White</button></a>
                 </div>
 
                 <div class="effects move">
                     <a href="#" class="setup" data-effect="sepia">
-                    <button class="ui button">Sepia</button></a>
+                    <button class="ui button nothing">Sepia</button></a>
                 </div>
 
 
                 <div class="effects move">
                     <a href="#" class="setup" data-effect="contrast">
-                    <button class="ui button">Contrast</button></a>
+                    <button class="ui button nothing">Contrast</button></a>
                 </div>
 
                 <div class="effects move">
                     <a href="#" class="setup" data-effect="bigenhance">
-                    <button class="ui button">Bigenhance</button></a>
+                    <button class="ui button nothing">Bigenhance</button></a>
                 </div>
 
                 <div class="effects move">
                     <a href="#" class="setup" data-effect="enhance">
-                    <button class="ui button">Enhance</button></a>
+                    <button class="ui button nothing">Enhance</button></a>
                 </div>
 
                 <div class="effects move">
                     <a href="#" class="setup" data-effect="smooth">
-                    <button class="ui button">Smooth</button></a>
+                    <button class="ui button nothing">Smooth</button></a>
                 </div>
 
                 <div class="effects move">
                     <a href="#" class="setup" data-effect="emboss">
-                    <button class="ui button">Emboss</button></a>
+                    <button class="ui button nothing">Emboss</button></a>
                 </div>
 
                 <div class="effects move">
                     <a href="#" class="setup" data-effect="contour">
-                    <button class="ui button">Contour</button></a>
+                    <button class="ui button nothing">Contour</button></a>
                 </div>
 
                 <div class="effects move">
                     <a href="#" class="setup" data-effect="sharpen">
-                    <button class="ui button">Sharpen</button></a>
+                    <button class="ui button nothing">Sharpen</button></a>
                 </div>
             </div>
         </div>
