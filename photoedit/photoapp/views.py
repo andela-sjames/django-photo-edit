@@ -32,6 +32,12 @@ class HomeView(TemplateView):
 
     template_name = 'photoapp/index.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated():
+            return HttpResponseRedirect(
+                reverse_lazy('photoview'))
+        return super(HomeView, self).dispatch(request, *args, **kwargs)
+
 
 class FacebookLogin(View):
 
@@ -126,7 +132,6 @@ class DeletePhotoView(View, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
 
         photoid = request.GET.get('id')
-        path = request.GET.get('path')
 
         try:
             photo = Photo.objects.get(id=photoid)
