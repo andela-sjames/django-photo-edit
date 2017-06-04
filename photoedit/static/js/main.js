@@ -354,7 +354,7 @@ function emptyDatabase() {
 $(document).ready(function(){
     facebookLogin.init({
         login: "#facebookLogin", //production value
-        fb_id: '1098970130135656'
+        fb_id: '1105396756159660' //'1098970130135656'
     })
 
     bindEvents();
