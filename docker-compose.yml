@@ -2,11 +2,16 @@ version: '3'
 
 services:
   postgres:
-    image: postgres:latest
+    restart: always
+    image: postgres
+    container_name: photo_edit_db
   web:
+    container_name: photo_edit_web
     build: ./photoedit
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes: . :/code
+    env_file:
+      - .env
+    volumes:
+      - .:/code
     ports: 
       - "8000:8000"
     depends_on:
